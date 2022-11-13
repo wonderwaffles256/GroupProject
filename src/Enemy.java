@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Enemy extends Character{
     private ArrayList<Item> loot;
     private String flirtRequirement; // (data type TBD)
-    private String type;             // indicates which location this enemy appears in
+    private double spawnChance;             // indicates which location this enemy appears in
     private ArrayList<String> dialogue;
 
     //default constructor
@@ -13,14 +13,14 @@ public class Enemy extends Character{
         super();
         loot = new ArrayList<>();
         flirtRequirement = null;
-        type = null;
+         spawnChance = 0;
     }
 
     //constructor given input
-    public Enemy(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot, String flirtRequirement, String type, ArrayList<String> dialogue) {
+    public Enemy(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot, String flirtRequirement, double spawnChance, ArrayList<String> dialogue) {
         super(HP,name,armor,weapon,critChance);
         this.flirtRequirement = flirtRequirement;
-        this.type = type;
+        this.spawnChance = spawnChance;
 
         this.loot = new ArrayList<>();
         this.loot.addAll(loot);
@@ -31,11 +31,11 @@ public class Enemy extends Character{
 
     //getters
     public ArrayList<Item> getLoot() {return loot;}
-    public String getType() {return type;}
+    public double getType() {return spawnChance;}
     public String getFlirtRequirement() {return flirtRequirement;}
 
     //setters
-    public void setType(String type) {this.type = type;}
+    public void setType(double spawnChance) {this.spawnChance = spawnChance;}
     public void setFlirtRequirement(String flirtRequirement) {this.flirtRequirement = flirtRequirement;}
 
     //should we create addLoot method or just standard setter?
