@@ -36,7 +36,6 @@ public class Character {
     public void setHP(int HP) {this.HP = HP;}
     public void setName(String name) {this.name = name;}
 
-    //real code
-    //fight method (Player, Enemy, GF)
-    //flight method (Player, Enemy?)
+    //uses current weapon to fight an enemy, girlfriend, or player
+    public void fight(Character opponent) {}
 }

@@ -39,9 +39,11 @@ public class Player extends Character{
     public void setClout(double clout) {this.clout = clout;}
     public void acquireCorn(int corn){CORN = corn + CORN;}
 
-    /*TO DO:
-        - flirt method
-        - flask method
-     */
+    //player flees combat, losing clout
+    public void flight() {}
+
+    //player attempts to flirt with enemy. If requirements are met, the enemy joins your group of companions
+    public void flirt() {}
+
 }
 

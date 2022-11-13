@@ -5,6 +5,7 @@ public class Location {
     private int currentLoc;       //keeps track of which location the player is currently in
     private int progress;         //keeps track of how many rooms the player has completed within each location
 
+    //default constructor
     public Location() {
         this.name = null;
         this.difficulty = 0;
@@ -13,6 +14,7 @@ public class Location {
         this.progress = 0;
     }
 
+    //constructor given parameters
     public Location(String name, int difficulty, int currentLoc, int progress) {
         this.name = name;
         switch(difficulty) {

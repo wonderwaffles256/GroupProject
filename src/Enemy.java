@@ -47,5 +47,8 @@ public class Enemy extends Character{
      */
     public String dialogue() {return "Cool Dialogue";}
 
-    //implement seduction method (TBD)
+    //checks to see if player has met this enemy's flirt requirement for companionship
+    public Enemy flirtSuccess(String flirtRequirement) {
+        return new Enemy();
+    }
 }
