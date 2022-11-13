@@ -37,6 +37,7 @@ public class Player extends Character{
     //setters
     public void setCORN(int CORN) {this.CORN = CORN;}
     public void setClout(double clout) {this.clout = clout;}
+    public void acquireCorn(int corn){CORN = corn + CORN;}
 
     /*TO DO:
         - flirt method
