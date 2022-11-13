@@ -5,7 +5,7 @@ public class ChestRoom extends Location{
     }
 
     public int openChest(){
-        int val = 50;//val will be some random value between # and #
-        return val;
+        int va = 50;//val will be some random value between # and #
+        return va;
     }
 }
