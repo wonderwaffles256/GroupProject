@@ -24,7 +24,7 @@ public class Location {
         this.progress = progress;
     }
 
-    //checks whether
+    //checks whether player has completed a location or not
     public boolean checkProgress(int progress) {
         return false;
     }
