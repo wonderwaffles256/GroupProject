@@ -38,4 +38,7 @@ public class Character {
 
     //uses current weapon to fight an enemy, girlfriend, or player
     public void fight(Character opponent) {}
+
+    //adds armor strength to current health
+    public void equipArmor() {}
 }

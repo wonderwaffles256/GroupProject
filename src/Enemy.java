@@ -38,9 +38,6 @@ public class Enemy extends Character{
     public void setType(double spawnChance) {this.spawnChance = spawnChance;}
     public void setFlirtRequirement(String flirtRequirement) {this.flirtRequirement = flirtRequirement;}
 
-    //should we create addLoot method or just standard setter?
-
-
     /**
      * Returns a string of randomly generated dialogue
      * @return String;

@@ -8,7 +8,7 @@ public class Girlfriend extends Character{
     public Girlfriend() {
         super();
         medal = null;
-        difficulty = -1;
+        difficulty = 0;
     }
 
     public Girlfriend(int HP, String name, Armor armor, Weapon weapon, double critChance, String medal, int difficulty, ArrayList<String> dialogue) {
@@ -20,10 +20,24 @@ public class Girlfriend extends Character{
         this.dialogue.addAll(dialogue);
     }
 
+    //getters
+    public int getDifficulty() {return difficulty;}
+    public String getMedal() {return medal;}
 
+    //setter
+    public void setDifficulty(int difficulty) {this.difficulty = difficulty;}
 
-    /* TO DO:
-        - unique attack method (based on difficulty)
-        - dialogue method (based on difficulty)
+    /**
+     * Alternate attack specifically for the girlfriend that increases in strength based on its difficulty.
+     * Girlfriends have a low chance of using this attack.
+     * @param difficulty;
      */
+    public void specialAttack(int difficulty) {}
+
+    /**
+     * Returns a string of dialogue from the dialogue list attached to this girlfriend
+     * @return String;
+     */
+    public String dialogue() {return "Impress me or die";}
+
 }

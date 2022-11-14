@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Location {
     private String name;
     private int difficulty;
     private int numRooms;
     private String currentLoc;       //keeps track of which location the player is currently in
-    private int progress;         //keeps track of how many rooms the player has completed within each location
-    private ArrayList<Location> rooms;
+    private int progress;            //keeps track of how many rooms the player has completed within each location
+    private Stack<Room> rooms;
 
     //default constructor
     public Location() {
@@ -15,11 +16,11 @@ public class Location {
         this.numRooms = 0;
         this.currentLoc = null;
         this.progress = 0;
-        this.rooms = new ArrayList<>();
+        this.rooms = new Stack<>();
     }
 
     //constructor given parameters
-    public Location(String name, int difficulty, String currentLoc, ArrayList<Location> rooms) {
+    public Location(String name, int difficulty, String currentLoc, Stack<Room> rooms) {
         this.name = name;
         switch(difficulty) {
             case 1 -> numRooms = 3;
@@ -29,7 +30,7 @@ public class Location {
         this.currentLoc = currentLoc;
         this.progress = 0;
 
-        this.rooms = new ArrayList<>();
+        this.rooms = new Stack<>();
         this.rooms.addAll(rooms);
     }
 
@@ -39,7 +40,19 @@ public class Location {
     }
 
     //generates a random assortment of rooms up to the numRooms attached to this location
-    public void generateRooms() {
+    public void generateRooms() {}
 
-    }
+    //getters
+    public String getName() {return name;}
+    public int getDifficulty() {return difficulty;}
+    public int getNumRooms() {return numRooms;}
+    public String getCurrentLoc() {return currentLoc;}
+    public int getProgress() {return progress;}
+
+    //setters
+    public void setName(String name) {this.name = name;}
+    public void setDifficulty(int difficulty) {this.difficulty = difficulty;}
+    public void setNumRooms(int numRooms) {this.numRooms = numRooms;}
+    public void setCurrentLoc(String currentLoc) {this.currentLoc = currentLoc;}
+    public void setProgress(int progress) {this.progress = progress;}
 }
