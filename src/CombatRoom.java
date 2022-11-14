@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Random;
 
-public class CombatRoom extends Location{
+public class CombatRoom extends Room{
     ArrayList<Enemy> enemies;
 
     //default constructor
@@ -11,8 +10,8 @@ public class CombatRoom extends Location{
     }
 
     //constructor given parameters
-    public CombatRoom(String name, int difficulty, int currentLoc, int progress, ArrayList<Enemy> enemies) {
-        super(name, difficulty, currentLoc, progress);
+    public CombatRoom(String name, ArrayList<Enemy> enemies) {
+        super(name);
 
         this.enemies = new ArrayList<>();
         this.enemies.addAll(enemies);

@@ -1,9 +1,10 @@
 import java.util.Random;
 
-public class ChestRoom extends Location{
+public class ChestRoom extends Room{
 
-    public ChestRoom(String name,int difficulty, int currentLoc, int progress){
-        super(name,difficulty,currentLoc,progress);
+    //constructor given parameters
+    public ChestRoom(String name){
+        super(name);
     }
 
     //returns some number of CORN from the chest
