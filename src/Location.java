@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Location {
     private String name;
     private int difficulty;
     private int numRooms;
     private String currentLoc;       //keeps track of which location the player is currently in
-    private int progress;         //keeps track of how many rooms the player has completed within each location
-    private ArrayList<Location> rooms;
+    private int progress;            //keeps track of how many rooms the player has completed within each location
+    private Stack<Room> rooms;
 
     //default constructor
     public Location() {
@@ -15,11 +16,11 @@ public class Location {
         this.numRooms = 0;
         this.currentLoc = null;
         this.progress = 0;
-        this.rooms = new ArrayList<>();
+        this.rooms = new Stack<>();
     }
 
     //constructor given parameters
-    public Location(String name, int difficulty, String currentLoc, ArrayList<Location> rooms) {
+    public Location(String name, int difficulty, String currentLoc, Stack<Room> rooms) {
         this.name = name;
         switch(difficulty) {
             case 1 -> numRooms = 3;
@@ -29,7 +30,7 @@ public class Location {
         this.currentLoc = currentLoc;
         this.progress = 0;
 
-        this.rooms = new ArrayList<>();
+        this.rooms = new Stack<>();
         this.rooms.addAll(rooms);
     }
 
