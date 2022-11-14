@@ -17,6 +17,8 @@ public class Room {
     //setter + getter
     public String getName() {return name;}
 
+    public boolean getCompleted() {return completed;}
+
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
