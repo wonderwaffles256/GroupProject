@@ -50,17 +50,17 @@ public class Character {
     //uses current weapon to fight an enemy, girlfriend, or player
 
     /**
-     * The fight method lets a character fight another character until one of the two parties wins the battle.
-     * The player has the option to fight, flirt, flee, or flask in a fight(heal) until one of the parties finishes the fight
-     * @param opponent - the opposing character the current character must battle until a single party wins
+     * The fight method lets a character fight another character to the death.
+     * The player has the option to fight, flirt, flee, or flask in combat until one of the parties finishes the fight
+     * @param opponent - the Character being fought
      */
     public void fight(Character opponent) {}
 
     /**
      * equip armor adds the strength value to the hp value to make a player equip a piece of armor.
-     * Also, if armor is already equipped it will shift the equipped armor to inventory and the armor
+     * Also, if armor is already equipped it will shift the equipped armor to inventory and the new set
      * will be put on. If the new armor has less strength than the old armor it won't be equipped.
-     * @param armor - the armor that a player equips when they get a new piece of armor
+     * @param armor - a newly acquired set of armor
      */
     public void equipArmor(Armor armor) {}
 }

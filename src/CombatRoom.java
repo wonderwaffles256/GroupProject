@@ -9,7 +9,11 @@ public class CombatRoom extends Room{
         this.enemies = new ArrayList<>();
     }
 
-    //constructor given parameters
+    /**
+     * constructor
+     * @param name - name of the room
+     * @param enemies - list of spawn-able enemies in the room (can change by location)
+     */
     public CombatRoom(String name, ArrayList<Enemy> enemies) {
         super(name);
 
@@ -17,7 +21,10 @@ public class CombatRoom extends Room{
         this.enemies.addAll(enemies);
     }
 
-    //returns a random enemy from the list
+    /**
+     * returns a random enemy from the list for combat
+     * @return enemy
+     */
     public Enemy challengerApproaches() {
         return new Enemy();
     }

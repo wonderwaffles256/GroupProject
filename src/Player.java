@@ -102,10 +102,14 @@ public class Player extends Character{
     //player attempts to flirt with enemy. If requirements are met, the enemy joins your group of companions
     public void flirt() {}
 
-    //use some number of flasks/potion items to heal HP
+    /**
+     * player uses items from his itemPack to heal hp or gain some other buff
+     */
     public void flask() {}
 
-    //equips a weapon of choice
+    /**
+     * allows the user to equip a weapon of their choice
+     */
     public void equipWeapon() {}
 
 }
