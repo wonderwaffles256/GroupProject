@@ -3,7 +3,9 @@ import java.util.ArrayList;
 public class CombatRoom extends Room{
     ArrayList<Enemy> enemies;
 
-    //default constructor
+    /**
+     * default constructor
+     */
     public CombatRoom() {
         super();
         this.enemies = new ArrayList<>();

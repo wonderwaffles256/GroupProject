@@ -7,7 +7,9 @@ public class Item {
     private String name;
     private int value;
 
-    //empty constructor
+    /**
+     * default constructor
+     */
     public Item() {
         name = null;
         value = 0;

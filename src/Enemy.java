@@ -8,7 +8,9 @@ public class Enemy extends Character{
     private double spawnChance;             // indicates which location this enemy appears in
     private ArrayList<String> dialogue;
 
-    //default constructor
+    /**
+     * default constructor
+     */
     public Enemy() {
         super();
         loot = new ArrayList<>();

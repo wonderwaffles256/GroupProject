@@ -8,7 +8,6 @@ public class Room {
     /**
      * default constructor for rooms
      */
-    //default constructor
     public Room() {
         name = null;
         completed = false;

@@ -5,7 +5,10 @@ import java.util.Random;
  */
 public class ChestRoom extends Room{
 
-    //constructor given parameters
+    /**
+     * constructor
+     * @param name the name of the rooms
+     */
     public ChestRoom(String name){
         super(name);
     }

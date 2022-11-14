@@ -8,9 +8,9 @@ public class Player extends Character{
     private ArrayList<Character> companions;
 
     /**
+     * default constructor
      * initializes the player object with no parameters
      */
-    //default constructor
     public Player() {
         super();
         clout = 0;

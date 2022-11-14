@@ -9,7 +9,9 @@ public class Location {
     private int progress;            //keeps track of how many rooms the player has completed within each location
     private Stack<Room> rooms;       //holds a set of rooms generated for this location
 
-    //default constructor
+    /**
+     * default constructor
+     */
     public Location() {
         this.name = null;
         this.difficulty = 0;

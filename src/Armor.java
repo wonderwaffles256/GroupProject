@@ -4,7 +4,9 @@
 public class Armor extends Item{
     private int strength;
 
-    //default constructor
+    /**
+     * constructor
+     */
     public Armor() {
         super();
         strength = 0;
