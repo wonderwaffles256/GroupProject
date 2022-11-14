@@ -48,5 +48,8 @@ public class Player extends Character{
     //use some number of flasks/potion items to heal HP
     public void flask() {}
 
+    //equips a weapon of choice
+    public void equipWeapon() {}
+
 }
 
