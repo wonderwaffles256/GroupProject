@@ -16,7 +16,18 @@ public class Enemy extends Character{
          spawnChance = 0;
     }
 
-    //constructor given input
+    /**
+     *
+     * @param HP - # of health points
+     * @param name - name of the enemy
+     * @param armor - armor worn by the enemy
+     * @param weapon - weapon wielded by the enemy
+     * @param critChance - chance to land a critical hit
+     * @param loot - list of items/CORN held by an enemy (one is gained upon defeat)
+     * @param flirtRequirement - string representing the requirement for a successful flirt (usually an item)
+     * @param spawnChance - rate at which this enemy spawns at a location
+     * @param dialogue - list of dialogue related to the enemy
+     */
     public Enemy(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot, String flirtRequirement, double spawnChance, ArrayList<String> dialogue) {
         super(HP,name,armor,weapon,critChance);
         this.flirtRequirement = flirtRequirement;
@@ -44,7 +55,11 @@ public class Enemy extends Character{
      */
     public String dialogue() {return "Cool Dialogue";}
 
-    //checks to see if player has met this enemy's flirt requirement for companionship
+    /**
+     * checks to see if player has met this enemy's flirt requirement for companionship
+     * @param flirtRequirement - string representing the requirement for a successful flirt (usually an item)
+     * @return - returns the enemy on a success
+     */
     public Enemy flirtSuccess(String flirtRequirement) {
         return new Enemy();
     }

@@ -11,6 +11,17 @@ public class Girlfriend extends Character{
         difficulty = 0;
     }
 
+    /**
+     * constructor
+     * @param HP - number of health points
+     * @param name - name of the girlfriend
+     * @param armor - armor worn by girlfriend
+     * @param weapon - weapon wielded by girlfriend
+     * @param critChance - chance to land a critical hit
+     * @param medal - award obtained by defeating your girlfriend
+     * @param difficulty - level of difficulty related to the girlfriend
+     * @param dialogue - list of dialogue
+     */
     public Girlfriend(int HP, String name, Armor armor, Weapon weapon, double critChance, String medal, int difficulty, ArrayList<String> dialogue) {
         super(HP, name, armor, weapon, critChance);
         this.medal = medal;
