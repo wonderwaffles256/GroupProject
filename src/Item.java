@@ -1,3 +1,8 @@
+/**
+ * The Item class is used to store basic items the players can use within the game such as armor and
+ * weapons. All items have a name and a value associated with them to identify them and show their
+ * worth.
+ */
 public class Item {
     private String name;
     private int value;
@@ -8,7 +13,11 @@ public class Item {
         value = 0;
     }
 
-    //constructor given input
+    /**
+     * Constructor for any items used within the game that sets any default values
+     * @param name - name of said item
+     * @param value - value of an item for purchase and sell price
+     */
     public Item(String name, int value) {
         this.name = name;
         this.value = value;
