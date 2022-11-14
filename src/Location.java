@@ -19,7 +19,7 @@ public class Location {
     }
 
     //constructor given parameters
-    public Location(String name, int difficulty, String currentLoc, int progress, ArrayList<Location> rooms) {
+    public Location(String name, int difficulty, String currentLoc, ArrayList<Location> rooms) {
         this.name = name;
         switch(difficulty) {
             case 1 -> numRooms = 3;
@@ -27,7 +27,7 @@ public class Location {
             case 3 -> numRooms = 7;
         }
         this.currentLoc = currentLoc;
-        this.progress = progress;
+        this.progress = 0;
 
         this.rooms = new ArrayList<>();
         this.rooms.addAll(rooms);
