@@ -39,7 +39,19 @@ public class Location {
     }
 
     //generates a random assortment of rooms up to the numRooms attached to this location
-    public void generateRooms() {
+    public void generateRooms() {}
 
-    }
+    //getters
+    public String getName() {return name;}
+    public int getDifficulty() {return difficulty;}
+    public int getNumRooms() {return numRooms;}
+    public String getCurrentLoc() {return currentLoc;}
+    public int getProgress() {return progress;}
+
+    //setters
+    public void setName(String name) {this.name = name;}
+    public void setDifficulty(int difficulty) {this.difficulty = difficulty;}
+    public void setNumRooms(int numRooms) {this.numRooms = numRooms;}
+    public void setCurrentLoc(String currentLoc) {this.currentLoc = currentLoc;}
+    public void setProgress(int progress) {this.progress = progress;}
 }

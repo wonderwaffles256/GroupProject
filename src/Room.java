@@ -14,16 +14,10 @@ public class Room {
         completed = false;
     }
 
-    //setter + getter
+    //setters + getters
     public String getName() {return name;}
-
     public boolean getCompleted() {return completed;}
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name;}
+    public void setCompleted(boolean completed) {this.completed = completed;}
 }
