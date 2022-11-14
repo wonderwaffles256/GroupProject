@@ -13,4 +13,9 @@ public class ConsoleDriver {
 
         //can add a GUI with minimal if any changes to game logic
     }
+
+    /**
+     * Prints a menu to inform user and gather input
+     */
+    public void menu() {}
 }
