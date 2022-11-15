@@ -88,18 +88,15 @@ public class Player extends Character{
     public void acquireCorn(int corn){CORN = corn + CORN;}
 
     /**
-     * plauer flees combat
-     * this causes a decrese in clout
+     * player flees combat
+     * this act of cowardice decreases their clout
      */
-    //player flees combat, losing clout
-    public void flight() {}
+    public void flee() {}
 
     /**
      * player flirts with enemy
      * if successful then enemy becomes a companion
      */
-
-    //player attempts to flirt with enemy. If requirements are met, the enemy joins your group of companions
     public void flirt() {}
 
     /**
@@ -112,5 +109,9 @@ public class Player extends Character{
      */
     public void equipWeapon() {}
 
-}
+    /**
+     * allows player to choose one of a companions to fight for them once during a battle
+     */
+    public void useCompanions() {}
 
+}
