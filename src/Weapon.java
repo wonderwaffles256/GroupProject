@@ -8,8 +8,6 @@ public class Weapon extends Item{
     /**
      * Default constructor for creating a weapon object
      */
-
-    //default constructor
     public Weapon() {
         super();
         this.damage = 0;
