@@ -21,8 +21,8 @@ public class Weapon extends Item{
      */
 
     //constructor given input
-    public Weapon(String name, int value, int damage) {
-        super(name, value);
+    public Weapon(String name, int value, int damage, String description) {
+        super(name, value, description);
         this.damage = damage;
     }
 

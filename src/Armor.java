@@ -19,8 +19,8 @@ public class Armor extends Item{
      * @param value - value of the armor
      * @param strength - the amount of hp given to player by armor
      */
-    public Armor(String name, int value, int strength) {
-        super(name, value);
+    public Armor(String name, int value, int strength, String description) {
+        super(name, value, description);
         this.strength = strength;
     }
 
