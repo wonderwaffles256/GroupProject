@@ -6,6 +6,7 @@
 public class Item {
     private String name;
     private int value;
+    private String description;
 
     /**
      * default constructor
@@ -13,6 +14,7 @@ public class Item {
     public Item() {
         name = null;
         value = 0;
+        description = null;
     }
 
     /**
@@ -20,17 +22,20 @@ public class Item {
      * @param name - name of said item
      * @param value - value of an item for purchase and sell price
      */
-    public Item(String name, int value) {
+    public Item(String name, int value, String description) {
         this.name = name;
         this.value = value;
+        this.description = description;
     }
 
     //getters
     public String getName() {return name;}
     public int getValue() {return value;}
+    public String getDescription() {return description;}
 
     //setters
     public void setName(String name) {this.name = name;}
     public void setValue(int value) {this.value = value;}
+    public void setDescription(String description) {this.description = description;}
 
 }
