@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class RunGame {
     public void load(int difficulty) {
@@ -11,67 +10,55 @@ public class RunGame {
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
         Armor nothing = new Armor("none", 0, 0, "Nothing cheaper than a birthday suit");
 
-        Item rock = new Item("Charlie", 1, "Just a rock named Charlie");
-
-        ArrayList<Item> beetLoot= new ArrayList<>();
-
-        ArrayList<String> beetDialogue = new ArrayList<>();
-
-        beetLoot.add(rock);
-        beetDialogue.add("I'm gonna BEET you!");
-        //beetLoot.generateLoot();
-        Enemy beet = new Enemy(12, "Baljbeet", nothing, club, 0, beetLoot, "Beet Juice", 80, beetDialogue);
-
-
-        ArrayList<Item> itemPack = new ArrayList<>();
-        ArrayList<Character> companions = new ArrayList<>();
-        Player player = new Player(100, "Player", overalls, gun, 10, itemPack, companions);
-
-
-    }
-
-    public void generateLoot() {
-        //generates random loot for enemies;
+        //Enemy beet = new Enemy(12, "Baljbeet", )
     }
 
     public void combat(Player p,Character enemy){
         Scanner scnr = new Scanner(System.in);
 
         while(p.getHP() > 0 && enemy.getHP() > 0) {
-            boolean goodinput = true;
-            while (goodinput) {
+            boolean goodinput = false;
+            while (!goodinput) {
                 System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), or Flee ( 4 )\n" +
-                                    "Please input 1 2 3 or 4. NOTHING ELSE.");
+                        "Please input 1 2 3 or 4. NOTHING ELSE and hit Enter.");
                 String in = scnr.nextLine();
                 switch (in) {
                     case "1" -> {
                         goodinput = true;
                         p.fight(enemy);
                     }
-                    case "2" -> {
+                    case "2" -> {p.flirt();
                         goodinput = true;
-                        p.flirt();
                     }
-                    case "3" -> {
+                    case "3" -> {p.flask();
                         goodinput = true;
-                        p.flask();
                     }
-                    case "4" -> {
-                        goodinput = false;
-                        p.flee();
+                    case "4" -> {p.flee();
+                        goodinput = true;
                     }
                     default -> System.out.println("Bad input please try again");
                 }
-
-
+            }
+            if(enemy instanceof Girlfriend){
+                System.out.println(((Girlfriend) enemy).dialogue());
+                ((Girlfriend) enemy).fight(p);
+            }
+            else{
+                enemy.fight(p);
             }
         }
 
         if(p.getHP() <= 0){
-
+            p.setHP(p.getMaxHP());
+            p.setClout(1);
         }
         else if(enemy.getHP() <= 0){
-
+            if(enemy instanceof Girlfriend){
+                System.out.println("OMG I think I love you");
+            }
+            else{
+                System.out.println("You have vanquished the enemy");
+            }
         }
     }
     //use to test runGame

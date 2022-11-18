@@ -65,4 +65,8 @@ public class Enemy extends Character{
     public Enemy flirtSuccess(String flirtRequirement) {
         return new Enemy();
     }
+
+    public void fight(Character opponent){
+        opponent.setHP(opponent.getHP() - this.getWeapon().getDamage());
+    }
 }
