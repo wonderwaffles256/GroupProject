@@ -1,11 +1,13 @@
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player extends Character{
     private double clout;                   //clout will start at 0
     private int CORN;                       //CORN will start at 0
     private ArrayList<Item> itemPack;
     private ArrayList<Character> companions;
+    private int maxHP;
 
     /**
      * default constructor
@@ -33,8 +35,9 @@ public class Player extends Character{
     //constructor given input
     public Player(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> itemPack, ArrayList<Character> companions) {
         super(HP, name, armor, weapon, critChance);
-        clout = 0;
+        clout = 1;
         CORN = 0;
+        maxHP = HP + armor.getStrength();
         this.itemPack = new ArrayList<>();
         this.companions = new ArrayList<>();
 
@@ -48,37 +51,13 @@ public class Player extends Character{
      */
     //getters
     public double getClout() {return clout;}
-
-    /**
-     * getter
-     * @return corn value
-     */
     public int getCORN() {return CORN;}
-
-    /**
-     * getter
-     * @return arraylist of items
-     */
+    public int getMaxHP() {return maxHP;}
     public ArrayList<Item> getItemPack() {return itemPack;}
-
-    /**
-     * getter
-     * @return arraylist of companions
-     */
     public ArrayList<Character> getCompanions() {return companions;}
 
     //setters
-
-    /**
-     * setter
-     * @param CORN sets value for corn
-     */
     public void setCORN(int CORN) {this.CORN = CORN;}
-
-    /**
-     * setter
-     * @param clout sets value for clout
-     */
     public void setClout(double clout) {this.clout = clout;}
 
     /**
@@ -117,11 +96,25 @@ public class Player extends Character{
      * player uses items from his itemPack to heal hp or gain some other buff
      */
     public void flask() {
+        Scanner sc = new Scanner(System.in);
         if(this.itemPack.isEmpty()) {
             System.out.println("You ain't got nothin boy!\n" + "Go get some junk!");
         }
         else{
-            displayItems();
+            try{
+                displayItems();
+                System.out.println("Please enter the number for the item you would like to use");
+                int choice = sc.nextInt();
+
+                System.out.println("You used " + this.itemPack.get(choice).getName());
+                System.out.println("It healed " + maxHP/3 + " HP");
+
+                this.setHP(this.getHP() + maxHP/3);
+                this.itemPack.remove(choice);
+            }
+            catch(Exception e) {
+                System.out.println("You nincompoop. Enter a number next time.");
+            }
 
         }
 
