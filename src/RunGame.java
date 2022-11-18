@@ -17,6 +17,7 @@ public class RunGame {
         Scanner scnr = new Scanner(System.in);
 
         while(p.getHP() > 0 && enemy.getHP() > 0) {
+            //enemy says wacky funny dialogue
             boolean goodinput = false;
             while (!goodinput) {
                 System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), or Flee ( 4 )\n" +

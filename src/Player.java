@@ -95,7 +95,7 @@ public class Player extends Character{
     /**
      * player uses items from his itemPack to heal hp or gain some other buff
      */
-    public void flask() {
+    public void flask() {                           //NEED TO CREATE CONSUMABLES CLASS FOR FULL FUNCTIONALITY
         Scanner sc = new Scanner(System.in);
         if(this.itemPack.isEmpty()) {
             System.out.println("You ain't got nothin boy!\n" + "Go get some junk!");
