@@ -18,7 +18,7 @@ public class RunGame {
             //enemy says wacky funny dialogue
             boolean goodinput = false;
             while (!goodinput) {
-                System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), or Flee ( 4 )\n" +
+                System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), Flee ( 4 ), or File( 5 ).\n" +
                         "Please input 1 2 3 or 4. NOTHING ELSE and hit Enter.");
                 String in = scnr.nextLine();
                 switch (in) {
@@ -36,7 +36,9 @@ public class RunGame {
                         goodinput = true;
                         done = true;
                     }
-                    default -> System.out.println("Bad input please try again");
+                    case "5" -> {p.file(enemy);
+                    }
+                    default -> System.out.println("Please re-input");
                 }
             }
 

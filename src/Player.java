@@ -143,4 +143,9 @@ public class Player extends Character{
      */
     public void useCompanions() {}//implement after flirting
 
+    public void file(Character opp){
+        System.out.println("Player has " + HP + " HP and can thawck for " + this.weapon.getDamage() + " Damage.");
+        System.out.println("Enemy has " + opp.getHP() + "left. Hope you can devastate that");
+    }
+
 }
