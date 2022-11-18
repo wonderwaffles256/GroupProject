@@ -68,6 +68,8 @@ public class RunGame {
             }
             else{
                 System.out.println("You have vanquished " + enemy.getName());
+                p.setClout(p.getClout() + 0.1);
+                System.out.println("Your clout increased");
             }
         }
     }
