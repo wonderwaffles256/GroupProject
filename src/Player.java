@@ -13,7 +13,7 @@ public class Player extends Character{
      */
     public Player() {
         super();
-        clout = 0;
+        clout = 1;
         CORN = 0;
         itemPack = new ArrayList<>();
         companions = new ArrayList<>();
@@ -113,5 +113,9 @@ public class Player extends Character{
      * allows player to choose one of a companions to fight for them once during a battle
      */
     public void useCompanions() {}
+
+    public void fight(Character opponent){
+        opponent.setHP((int) Math.round((double) opponent.getHP() - ((double) this.getWeapon().getDamage()) * clout));
+    }
 
 }

@@ -4,7 +4,7 @@ import java.util.Scanner;
  * Character is a superclass that gives methods to player, enemy, and girlfriend. It controls the stats of all
  * characters in the game so that they can battle in combat.
  */
-public class Character {
+public abstract class Character {
     private int HP;
     private String name;
     private Armor armor;
@@ -56,9 +56,7 @@ public class Character {
      * The player has the option to fight, flirt, flee, or flask in combat until one of the parties finishes the fight
      * @param opponent - the Character being fought
      */
-    public void fight(Character opponent) {
-
-    }
+    public abstract void fight(Character opponent);
 
     /**
      * equip armor adds the strength value to the hp value to make a player equip a piece of armor.
