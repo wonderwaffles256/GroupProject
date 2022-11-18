@@ -88,10 +88,24 @@ public class Player extends Character{
     public void acquireCorn(int corn){CORN = corn + CORN;}
 
     /**
+     * Player's version of the fight method. Multiplies damage by their current clout modifier.
+     * @param opponent - the Character being fought
+     */
+    public void fight(Character opponent){
+        double dmg = ((double) this.getWeapon().getDamage()) * clout;
+        opponent.setHP((int) Math.round((double) opponent.getHP() - dmg));
+        System.out.println("You dealt " + Math.round(dmg) + "!");
+    }
+
+    /**
      * player flees combat
      * this act of cowardice decreases their clout
      */
-    public void flee() {}
+    public void flee() {
+        this.clout -= this.clout - 0.2;
+        System.out.println("How can you expect to impress a girl if you cannot impress yourself?.\n" +
+                           "CLOUT reduced by 0.2!");
+    }
 
     /**
      * player flirts with enemy
@@ -102,7 +116,22 @@ public class Player extends Character{
     /**
      * player uses items from his itemPack to heal hp or gain some other buff
      */
-    public void flask() {}
+    public void flask() {
+        if(this.itemPack.isEmpty()) {
+            System.out.println("You ain't got nothin boy!\n" + "Go get some junk!");
+        }
+        else{
+            displayItems();
+
+        }
+
+    }
+
+    public void displayItems() {
+        for(int i = 0; i < this.itemPack.size(); i++) {
+            System.out.println("Item " + i + ": " + this.itemPack.get(i).getName());
+        }
+    }
 
     /**
      * allows the user to equip a weapon of their choice
@@ -113,9 +142,5 @@ public class Player extends Character{
      * allows player to choose one of a companions to fight for them once during a battle
      */
     public void useCompanions() {}
-
-    public void fight(Character opponent){
-        opponent.setHP((int) Math.round((double) opponent.getHP() - ((double) this.getWeapon().getDamage()) * clout));
-    }
 
 }
