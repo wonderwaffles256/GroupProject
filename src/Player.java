@@ -90,7 +90,9 @@ public class Player extends Character{
      * player flirts with enemy
      * if successful then enemy becomes a companion
      */
-    public void flirt() {}
+    public void flirt() {
+        System.out.println("Your approaches do not impress the enemy.");
+    }
 
     /**
      * player uses items from his itemPack to heal hp or gain some other buff
@@ -129,11 +131,11 @@ public class Player extends Character{
     /**
      * allows the user to equip a weapon of their choice
      */
-    public void equipWeapon() {}
+    public void equipWeapon() {}//implement later
 
     /**
      * allows player to choose one of a companions to fight for them once during a battle
      */
-    public void useCompanions() {}
+    public void useCompanions() {}//implement after flirting
 
 }

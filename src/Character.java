@@ -64,5 +64,5 @@ public abstract class Character {
      * will be put on. If the new armor has less strength than the old armor it won't be equipped.
      * @param armor - a newly acquired set of armor
      */
-    public void equipArmor(Armor armor) {}
+    public void equipArmor(Armor armor) {}//implement later
 }

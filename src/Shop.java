@@ -10,7 +10,7 @@ public class Shop {
      * prints out all the item availible in the shop
      */
 
-    //displays current stock of items
+    //displays current stock of items needs to be done
     public void display() {
 
     }

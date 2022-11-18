@@ -27,7 +27,7 @@ public class CombatRoom extends Room{
      * returns a random enemy from the list for combat
      * @return enemy
      */
-    public Enemy challengerApproaches() {
+    public Enemy challengerApproaches() {//finish later
         return new Enemy();
     }
 

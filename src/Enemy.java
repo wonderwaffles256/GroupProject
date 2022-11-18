@@ -55,7 +55,7 @@ public class Enemy extends Character{
      * Returns a string of randomly generated dialogue
      * @return String;
      */
-    public String dialogue() {return "Cool Dialogue";}
+    public String dialogue() {return "Cool Dialogue";}//think of more cool dialogue
 
     /**
      * checks to see if player has met this enemy's flirt requirement for companionship
@@ -64,7 +64,7 @@ public class Enemy extends Character{
      */
     public Enemy flirtSuccess(String flirtRequirement) {
         return new Enemy();
-    }
+    }//implement later
 
     public void fight(Character opponent){
         opponent.setHP(opponent.getHP() - this.getWeapon().getDamage());

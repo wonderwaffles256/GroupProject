@@ -17,7 +17,7 @@ public class ChestRoom extends Room{
      * openChest jst gives the player a random amount of corn from the chest to spend later in the shop
      * @return - the amount of corn earned from a chest
      */
-    public int openChest(){
+    public int openChest(){//finish later
         int va = 50;//val will be some random value between # and #
         System.out.println("You opened a chest and got " + va + " amount of CORN");
         return va;

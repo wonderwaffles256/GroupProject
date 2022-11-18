@@ -48,7 +48,7 @@ public class Girlfriend extends Character{
      * @param difficulty;
      * @param player - needed in order to change the Players hp value after being attacked
      */
-    public void specialAttack(int difficulty, Character player) {
+    public void specialAttack(int difficulty, Character player) {//more stuff for different difficulties
         System.out.println("I don't know. You've been acting pretty sus lately.");
         System.out.println("I think we have an imposter Among US");
         if(difficulty == 1){
@@ -77,6 +77,7 @@ public class Girlfriend extends Character{
         }
         else{
             opponent.setHP(opponent.getHP() - this.getWeapon().getDamage());
+            System.out.println("Your girlfriend throws a " + this.getWeapon().getName() + " at you for " + this.getWeapon().getDamage() + " Damage.");
         }
 
     }
