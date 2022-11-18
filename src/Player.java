@@ -34,7 +34,7 @@ public class Player extends Character{
 
     //constructor given input
     public Player(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> itemPack, ArrayList<Character> companions) {
-        super(HP, name, armor, weapon, critChance);
+        super(HP + armor.getStrength(), name, armor, weapon, critChance);
         clout = 1;
         CORN = 0;
         maxHP = HP + armor.getStrength();
