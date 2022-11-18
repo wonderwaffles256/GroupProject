@@ -109,7 +109,7 @@ public class Player extends Character{
                 int choice = sc.nextInt();
 
                 System.out.println("You used " + this.itemPack.get(choice).getName());
-                System.out.println("You recovered " + maxHP/3 + " HP");
+                System.out.println("You recovered " + healRemainder(maxHP/3) + " HP");
 
                 if(HP + maxHP/3 < maxHP) {
                     this.setHP(this.getHP() + maxHP / 3);
@@ -123,8 +123,15 @@ public class Player extends Character{
                 System.out.println("You nincompoop. Enter a number next time.");
             }
 
-        }
+        }//end else
+    }
 
+    public int healRemainder(int healedAmt) {
+        if(HP + healedAmt > maxHP) {
+            int overflow  = (HP + healedAmt) - maxHP;
+            return healedAmt - overflow;
+        }
+        else {return healedAmt;}
     }
 
     public void displayItems() {
