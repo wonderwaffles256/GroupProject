@@ -73,7 +73,7 @@ public class Player extends Character{
     public void fight(Character opponent){
         double dmg = ((double) this.getWeapon().getDamage()) * clout;
         opponent.setHP((int) Math.round((double) opponent.getHP() - dmg));
-        System.out.println("You dealt " + Math.round(dmg) + "!");
+        System.out.println("Using your " + this.weapon.getName() + " you hit on " + opponent.getName() + " for " + Math.round(dmg) + " damage!");
     }
 
     /**
@@ -109,7 +109,7 @@ public class Player extends Character{
                 int choice = sc.nextInt();
 
                 System.out.println("You used " + this.itemPack.get(choice).getName());
-                System.out.println("It healed " + maxHP/3 + " HP");
+                System.out.println("You recovered " + maxHP/3 + " HP");
 
                 if(HP + maxHP/3 < maxHP) {
                     this.setHP(this.getHP() + maxHP / 3);
