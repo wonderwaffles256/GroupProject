@@ -53,8 +53,8 @@ public class Girlfriend extends Character{
         System.out.println("I think we have an imposter Among US");
         if(difficulty == 1){
             System.out.println("You have just Scoobied your last Doo");
-            player.setHP(player.getHP() - this.getWeapon().getDamage());
-            System.out.println("Your Girlfriend hits you with the Mystery Machine dealing" + this.getWeapon().getDamage() + " Damage!");
+            player.setHP(player.HP - this.weapon.getDamage());
+            System.out.println("Your Girlfriend hits you with the Mystery Machine dealing" + this.weapon.getDamage() + " Damage!");
         }
     }
 
@@ -76,8 +76,8 @@ public class Girlfriend extends Character{
             spAtkUsed = true;
         }
         else{
-            opponent.setHP(opponent.getHP() - this.getWeapon().getDamage());
-            System.out.println("Your girlfriend throws a " + this.getWeapon().getName() + " at you for " + this.getWeapon().getDamage() + " Damage.");
+            opponent.setHP(opponent.HP - this.weapon.getDamage());
+            System.out.println("Your girlfriend throws a " + this.weapon.getName() + " at you for " + this.weapon.getDamage() + " Damage.");
         }
 
     }

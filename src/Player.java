@@ -111,8 +111,13 @@ public class Player extends Character{
                 System.out.println("You used " + this.itemPack.get(choice).getName());
                 System.out.println("It healed " + maxHP/3 + " HP");
 
-                this.setHP(this.getHP() + maxHP/3);
-                this.itemPack.remove(choice);
+                if(HP + maxHP/3 < maxHP) {
+                    this.setHP(this.getHP() + maxHP / 3);
+                    this.itemPack.remove(choice);
+                }
+                else{
+                    this.setHP(maxHP);
+                }
             }
             catch(Exception e) {
                 System.out.println("You nincompoop. Enter a number next time.");

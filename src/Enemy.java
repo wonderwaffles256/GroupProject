@@ -67,7 +67,7 @@ public class Enemy extends Character{
     }//implement later
 
     public void fight(Character opponent){
-        opponent.setHP(opponent.getHP() - this.getWeapon().getDamage());
-        System.out.println(this.getName() + " whalopped you with its " + this.getWeapon().getName() + " for " + this.getWeapon().getDamage() + " damage!");
+        opponent.setHP(opponent.HP - this.weapon.getDamage());
+        System.out.println(this.name + " whalopped you with its " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!");
     }
 }

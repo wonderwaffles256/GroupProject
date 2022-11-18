@@ -5,11 +5,11 @@ import java.util.Scanner;
  * characters in the game so that they can battle in combat.
  */
 public abstract class Character {
-    private int HP;
-    private String name;
-    private Armor armor;
-    private Weapon weapon;
-    private double critChance;
+    protected int HP;
+    protected String name;
+    protected Armor armor;
+    protected Weapon weapon;
+    protected double critChance;
 
     public Character() {
         HP = 0;
