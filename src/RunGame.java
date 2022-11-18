@@ -17,26 +17,26 @@ public class RunGame {
         Scanner scnr = new Scanner(System.in);
 
         while(p.getHP() > 0 && enemy.getHP() > 0) {
-            boolean goodinput = false;
+            boolean goodinput = true;
             while (goodinput) {
-                System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), or Flee ( 4 )");
-                System.out.println("Please input 1 2 3 or 4. NOTHING ELSE.");
+                System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), or Flee ( 4 )\n" +
+                        "Please input 1 2 3 or 4. NOTHING ELSE.");
                 String in = scnr.nextLine();
-                if (in.equals("1")) {
-                    goodinput = true;
-                    p.fight(enemy);
-                }
-                else if (in.equals("2")) {
-                    goodinput = true;
-                }
-                else if (in.equals("3")) {
-                    goodinput = true;
-                }
-                else if (in.equals("4")) {
-                    goodinput = true;
-                }
-                else {
-                    System.out.println("Bad input please try again");
+                switch (in) {
+                    case "1" -> {
+                        goodinput = true;
+                        p.fight(enemy);
+                    }
+                    case "2" -> {
+                        goodinput = true;
+                    }
+                    case "3" -> {
+                        goodinput = true;
+                    }
+                    case "4" -> {
+                        goodinput = false;
+                    }
+                    default -> System.out.println("Bad input please try again");
                 }
 
 
