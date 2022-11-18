@@ -109,6 +109,7 @@ public class Player extends Character{
                 int choice = sc.nextInt();
 
                 System.out.println("You used " + this.itemPack.get(choice).getName());
+                itemPack.remove(this.itemPack.get(choice));
                 System.out.println("You recovered " + healRemainder(maxHP/3) + " HP");
 
                 if(HP + maxHP/3 < maxHP) {
