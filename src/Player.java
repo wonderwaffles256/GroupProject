@@ -110,15 +110,17 @@ public class Player extends Character{
 
                 System.out.println("You used " + this.itemPack.get(choice).getName());
                 itemPack.remove(this.itemPack.get(choice));
-                System.out.println("You recovered " + healRemainder(maxHP/3) + " HP");
 
-                if(HP + maxHP/3 < maxHP) {
-                    this.setHP(this.getHP() + maxHP / 3);
-                    this.itemPack.remove(choice);
-                }
-                else{
-                    this.setHP(maxHP);
-                }
+                //This needs to be implemented through a consumable class
+//                System.out.println("You recovered " + healRemainder(maxHP/3) + " HP");
+//
+//                if(HP + maxHP/3 < maxHP) {
+//                    this.setHP(this.getHP() + maxHP / 3);
+//                    this.itemPack.remove(choice);
+//                }
+//                else{
+//                    this.setHP(maxHP);
+//                }
             }
             catch(Exception e) {
                 System.out.println("You nincompoop. Enter a number next time.");
