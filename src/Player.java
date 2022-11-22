@@ -8,6 +8,8 @@ public class Player extends Character{
     private ArrayList<Item> itemPack;
     private ArrayList<Character> companions;
     private int maxHP;
+    private String currentLocation;
+    boolean locComplete;
 
     /**
      * default constructor
@@ -19,6 +21,7 @@ public class Player extends Character{
         CORN = 0;
         itemPack = new ArrayList<>();
         companions = new ArrayList<>();
+        locComplete = false;
     }
 
     /**
@@ -38,6 +41,7 @@ public class Player extends Character{
         clout = 1;
         CORN = 0;
         maxHP = HP + armor.getStrength();
+        locComplete = false;
         this.itemPack = new ArrayList<>();
         this.companions = new ArrayList<>();
 
@@ -53,12 +57,16 @@ public class Player extends Character{
     public double getClout() {return clout;}
     public int getCORN() {return CORN;}
     public int getMaxHP() {return maxHP;}
+    public String getCurrentLocation() {return currentLocation;}
+    public boolean getLocComplete() {return locComplete;}
     public ArrayList<Item> getItemPack() {return itemPack;}
     public ArrayList<Character> getCompanions() {return companions;}
 
     //setters
     public void setCORN(int CORN) {this.CORN = CORN;}
     public void setClout(double clout) {this.clout = clout;}
+    public void setCurrentLocation(String currLoc) {this.currentLocation = currLoc;}
+    public void setLocComplete(boolean complete) {this.locComplete = complete;}
 
     /**
      * when user obtains corn it sums the newly obtained bits with the existing amount
