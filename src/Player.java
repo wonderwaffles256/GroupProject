@@ -98,8 +98,7 @@ public class Player extends Character{
      * player flirts with enemy
      * if successful then enemy becomes a companion
      */
-    public void flirt() {
-
+    public void flirt(Character e) {
 
         System.out.println("Your advances do not impress the enemy.");
     }

@@ -26,18 +26,21 @@ public class RunGame {
                         goodinput = true;
                         p.fight(enemy);
                     }
-                    case "2" -> {p.flirt();
+                    case "2" -> {
+                        p.flirt(enemy);
                         goodinput = true;
                     }
-                    case "3" -> {p.flask();
+                    case "3" -> {
+                        p.flask();
                         goodinput = true;
                     }
-                    case "4" -> {p.flee();
+                    case "4" -> {
+                        p.flee();
                         goodinput = true;
                         done = true;
                     }
-                    case "5" -> {p.file(enemy);
-                    }
+                    case "5" -> p.file(enemy);
+
                     default -> System.out.println("Please re-input");
                 }
             }
