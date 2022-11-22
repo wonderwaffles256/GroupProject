@@ -87,17 +87,19 @@ public class RunGame {
         Item heal = new Item("Coors Lite", 2, "Replenishes HP");
 
         ArrayList<Item> beetLoot = new ArrayList<>();
-        ArrayList<String> beetDialogue = new ArrayList<>();
+        ArrayList<String> beetBattleDialogue = new ArrayList<>();
+        ArrayList<String> beetFlirtDialogue = new ArrayList<>();
 
         beetLoot.add(rock);
-        beetDialogue.add("I will BEET you");
+        beetBattleDialogue.add("I will BEET you");
+        beetFlirtDialogue.add("");
 
         ArrayList<Item> itemPack = new ArrayList<>();
         ArrayList<Character> companions = new ArrayList<>();
 
         itemPack.add(heal);
 
-        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, "Beet Juice", 80, beetDialogue);
+        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, "Beet Juice", 80, beetBattleDialogue, beetFlirtDialogue);
 
         Player player = new Player(100, "Player", overalls, gun, 10, itemPack, companions);
 

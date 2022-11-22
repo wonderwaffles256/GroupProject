@@ -99,7 +99,9 @@ public class Player extends Character{
      * if successful then enemy becomes a companion
      */
     public void flirt() {
-        System.out.println("Your approaches do not impress the enemy.");
+
+
+        System.out.println("Your advances do not impress the enemy.");
     }
 
     /**
@@ -119,7 +121,7 @@ public class Player extends Character{
                 System.out.println("You used " + this.itemPack.get(choice).getName());
                 itemPack.remove(this.itemPack.get(choice));
 
-                //This needs to be implemented through a consumable class
+                //This needs to be implemented through a consumable class (if time allows)
                 System.out.println("You recovered " + healRemainder(maxHP/3) + " HP");
 
                 if(HP + maxHP/3 < maxHP) {
@@ -161,9 +163,14 @@ public class Player extends Character{
      */
     public void useCompanions() {}//implement after flirting
 
+
+    /**
+     * displays information about the current enemy and player
+     * @param opp - enemy player is fighting
+     */
     public void file(Character opp){
         System.out.println("Player has " + HP + " HP and can thawck for " + this.weapon.getDamage() + " Damage.");
-        System.out.println("Enemy has " + opp.getHP() + "left. Hope you can devastate that");
+        System.out.println("Enemy has " + opp.getHP() + "left. Hope you can demolish that");
     }
 
 }
