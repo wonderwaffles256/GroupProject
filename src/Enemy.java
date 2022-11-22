@@ -49,6 +49,8 @@ public class Enemy extends Character{
     public ArrayList<Item> getLoot() {return loot;}
     public double getType() {return spawnChance;}
     public String getFlirtRequirement() {return flirtRequirement;}
+    public ArrayList<String> getFlirtDialogue() {return flirtDialogue;}
+    public ArrayList<String> getBattleDialogue() {return battleDialogue;}
 
     //setters
     public void setType(double spawnChance) {this.spawnChance = spawnChance;}
