@@ -55,7 +55,9 @@ public class Location {
      * generates a random assortment of rooms up to the numRooms attached to this location
      * @return Stack<Room> - stack holds each generated room
      */
-    public Stack<Room> generateRooms() {return new Stack<>();}
+    public Stack<Room> generateRooms() {
+        return new Stack<>();
+    }
 
     //getters
     public String getName() {return name;}
