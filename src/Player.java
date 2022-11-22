@@ -98,9 +98,46 @@ public class Player extends Character{
      * player flirts with enemy
      * if successful then enemy becomes a companion
      */
-    public void flirt(Character e) {
+    public boolean flirt(Character e) {
+        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Your advances do not impress the enemy.");
+        boolean done = false;
+        while(!done) {
+            try {
+                if(e instanceof Enemy) {
+                    done = true;
+                    System.out.println("You advance upon " + e.getName() + ", it looks startled.\n" +
+                            "Do you:\n");
+                    System.out.println(((Enemy) e).getFlirtDialogue().get(0));      //prints opening options for flirting
+                    int choice = sc.nextInt();
+
+                    if(flirtCheck(choice,(Enemy) e)) {
+                        //add enemy to companions
+                        companions.add(e);
+                        //print line resulting from correct option
+                        System.out.println(((Enemy) e).getFlirtDialogue().get(choice));
+                        System.out.println(e.getName() + " has joined the team!");
+                        return true;
+                    }
+                    else {
+                        System.out.println(((Enemy) e).getFlirtDialogue().get(choice));
+                        System.out.println("Your advances do not impress the enemy.");
+                    }
+
+                }//end enemy check
+
+            }
+            catch(Exception E) {
+                System.out.println("You must be a monkey. Please enter a number");
+            }
+        }
+
+        return false;
+    }
+
+    //checks if the chosen option during flirting equals the enemy's flirt requirement
+    public boolean flirtCheck(int option, Enemy e) {
+        return e.getFlirtDialogue().get(option).equals(e.getFlirtRequirement());
     }
 
     /**

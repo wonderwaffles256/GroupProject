@@ -27,7 +27,7 @@ public class RunGame {
                         p.fight(enemy);
                     }
                     case "2" -> {
-                        p.flirt(enemy);
+                        done = p.flirt(enemy);
                         goodinput = true;
                     }
                     case "3" -> {
@@ -75,6 +75,9 @@ public class RunGame {
                 System.out.println("Your clout increased");
             }
         }
+        else {
+            System.out.println("Combat resolved");
+        }
     }
 
     public void start(int difficulty) {
@@ -89,20 +92,27 @@ public class RunGame {
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
         Item heal = new Item("Coors Lite", 2, "Replenishes HP");
 
+        //Baljbeet inputs
         ArrayList<Item> beetLoot = new ArrayList<>();
         ArrayList<String> beetBattleDialogue = new ArrayList<>();
         ArrayList<String> beetFlirtDialogue = new ArrayList<>();
 
         beetLoot.add(rock);
         beetBattleDialogue.add("I will BEET you");
-        beetFlirtDialogue.add("");
+
+        String beetSuccess = "Thanks, I've been trying to lose weight recently. You're the first person to notice.\n*He smiles bashfully*";
+        beetFlirtDialogue.add("1 - Compliment his physique\n" + "2 - Stare into his beety eyes\n" + "3 - Playfully insult his mother");
+        beetFlirtDialogue.add(beetSuccess);
+        beetFlirtDialogue.add("Oh... uhhh, I can be intense too.\n*Baljbeet stares through your soul*");
+        beetFlirtDialogue.add("Heh... she did beet me as a child");
+        //
 
         ArrayList<Item> itemPack = new ArrayList<>();
         ArrayList<Character> companions = new ArrayList<>();
 
         itemPack.add(heal);
 
-        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, "Beet Juice", 80, beetBattleDialogue, beetFlirtDialogue);
+        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 80, beetBattleDialogue, beetFlirtDialogue);
 
         Player player = new Player(100, "Player", overalls, gun, 10, itemPack, companions);
 
