@@ -4,8 +4,8 @@ public class Enemy extends Character{
     private ArrayList<Item> loot;
     private String flirtRequirement; // (data type TBD)
     private double spawnChance;             // indicates which location this enemy appears in
-    private ArrayList<String> battleDialogue;
-    private ArrayList<String> flirtDialogue;
+    private ArrayList<String> battleDialogue;       //list of dialogue meant to be displayed in battle
+    private ArrayList<String> flirtDialogue;        //list of options and results from flirting
 
     /**
      * default constructor

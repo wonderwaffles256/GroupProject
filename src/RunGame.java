@@ -100,11 +100,14 @@ public class RunGame {
         beetLoot.add(rock);
         beetBattleDialogue.add("I will BEET you");
 
+        //this is the resulting string from the correct flirt option (placed in the constructor as its flirt requirement)
         String beetSuccess = "Thanks, I've been trying to lose weight recently. You're the first person to notice.\n*He smiles bashfully*";
+        //Index 0 contains ONE string with all options for flirting
         beetFlirtDialogue.add("1 - Compliment his physique\n" + "2 - Stare into his beety eyes\n" + "3 - Playfully insult his mother");
-        beetFlirtDialogue.add(beetSuccess);
-        beetFlirtDialogue.add("Oh... uhhh, I can be intense too.\n*Baljbeet stares through your soul*");
-        beetFlirtDialogue.add("Heh... she did beet me as a child");
+        //Indexes 1-3 contain the results from options 1, 2, and 3
+        beetFlirtDialogue.add(beetSuccess);     //correct option
+        beetFlirtDialogue.add("Oh... uhhh, I can be intense too.\n*Baljbeet stares through your soul*");    //string for an incorrect option
+        beetFlirtDialogue.add("Heh... she did beet me as a child");                                         //string for an incorrect option
         //
 
         ArrayList<Item> itemPack = new ArrayList<>();
