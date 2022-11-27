@@ -241,7 +241,6 @@ public class ConsoleDriver {
         int completed = 1;
         while(!(rooms.isEmpty())) {
             Room r = rooms.pop();
-            System.out.println(r.isChestRoom());
             if (! r.isChestRoom()) {
                 Enemy e = r.getEnemy();
                 combat(p, e);
