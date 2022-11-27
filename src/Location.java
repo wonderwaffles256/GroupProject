@@ -10,6 +10,7 @@ public class Location {
     private int progress;            //keeps track of how many rooms the player has completed within each location
     private Stack<Room> rooms;       //holds a set of rooms generated for this location
     private ArrayList<Enemy> locationEnemies;
+    private String entranceMessage; // message printed on instantiation of this room
 
     /**
      * default constructor
@@ -22,6 +23,7 @@ public class Location {
         this.progress = 0;
         this.rooms = new Stack<>();
         locationEnemies = new ArrayList<>();
+        entranceMessage = "You enter a strange new location";
     }
     public boolean isCompleted() {
         return currentLoc == numRooms;
@@ -32,7 +34,7 @@ public class Location {
      * @param name - name of the location
      * @param difficulty - difficulty set by the endgame girlfriend
      */
-    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies) {
+    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies, String entranceMessage) {
         this.name = name;
         switch(difficulty) {
             case 1 -> this.numRooms = 3;
@@ -44,6 +46,8 @@ public class Location {
         this.progress = 0;
         this.rooms = new Stack<>();
         this.rooms.addAll(generateRooms());
+
+        this.entranceMessage = entranceMessage;
     }
 
     /**
@@ -86,4 +90,12 @@ public class Location {
     public void setNumRooms(int numRooms) {this.numRooms = numRooms;}
     public void setCurrentLoc(char currentLoc) {this.currentLoc = currentLoc;}
     public void setProgress(int progress) {this.progress = progress;}
+
+    /**
+     * Depending on its type, this room's toString will produce a related output.
+     */
+    @Override
+    public String toString() {
+        return entranceMessage;
+    }
 }
