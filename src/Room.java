@@ -69,6 +69,10 @@ public class Room {
         return e;
     }
 
+    public boolean hasEnemy() {
+        return e != null;
+    }
+
     /**
      * setter for the name of the room
      * @param name name for the room
