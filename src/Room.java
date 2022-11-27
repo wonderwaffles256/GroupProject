@@ -7,6 +7,7 @@ public class Room {
     private String name;
     private boolean completed;
     private Enemy e;
+    private Chest c;
 
     /**
      * default constructor for rooms
@@ -27,6 +28,14 @@ public class Room {
     public Room(Enemy e, String name) {
         this.name = name;
         this.e = e;
+        this.c = null;
+        completed = false;
+    }
+
+    public Room(Chest c, String name) {
+        this.name = name;
+        this.c = c;
+        this.e = null;
         completed = false;
     }
 

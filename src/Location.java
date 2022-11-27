@@ -66,9 +66,16 @@ public class Location {
     public Stack<Room> generateRooms() {
         for(int i=0; i < numRooms; i++) {
             String name = getName() + i;
-            Enemy e = locationEnemies.get(i);
-            Room r = new Room(e,name);
-            rooms.push(r);
+            int rand = (int) (Math.random() * (1));
+            if (rand == 0) {
+                Chest c = new Chest(); // TODO: make this generate random loot.
+                Room r = new Room(c,name);
+                rooms.push(r);
+            } else { // TODO: fix if not enough enemies
+                Enemy e = locationEnemies.get(i);
+                Room r = new Room(e,name);
+                rooms.push(r);
+            }
         }
         return rooms;
     }
