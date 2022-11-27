@@ -46,7 +46,7 @@ public class Location {
         this.locationEnemies.addAll(locationEnemies);
         this.progress = 0;
         this.rooms = new Stack<>();
-        this.rooms.addAll(generateRooms());
+        generateRooms();
 
         this.entranceMessage = entranceMessage;
     }
@@ -65,7 +65,7 @@ public class Location {
      * @return Stack<Room> - stack holds each generated room
      */
     public Stack<Room> generateRooms() {
-        Random rand = new Random();
+        Random rand = new Random(); // generate a random boolean to determine whether chest or combat room
         for(int i=0; i < numRooms; i++) {
             String name = getName() + i;
             boolean randBool = rand.nextBoolean();
