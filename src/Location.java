@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
+
 public class Location {
     private String name;
     private int difficulty;
@@ -8,6 +9,7 @@ public class Location {
     private char currentLoc;         //keeps track of which location the player is currently in (A,B,C,...etc.)
     private int progress;            //keeps track of how many rooms the player has completed within each location
     private Stack<Room> rooms;       //holds a set of rooms generated for this location
+    private ArrayList<Enemy> locationEnemies;
 
     /**
      * default constructor
@@ -19,25 +21,27 @@ public class Location {
         this.currentLoc = ' ';
         this.progress = 0;
         this.rooms = new Stack<>();
+        locationEnemies = new ArrayList<>();
+    }
+    public boolean isCompleted() {
+        return currentLoc == numRooms;
     }
 
     /**
      * constructor
      * @param name - name of the location
      * @param difficulty - difficulty set by the endgame girlfriend
-     * @param currentLoc - number associated with current location
      */
-    public Location(String name, int difficulty, char currentLoc, int numRooms) {
+    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies) {
         this.name = name;
         switch(difficulty) {
             case 1 -> this.numRooms = 3;
             case 2 -> this.numRooms = 5;
             case 3 -> this.numRooms = 7;
-            default -> this.numRooms = numRooms;
         }
-        this.currentLoc = currentLoc;
+        this.locationEnemies = new ArrayList<>();
+        this.locationEnemies.addAll(locationEnemies);
         this.progress = 0;
-
         this.rooms = new Stack<>();
         this.rooms.addAll(generateRooms());
     }
@@ -48,7 +52,7 @@ public class Location {
      * @return boolean - true if location is complete
      */
     public boolean checkProgress(int progress) {
-        return false;
+        return progress == numRooms;
     }
 
     /**
@@ -56,8 +60,18 @@ public class Location {
      * @return Stack<Room> - stack holds each generated room
      */
     public Stack<Room> generateRooms() {
-        return new Stack<>();
+        for(int i=0; i < numRooms; i++) {
+            String name = getName() + i;
+            Enemy e = locationEnemies.get(i);
+            Room r = new Room(e,name);
+            rooms.push(r);
+        }
+        return rooms;
     }
+    public Stack<Room> getRooms() {
+        return rooms;
+    }
+
 
     //getters
     public String getName() {return name;}

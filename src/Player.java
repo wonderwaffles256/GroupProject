@@ -81,7 +81,10 @@ public class Player extends Character{
     public void fight(Character opponent){
         double dmg = ((double) this.getWeapon().getDamage()) * clout;
         opponent.setHP((int) Math.round((double) opponent.getHP() - dmg));
-        System.out.println("Using your " + this.weapon.getName() + " you hit on " + opponent.getName() + " for " + Math.round(dmg) + " damage!");
+        System.out.println("\u001B[36m" + "Using your " + this.weapon.getName() + " you hit " + opponent.getName() + " for " + Math.round(dmg) + " damage!" + "\u001B[0m");
+        if(opponent.getHP() <= 0) {
+            System.out.println("\u001B[36" + "You have vanquished " + "\u001B[31m" + opponent.getName() + "\u001B[0m");
+        }
     }
 
     /**
@@ -106,22 +109,25 @@ public class Player extends Character{
             try {
                 if(e instanceof Enemy) {
                     done = true;
-                    System.out.println("You advance upon " + e.getName() + ", it looks startled.\n" +
-                            "Do you:\n");
+                    System.out.println("\u001B[36m" + "You advance upon " + "\u001B[31m" + e.getName() + "\u001B[36m" + ", it looks startled.\n" +
+                            "Do you:\n" + "\u001B[33m");
                     System.out.println(((Enemy) e).getFlirtDialogue().get(0));      //prints opening options for flirting
                     int choice = sc.nextInt();
 
                     if(flirtCheck(choice,(Enemy) e)) {
                         //add enemy to companions
-                        companions.add(e);
+                        if (!(e.getName().equals("Baljbeet"))) {
+                            companions.add(e);
+                        }
                         //print line resulting from correct option
                         System.out.println(((Enemy) e).getFlirtDialogue().get(choice));
-                        System.out.println(e.getName() + " has joined the team!");
+                        System.out.println("\u001B[33m" + e.getName() + " has joined the team!" + "\u001B[0m");
+                        e.setHP(0);
                         return true;
                     }
                     else {
-                        System.out.println(((Enemy) e).getFlirtDialogue().get(choice));
-                        System.out.println("Your advances do not impress the enemy.");
+                        System.out.println("\u001B[31m"  +  ((Enemy) e).getFlirtDialogue().get(choice) + "\u001B[0m");
+                        System.out.println("\u001B[36m" + "Your advances do not impress the enemy." + "\u001B[0m");
                     }
 
                 }//end enemy check
@@ -154,11 +160,11 @@ public class Player extends Character{
                 System.out.println("Please enter the number for the item you would like to use");
                 int choice = sc.nextInt();
 
-                System.out.println("You used " + this.itemPack.get(choice).getName());
+                System.out.println("\u001B[36m" + "You used " + this.itemPack.get(choice).getName() );
                 itemPack.remove(this.itemPack.get(choice));
 
                 //This needs to be implemented through a consumable class (if time allows)
-                System.out.println("You recovered " + healRemainder(maxHP/3) + " HP");
+                System.out.println("You recovered " + healRemainder(maxHP/3) + " HP" + "\u001B[0m");
 
                 if(HP + maxHP/3 < maxHP) {
                     this.setHP(this.getHP() + maxHP / 3);

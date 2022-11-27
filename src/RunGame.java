@@ -85,9 +85,15 @@ public class RunGame {
         //contains dialogue
         Weapon gun = new Weapon("gun", 100, 10, "It shoots stuff");
         Weapon club = new Weapon("wooden club", 10, 3, "Made of 100% tree");
+        Weapon sword = new Weapon("sword", 50, 7, "A true mans weapon");
+        Weapon BatWithNails = new Weapon("baseball bat with nails", 12, 4, "Perfect for surviving the zombie apocalypse");
+
 
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
         Armor noArmor = new Armor("none", 0, 0, "Nothing cheaper than a birthday suit");
+        Armor buisness = new Armor("suit", 100, 30, "Always the best dressed in the room");
+        Armor suitOfArmor = new Armor("suit of armor", 70, 20, "looks cool, but its the 20th century");
+
 
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
         Item heal = new Item("Coors Lite", 2, "Replenishes HP");
