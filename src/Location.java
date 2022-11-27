@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 
@@ -64,10 +65,11 @@ public class Location {
      * @return Stack<Room> - stack holds each generated room
      */
     public Stack<Room> generateRooms() {
+        Random rand = new Random();
         for(int i=0; i < numRooms; i++) {
             String name = getName() + i;
-            int rand = (int) (Math.random() * (1));
-            if (rand == 0) {
+            boolean randBool = rand.nextBoolean();
+            if (randBool) {
                 Chest c = new Chest(); // TODO: make this generate random loot.
                 Room r = new Room(c,name);
                 rooms.push(r);
