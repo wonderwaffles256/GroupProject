@@ -29,7 +29,7 @@ public class Room {
         this.e = e;
         this.c = null;
         completed = false;
-//        treasureRoom = isTreasureRoom();
+        treasureRoom = false;
     }
 
     public Room(Chest c, String name) {
@@ -37,6 +37,7 @@ public class Room {
         this.c = c;
         this.e = null;
         completed = false;
+        treasureRoom = true;
     }
 
     public Room(String name) {
@@ -82,13 +83,17 @@ public class Room {
         this.name = name;
     }
 
-//    public boolean isTreasureRoom() {
-//        Random r = new Random();
-//       int num = (r.nextInt(10)+1);
-//       if (num == 7) {
-//           return true;
-//       }
-//       return false;
-//    }
+    public boolean isTreasureRoom() {
+        Random r = new Random();
+       int num = (r.nextInt(10)+1);
+       if (num == 7) {
+           return true;
+       }
+       return false;
+    }
+
+    public boolean isChestRoom() {
+        return treasureRoom;
+    }
 }
 

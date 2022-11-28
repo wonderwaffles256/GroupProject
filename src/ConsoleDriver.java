@@ -297,13 +297,14 @@ public class ConsoleDriver {
         }
         Stack<Room> rooms = L.getRooms();
         int completed = 0;
-        while(!L.isCompleted()) {
+        while(!(rooms.isEmpty())) {
             Room r = rooms.pop();
-            if (r.hasEnemy()) {
+            if (! r.isChestRoom()) {
                 Enemy e = r.getEnemy();
                 combat(p, e);
             } else {
                 // Chest c = r.getChest();  TODO: implement getChest()
+                System.out.println("chest room");
             }
             completed++;
             L.setProgress(completed);
