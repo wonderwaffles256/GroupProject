@@ -78,6 +78,8 @@ public class Player extends Character{
      * Player's version of the fight method. Multiplies damage by their current clout modifier.
      * @param opponent - the Character being fought
      */
+    //TODO: implement companion option
+    //TODO: implement way to get loot from an enemy
     public void fight(Character opponent){
         double dmg = ((double) this.getWeapon().getDamage()) * clout;
         opponent.setHP((int) Math.round((double) opponent.getHP() - dmg));
@@ -131,6 +133,9 @@ public class Player extends Character{
                     }
 
                 }//end enemy check
+                else if (e instanceof Girlfriend) {
+                    //TODO: implement flirt w/ Girlfriend
+                }
 
             }
             catch(Exception E) {
@@ -141,6 +146,7 @@ public class Player extends Character{
         return false;
     }
 
+    //TODO: fix to work with Girlfriends
     //checks if the chosen option during flirting equals the enemy's flirt requirement
     public boolean flirtCheck(int option, Enemy e) {
         return e.getFlirtDialogue().get(option).equals(e.getFlirtRequirement());
@@ -163,6 +169,7 @@ public class Player extends Character{
                 System.out.println("\u001B[36m" + "You used " + this.itemPack.get(choice).getName() );
                 itemPack.remove(this.itemPack.get(choice));
 
+                //TODO: do not allow player to consume armor/weapons
                 //This needs to be implemented through a consumable class (if time allows)
                 System.out.println("You recovered " + healRemainder(maxHP/3) + " HP" + "\u001B[0m");
 

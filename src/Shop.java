@@ -10,7 +10,7 @@ public class Shop {
      * prints out all the item availible in the shop
      */
 
-    //displays current stock of items needs to be done
+    //TODO: display needs to be done
     public void display() {
 
     }
@@ -20,6 +20,7 @@ public class Shop {
      * @return returns chosen item
      */
 
+    //TODO: have this method allow the player to buy an item using CORN
     //returns an item from the shop if the player has enough CORN
     public Item buy() {
         return new Item();

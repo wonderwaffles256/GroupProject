@@ -62,6 +62,7 @@ public class Girlfriend extends Character{
      * Returns a string of dialogue from the dialogue list attached to this girlfriend
      * @return String;
      */
+    //TODO: have this return a string from the battle dialogue list
     public String dialogue() {return "Impress me or die";}
 
     /**

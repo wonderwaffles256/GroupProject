@@ -84,6 +84,7 @@ public class ConsoleDriver {
         boolean done = false;
         while (!done) {
             //enemy says wacky funny dialogue
+            //TODO: print random word from battle dialogue (separate method?)
             boolean goodinput = false;
             while (!goodinput) {
                 System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), Flee ( 4 ), or File( 5 ).\n" +
@@ -91,6 +92,7 @@ public class ConsoleDriver {
                 String in = scnr.nextLine();
                 switch (in) {
                     case "1" -> {
+                        //TODO: prompt for using companions
                         goodinput = true;
                         p.fight(enemy);
                     }
@@ -112,6 +114,8 @@ public class ConsoleDriver {
                     default -> System.out.println("Please re-input");
                 }
             }
+
+            //TODO: have death reset health/clout instead of ending the game
             if(p.getHP() <= 0) {
                 System.out.println("You tried to fight for the love of your life, but you ended up dying to " + "\u001B[31m" + enemy.getName() + "\u001B[0m");
                 System.exit(0);
@@ -238,6 +242,7 @@ public class ConsoleDriver {
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood));        //contains one of the enemies in order of creation
         ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
 
+        //TODO: try to put this in a method (maybe)
         for(int i = 0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
             for(int z = 0; z < Enemies.get(i).getSpawnRate(); z++) {
                 EnemiesWithWeights.add(Enemies.get(i));
@@ -275,6 +280,8 @@ public class ConsoleDriver {
 
         location1(player, Enemies, loc1);
     }
+
+    //might be able to use this method for all 3 locations
     public void location1 (Player p, ArrayList<Enemy> forestEnemies, Location L) {
         System.out.println("Your enemies are:");        //added for testing, remove at a later date
         for (Enemy forestEnemy : forestEnemies) {
