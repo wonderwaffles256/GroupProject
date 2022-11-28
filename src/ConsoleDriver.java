@@ -241,6 +241,10 @@ public class ConsoleDriver {
 //
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood));        //contains one of the enemies in order of creation
         ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
+        ArrayList<Enemy> forestEnemies = new ArrayList<>();
+        ArrayList<Enemy> castleEnemies = new ArrayList<>();
+        ArrayList<Enemy> desertEnemies = new ArrayList<>();
+        Queue<ArrayList<Enemy>> locationEnemies = new LinkedList<>();
 
         //TODO: try to put this in a method (maybe)
         for(int i = 0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
@@ -248,14 +252,15 @@ public class ConsoleDriver {
                 EnemiesWithWeights.add(Enemies.get(i));
             }
         }
-        Enemies.clear();
         Random r = new Random();
         int loop = 0;
         if (difficulty == 1) {loop = 3;} else if (difficulty == 2) {loop = 5;} else {difficulty = 7;}
 
-        for (int i = 0; i < loop; i++) {
-            Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() +1)));
-        }
+
+            for (int i = 0; i < loop; i++) {
+                Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() + 1)));
+            }
+
 
 
         ArrayList<Item> itemPack = new ArrayList<>();
