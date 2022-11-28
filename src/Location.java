@@ -76,6 +76,13 @@ public class Location {
         return rooms;
     }
 
+    /**
+     * Depending on its type, this room's toString will produce a related output.
+     */
+    @Override
+    public String toString() {
+        return entranceMessage;
+    }
 
     //getters
     public String getName() {return name;}
@@ -90,12 +97,4 @@ public class Location {
     public void setNumRooms(int numRooms) {this.numRooms = numRooms;}
     public void setCurrentLoc(char currentLoc) {this.currentLoc = currentLoc;}
     public void setProgress(int progress) {this.progress = progress;}
-
-    /**
-     * Depending on its type, this room's toString will produce a related output.
-     */
-    @Override
-    public String toString() {
-        return entranceMessage;
-    }
 }
