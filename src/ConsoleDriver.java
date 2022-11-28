@@ -241,6 +241,10 @@ public class ConsoleDriver {
 //
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood));        //contains one of the enemies in order of creation
         ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
+        ArrayList<Enemy> forestEnemies = new ArrayList<>();
+        ArrayList<Enemy> castleEnemies = new ArrayList<>();
+        ArrayList<Enemy> desertEnemies = new ArrayList<>();
+        Queue<ArrayList<Enemy>> locationEnemies = new LinkedList<>();
 
         //TODO: try to put this in a method (maybe)
         for(int i = 0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
@@ -248,14 +252,15 @@ public class ConsoleDriver {
                 EnemiesWithWeights.add(Enemies.get(i));
             }
         }
-        Enemies.clear();
         Random r = new Random();
         int loop = 0;
         if (difficulty == 1) {loop = 3;} else if (difficulty == 2) {loop = 5;} else {difficulty = 7;}
 
-        for (int i = 0; i < loop; i++) {
-            Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() +1)));
-        }
+
+            for (int i = 0; i < loop; i++) {
+                Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() + 1)));
+            }
+
 
 
         ArrayList<Item> itemPack = new ArrayList<>();
@@ -273,9 +278,12 @@ public class ConsoleDriver {
         else {
             System.out.println("Very well, good luck on your adventures traveler");
         }
-        Location loc1 = new Location("Forest", difficulty, Enemies);
-//        Location loc2 = new Location("Castle", difficulty, castleEnemies);
-//        Location loc3 = new Location("Desert", difficulty, desertEnemies);
+        String loc1Msg = "You enter what seems to be a forest. Huge, weeping trees tower above.";
+        String loc2Msg = "You come across a magnificent castle. It must've stood here for centuries. You enter warily.";
+        String loc3Msg = "You enter a desert. It's dry.";
+        Location loc1 = new Location("Forest", difficulty, forestEnemies, loc1Msg);
+//        Location loc2 = new Location("Castle", difficulty, castleEnemies, loc2Msg);
+//        Location loc3 = new Location("Desert", difficulty, desertEnemies, loc3Msg);
 
 
         location1(player, Enemies, loc1);
@@ -289,8 +297,15 @@ public class ConsoleDriver {
         }
         Stack<Room> rooms = L.getRooms();
         int completed = 0;
-        while(!L.isCompleted()) {
-            combat(p,rooms.pop().getEnemy());
+        while(!(rooms.isEmpty())) {
+            Room r = rooms.pop();
+            if (! r.isTreasureRoom()) {
+                Enemy e = r.getEnemy();
+                combat(p, e);
+            } else {
+                // Chest c = r.getChest();  TODO: implement getChest()
+                System.out.println("chest room");
+            }
             completed++;
             L.setProgress(completed);
             if (!(L.isCompleted())) {

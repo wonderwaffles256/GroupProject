@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Stack;
 
 
@@ -11,6 +12,7 @@ public class Location {
     private int progress;            //keeps track of how many rooms the player has completed within each location
     private Stack<Room> rooms;       //holds a set of rooms generated for this location
     private ArrayList<Enemy> locationEnemies;
+    private String entranceMessage; // message printed on instantiation of this room
 
     /**
      * default constructor
@@ -23,6 +25,7 @@ public class Location {
         this.progress = 0;
         this.rooms = new Stack<>();
         locationEnemies = new ArrayList<>();
+        entranceMessage = "You enter a strange new location";
     }
     public boolean isCompleted() {
         return progress == numRooms;
@@ -33,7 +36,7 @@ public class Location {
      * @param name - name of the location
      * @param difficulty - difficulty set by the endgame girlfriend
      */
-    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies) {
+    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies, String entranceMessage) {
         this.name = name;
         switch(difficulty) {
             case 1 -> this.numRooms = 3;
@@ -45,6 +48,8 @@ public class Location {
         this.progress = 0;
         this.rooms = new Stack<>();
         generateRooms();
+
+        this.entranceMessage = entranceMessage;
     }
 
     /**
@@ -61,17 +66,32 @@ public class Location {
      * @return Stack<Room> - stack holds each generated room
      */
     public void generateRooms() {
+        Random rand = new Random();
         for(int i=0; i < numRooms; i++) {
             String name = getName() + i;
-            Enemy e = locationEnemies.get(i);
-            Room r = new Room(e,name);
-            rooms.push(r);
+            int num = (rand.nextInt(5)+1);; // generate a random number to determine whether chest or combat room
+            if (num == 5) {
+                Chest c = new Chest(); // TODO: make this generate random loot.
+                Room r = new Room(c,name);
+                rooms.push(r);
+            } else { // TODO: fix if not enough enemies
+                Enemy e = locationEnemies.get(i);
+                Room r = new Room(e,name);
+                rooms.push(r);
+            }
         }
     }
     public Stack<Room> getRooms() {
         return rooms;
     }
 
+    /**
+     * Depending on its type, this room's toString will produce a related output.
+     */
+    @Override
+    public String toString() {
+        return entranceMessage;
+    }
 
     //getters
     public String getName() {return name;}
