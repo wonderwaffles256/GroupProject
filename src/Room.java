@@ -15,6 +15,12 @@ public class Room {
     public Room() {
         name = null;
         completed = false;
+
+        Random r = new Random();
+        int num = (r.nextInt(5)+1);
+        if (num == 5) {
+            treasureRoom = true;
+        } else { treasureRoom = false; }
     }
 
     /**
@@ -84,15 +90,6 @@ public class Room {
     }
 
     public boolean isTreasureRoom() {
-        Random r = new Random();
-       int num = (r.nextInt(10)+1);
-       if (num == 7) {
-           return true;
-       }
-       return false;
-    }
-
-    public boolean isChestRoom() {
         return treasureRoom;
     }
 }

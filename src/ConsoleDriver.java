@@ -299,7 +299,7 @@ public class ConsoleDriver {
         int completed = 0;
         while(!(rooms.isEmpty())) {
             Room r = rooms.pop();
-            if (! r.isChestRoom()) {
+            if (! r.isTreasureRoom()) {
                 Enemy e = r.getEnemy();
                 combat(p, e);
             } else {
