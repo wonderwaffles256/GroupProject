@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Enemy extends Character{
     private ArrayList<Item> loot;
     private String flirtRequirement; // (data type TBD)
-    private double spawnChance;             // indicates which location this enemy appears in
+    private int spawnChance;             // indicates which location this enemy appears in
     private ArrayList<String> battleDialogue;       //list of dialogue meant to be displayed in battle
     private ArrayList<String> flirtDialogue;        //list of options and results from flirting
 
@@ -30,7 +30,7 @@ public class Enemy extends Character{
      * @param battleDialogue - list of battleDialogue related to the enemy
      * @param flirtDialogue - list of flirtDialogue related to enemy
      */
-    public Enemy(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot, String flirtRequirement, double spawnChance, ArrayList<String> battleDialogue, ArrayList<String> flirtDialogue) {
+    public Enemy(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot, String flirtRequirement, int spawnChance, ArrayList<String> battleDialogue, ArrayList<String> flirtDialogue) {
         super(HP,name,armor,weapon,critChance);
         this.flirtRequirement = flirtRequirement;
         this.spawnChance = spawnChance;
@@ -53,7 +53,7 @@ public class Enemy extends Character{
     public ArrayList<String> getBattleDialogue() {return battleDialogue;}
 
     //setters
-    public void setType(double spawnChance) {this.spawnChance = spawnChance;}
+    public void setType(int spawnChance) {this.spawnChance = spawnChance;}
     public void setFlirtRequirement(String flirtRequirement) {this.flirtRequirement = flirtRequirement;}
 
     /**
@@ -74,5 +74,10 @@ public class Enemy extends Character{
     public void fight(Character opponent){
         opponent.setHP(opponent.HP - this.weapon.getDamage());
         System.out.println( "\u001B[31m" + this.name + " whalopped you with its " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!" + "\u001B[0m");
+
+    }
+
+    public int getSpawnRate() {
+        return spawnChance;
     }
 }

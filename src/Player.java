@@ -211,8 +211,8 @@ public class Player extends Character{
      * @param opp - enemy player is fighting
      */
     public void file(Character opp){
-        System.out.println("Player has " + HP + " HP and can thawck for " + this.weapon.getDamage() + " Damage.");
-        System.out.println("Enemy has " + opp.getHP() + "left. Hope you can demolish that");
+        System.out.println("\u001B[36m" + name + " has " + HP + " HP and can thawck for " + this.weapon.getDamage() + " Damage." + "\u001B[0m");
+        System.out.println( "\u001B[31m" + opp.getName() + " has " + opp.getHP() + "left. Hope you can demolish that" + "\u001B[0m");
     }
 
 }

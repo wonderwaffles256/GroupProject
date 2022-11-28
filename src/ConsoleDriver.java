@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class ConsoleDriver {
     public static void main(String[] args) throws InterruptedException {
@@ -33,7 +31,7 @@ public class ConsoleDriver {
         System.out.println("Before you attack, it can be a good idea to check information \n Why dont you file the enemy");
         Thread.sleep(1000);
         System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), Flee ( 4 ), or File( 5 ).\n" +
-                "hint: enter 1");
+                "hint: enter 5");
         while(!(scnr.nextInt() == 5)) {
             System.out.println("just enter 5, its that easy");
         }
@@ -122,8 +120,26 @@ public class ConsoleDriver {
                 System.out.println("Combat over");
                 done = true;
             }
-            enemy.fight(p);
+            if (!(done)) {
+                enemy.fight(p);
+            }
         }
+    }
+    public void introDialogue() throws InterruptedException {
+        System.out.println("\n \n \n \n \n \n \n \n");
+        System.out.println("Your journey begins where most great journeys begin: \n a field");
+        Thread.sleep(1500);
+        System.out.println("You sit in silent contemplation \n after a few moments of deep thought about your life you decide that your girlfriend is the one you want to be with forever");
+        Thread.sleep(1500);
+        System.out.println("However, you feel not worthy of her love, so how do you get it?");
+        Thread.sleep(1500);
+        System.out.println("In order to assure she says yes, you decide to embark on an expedition, a journey, one to be told about for eons");
+        Thread.sleep(1500);
+        System.out.println("You get up and walk, walk until you feel ready");
+        Thread.sleep(1000);
+        System.out.println("As you walk over a hill, you can see a dense forest off in the distance.");
+        Thread.sleep(1500);
+        System.out.println("You travel through the forest as dark figures dart in the shadows");
     }
 
     public void start(int difficulty, String name) throws InterruptedException {
@@ -133,9 +149,10 @@ public class ConsoleDriver {
         Weapon sword = new Weapon("sword", 50, 7, "A true mans weapon");
         Weapon BatWithNails = new Weapon("baseball bat with nails", 12, 4, "Perfect for surviving the zombie apocalypse");
         Weapon umbrella = new Weapon("Umbrella", 15, 6, "Im Mary Poppins y`all");
-        Weapon microphone = new Weapon("Microphone", 15, 6,"comes with prebuilt autotune");
+        Weapon magicWand = new Weapon("Magic Wand", 15, 6,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
         Weapon laserRifle = new Weapon("Laser Rifle", 30, 8, "can shoot enemies all the way from a galaxy far far away");
         Weapon oneshot = new Weapon("Death Star", 10000, 500, "Kills the enemy insantly");
+        Weapon Bow = new Weapon("Bow", 15, 7, "good ol trusty");
 
 
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
@@ -163,7 +180,7 @@ public class ConsoleDriver {
         beetFlirtDialogue.add(beetSuccess);     //correct option
         beetFlirtDialogue.add("Oh... uhhh, I can be intense too.\n*Baljbeet stares through your soul*");    //string for an incorrect option
         beetFlirtDialogue.add("that's not very nice of you");                                         //string for an incorrect option
-        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 80, beetBattleDialogue, beetFlirtDialogue);
+        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 8, beetBattleDialogue, beetFlirtDialogue);
         //
 
         String ogreSuccess = "Grunts happily";
@@ -175,26 +192,65 @@ public class ConsoleDriver {
         ogreFlirtDialogue.add("Grunts louder then before and somehow looks angrier and uglier");
         ogreFlirtDialogue.add(ogreSuccess);
         ogreFlirtDialogue.add("Laughs at you and then returns to his angry ogre face");
+        Enemy ogre = new Enemy(12, "Ogre", overalls, BatWithNails, 7, ogreLoot, ogreSuccess, 7, ogreBattleDialogue, ogreFlirtDialogue);
+
+        String peachSuccess = "Mario's never around anymore, I guess this could be fun";
+        ArrayList<Item> peachLoot = new ArrayList<>();
+        ArrayList<String> peachBattleDialogue = new ArrayList<>();
+        peachBattleDialogue.add("You're nothing compared to what ive gone up against");
+        ArrayList<String> peachFlirtDialogue = new ArrayList<>();
+        peachFlirtDialogue.add("1 - Sing the Rainbow Road theme \n" + "2 - *Mario impression* \n" + "3 - Flex your cash");
+        peachFlirtDialogue.add("You'll be hearing from the Nintendo lawyers");
+        peachFlirtDialogue.add(peachSuccess);
+        peachFlirtDialogue.add("broke...");
+       Enemy princessPeach = new Enemy(25, "Princess Peach", peachDress, umbrella, 10, peachLoot, peachSuccess, 2, peachBattleDialogue, peachFlirtDialogue);
+
+        String pSuccess = "*Chimes happily and flies close to you*";
+        ArrayList<Item> pLoot = new ArrayList<>();
+        ArrayList<String> pBattleDialogue = new ArrayList<>();
+        pBattleDialogue.add("*Threatening orb of light approaches*");
+        ArrayList<String> pFlirtDialogue = new ArrayList<>();
+        pFlirtDialogue.add("1 -  Joke about burning down the forest \n" + "2 - compliment its radiance \n" + "3 - admire the beauty of nature");
+        pFlirtDialogue.add("*flies around looking even angrier*");
+        pFlirtDialogue.add("*continues shining brilliantly*");
+        pFlirtDialogue.add(pSuccess);
+        Enemy pixie = new Enemy (15, "Pixie", noArmor,magicWand , 8, pLoot,pSuccess,6,pBattleDialogue,pFlirtDialogue);
+
+        String panSuccess = "YES! together we shall vanquish the rising wage gap and distribute the wealth through by breaking the law";
+        ArrayList<Item> panLoot = new ArrayList<>();
+        ArrayList<String> panBattleDialogue = new ArrayList<>();
+        panBattleDialogue.add("Who dares challenge the protector of the poor");
+        ArrayList<String> panFlirtDialogue = new ArrayList<>();
+        panFlirtDialogue.add("1 - describe your hate for the wealthy and love for the poor \n" + "2 - Talk about how much money you have \n" + "3 - compliment his bow");
+        panFlirtDialogue.add(panSuccess);
+        panFlirtDialogue.add("Then you not only deserve not your life, but neither your money");
+        panFlirtDialogue.add("It'll be the last thing you see");
+        Enemy robinHood = new Enemy(30, "Robin Hood", noArmor, Bow, 4, panLoot, panSuccess, 5, panBattleDialogue, panFlirtDialogue);
 
 
-        Enemy ogre = new Enemy(12, "Ogre", overalls, BatWithNails, 7, ogreLoot, ogreSuccess, 70, ogreBattleDialogue, ogreFlirtDialogue);
-
-        //if anyone wants to add the arraylists and stuff feel free.  I didnt get to it today, but i will
-//        Enemy princessPeach = new Enemy(25, "Princess Peach", peachDress, umbrella, 10, peachLoot, peachSuccess, 20, peachBattleDialogue, peachFlirtDialogue);
-//        Enemy Beyonce = new Enemy(45, "Beyonce", buisness, microphone, 4, bLoot, bSuccess, 30, bBattleDialogue);
-//        Enemy grunt = new Enemy(15, "grunt", overalls, club, 6, gruntLoot, gruntSuccess, 70, gruntBattleDialogue, gruntFlirtDialogue);
-//        Enemy jBourne = new Enemy(35, "Jason Bourne", noArmor, gun, 7, bourneLoot, bourneSuccess, 50, bourneBattleDialogue, bournFlirtDialogue);
-//        Enemy Bond = new Enemy(30, "007", buisness, gun, 2, bondLoot, bondSuccess, 40, bondBattleDialogue, bondFlirtDialogue);
-//        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 40, trBattleDialogue, trFlirtDesign);
-//        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 40, jawaBattleDialogue, jawaFlirtDesign);
-//        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,50, arthurBattleDialogue, arthurFlirtDialogue);
+//        Enemy grunt = new Enemy(15, "grunt", overalls, club, 6, gruntLoot, gruntSuccess, 7, gruntBattleDialogue, gruntFlirtDialogue);
+//        Enemy jBourne = new Enemy(35, "Jason Bourne", noArmor, gun, 7, bourneLoot, bourneSuccess, 5, bourneBattleDialogue, bournFlirtDialogue);
+//        Enemy Bond = new Enemy(30, "007", buisness, gun, 2, bondLoot, bondSuccess, 4, bondBattleDialogue, bondFlirtDialogue);
+//        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDesign);
+//        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDesign);
+//        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,5, arthurBattleDialogue, arthurFlirtDialogue);
 //
-        ArrayList<Enemy> forestEnemies = new ArrayList<>();
-        forestEnemies.add(ogre);
-        forestEnemies.add(beet);
-        forestEnemies.add(ogre);
-        ArrayList<Enemy> castleEnemies = new ArrayList<>();
-        ArrayList<Enemy> desertEnemies = new ArrayList<>();
+        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood));        //contains one of the enemies in order of creation
+        ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
+
+        for(int i = 0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
+            for(int z = 0; z < Enemies.get(i).getSpawnRate(); z++) {
+                EnemiesWithWeights.add(Enemies.get(i));
+            }
+        }
+        Enemies.clear();
+        Random r = new Random();
+        int loop = 0;
+        if (difficulty == 1) {loop = 3;} else if (difficulty == 2) {loop = 5;} else {difficulty = 7;}
+
+        for (int i = 0; i < loop; i++) {
+            Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() +1)));
+        }
 
 
         ArrayList<Item> itemPack = new ArrayList<>();
@@ -203,43 +259,36 @@ public class ConsoleDriver {
         Player player = new Player(100, name, overalls, oneshot, 10, itemPack, companions);
 
         //tutorial
-        System.out.println("Would you like to get a introduction to the combat system, or are you ready to go? \n enter 1 for yes, and 2 for no");
+        System.out.println("Would you like to play the tutorial and read the intro dialogue? \n press 1 for yes and 2 for no");
         Scanner scnr = new Scanner(System.in);
         if (scnr.nextInt() == 1) {
             tutorial(player, beet);
+            introDialogue();
         }
         else {
             System.out.println("Very well, good luck on your adventures traveler");
         }
-        Location loc1 = new Location("Forest", difficulty, forestEnemies);
+        Location loc1 = new Location("Forest", difficulty, Enemies);
 //        Location loc2 = new Location("Castle", difficulty, castleEnemies);
 //        Location loc3 = new Location("Desert", difficulty, desertEnemies);
 
-        //------------------------------------------------After Stuff Loaded In-----------------------------------------------------//
-        System.out.println("\n \n \n \n \n \n \n \n");
-        System.out.println("Your journey begins where most great journeys begin: \n a field");
-        Thread.sleep(1500);
-        System.out.println("You sit in silent contemplation \n after a few moments of deep thought about your life you decide that your girlfriend is the one you want to be with forever");
-        Thread.sleep(1500);
-        System.out.println("However, you feel not worthy of her love, so how do you get it?");
-        Thread.sleep(1500);
-        System.out.println("In order to assure she says yes, you decide to embark on an expedition, a journey, one to be told about for eons");
-        Thread.sleep(1500);
-        System.out.println("You get up and walk, walk until you feel ready");
-        Thread.sleep(1000);
-        System.out.println("As you walk over a hill, you can see a dense forest off in the distance.");
-        Thread.sleep(1500);
-        System.out.println("You travel through the forest as dark figures dart in the shadows");
-        location1(player, forestEnemies, loc1);
+
+        location1(player, Enemies, loc1);
     }
     public void location1 (Player p, ArrayList<Enemy> forestEnemies, Location L) {
+        System.out.println("Your enemies are:");        //added for testing, remove at a later date
+        for (Enemy forestEnemy : forestEnemies) {
+            System.out.println(forestEnemy.getName());
+        }
         Stack<Room> rooms = L.getRooms();
-        int completed = 1;
+        int completed = 0;
         while(!L.isCompleted()) {
-            Enemy e = rooms.pop().getEnemy();
-            combat(p,e);
+            combat(p,rooms.pop().getEnemy());
             completed++;
             L.setProgress(completed);
+            if (!(L.isCompleted())) {
+                System.out.println("You continue on your path, determined to survive the oncoming hordes");
+            }
         }
         System.out.println("Congrats, you beat the first location!");
     }

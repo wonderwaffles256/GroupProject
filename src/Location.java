@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
 
 
@@ -24,7 +25,7 @@ public class Location {
         locationEnemies = new ArrayList<>();
     }
     public boolean isCompleted() {
-        return currentLoc == numRooms;
+        return progress == numRooms;
     }
 
     /**
@@ -40,10 +41,10 @@ public class Location {
             case 3 -> this.numRooms = 7;
         }
         this.locationEnemies = new ArrayList<>();
-        this.locationEnemies.addAll(locationEnemies);
+            this.locationEnemies.addAll(locationEnemies);
         this.progress = 0;
         this.rooms = new Stack<>();
-        this.rooms.addAll(generateRooms());
+        generateRooms();
     }
 
     /**
@@ -59,14 +60,13 @@ public class Location {
      * generates a random assortment of rooms up to the numRooms attached to this location
      * @return Stack<Room> - stack holds each generated room
      */
-    public Stack<Room> generateRooms() {
+    public void generateRooms() {
         for(int i=0; i < numRooms; i++) {
             String name = getName() + i;
             Enemy e = locationEnemies.get(i);
             Room r = new Room(e,name);
             rooms.push(r);
         }
-        return rooms;
     }
     public Stack<Room> getRooms() {
         return rooms;

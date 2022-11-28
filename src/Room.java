@@ -7,7 +7,7 @@ public class Room {
     private String name;
     private boolean completed;
     private Enemy e;
-
+    private boolean treasureRoom;
     /**
      * default constructor for rooms
      */
@@ -15,7 +15,6 @@ public class Room {
         name = null;
         completed = false;
     }
-
 
     /**
      * constructor given the name of the room
@@ -28,6 +27,7 @@ public class Room {
         this.name = name;
         this.e = e;
         completed = false;
+        treasureRoom = isTreasureRoom();
     }
 
     public Room(String name) {
@@ -68,4 +68,14 @@ public class Room {
     public void setName(String name) {
         this.name = name;
     }
+
+    public boolean isTreasureRoom() {
+        Random r = new Random();
+       int num = (r.nextInt(10)+1);
+       if (num == 7) {
+           return true;
+       }
+       return false;
+    }
 }
+
