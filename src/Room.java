@@ -43,6 +43,10 @@ public class Room {
         this.name = name;
     }
 
+    public boolean hasEnemy() {
+        return e != null;
+    }
+
     /**
      * getter for the name of room
      * @return name of room
