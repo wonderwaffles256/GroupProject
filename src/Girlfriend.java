@@ -6,6 +6,9 @@ public class Girlfriend extends Character{
     private int difficulty;         //use 1,2,3 to denote difficulties
     private ArrayList<String> dialogue;
     private boolean spAtkUsed;
+    private ArrayList<String> flirtOptions;         //Holds a list of strings to display flirting options to the player
+    private ArrayList<String> flirtResponses;       //Holds a list of responses to each option plus an extra for a successful flirt
+    private String flirtSuccess;                    //string of numbers indicating which options from the flirtOptions list are correct
 
     public Girlfriend() {
         super();
@@ -25,19 +28,24 @@ public class Girlfriend extends Character{
      * @param difficulty - level of difficulty related to the girlfriend
      * @param dialogue - list of dialogue
      */
-    public Girlfriend(int HP, String name, Armor armor, Weapon weapon, double critChance, String medal, int difficulty, ArrayList<String> dialogue) {
+    public Girlfriend(int HP, String name, Armor armor, Weapon weapon, double critChance, String medal, int difficulty, ArrayList<String> dialogue, ArrayList<String> flirtDialogue, ArrayList<String> flirtResponses, String flirtSuccess) {
         super(HP, name, armor, weapon, critChance);
         this.medal = medal;
         this.difficulty = difficulty;
+        this.flirtSuccess = flirtSuccess;
 
-        this.dialogue = new ArrayList<>();
-        this.dialogue.addAll(dialogue);
+        this.dialogue = new ArrayList<>();      this.flirtOptions = new ArrayList<>();          this.flirtResponses = new ArrayList<>();
+        this.dialogue.addAll(dialogue);         this.flirtOptions.addAll(flirtDialogue);        this.flirtResponses.addAll(flirtResponses);
+
         spAtkUsed = false;
     }
 
     //getters
     public int getDifficulty() {return difficulty;}
     public String getMedal() {return medal;}
+    public ArrayList<String> getFlirtOptions() {return flirtOptions;}
+    public ArrayList<String> getFlirtResponses() {return flirtResponses;}
+    public String getFlirtSuccess() {return flirtSuccess;}
 
     //setter
     public void setDifficulty(int difficulty) {this.difficulty = difficulty;}
