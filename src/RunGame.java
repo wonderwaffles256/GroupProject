@@ -27,7 +27,7 @@ public class RunGame {
                         p.fight(enemy);
                     }
                     case "2" -> {
-                        done = p.flirt(enemy);
+                        done = p.flirt(enemy, p);
                         goodinput = true;
                     }
                     case "3" -> {

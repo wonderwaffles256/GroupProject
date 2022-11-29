@@ -69,7 +69,7 @@ public class ConsoleDriver {
         }
         Thread.sleep(1000);
         System.out.println("Lets try the first option for flirting");
-        p.flirt(e);
+        p.flirt(e,p);
         Thread.sleep(1000);
         System.out.println("Amazing! \n that is the end of the tutorial \n Good luck traveler");
     }
@@ -97,7 +97,7 @@ public class ConsoleDriver {
                         p.fight(enemy);
                     }
                     case "2" -> {
-                        done = p.flirt(enemy);
+                        done = p.flirt(enemy, p);
                         goodinput = true;
                     }
                     case "3" -> {
@@ -121,6 +121,7 @@ public class ConsoleDriver {
                 System.exit(0);
             }
             if(enemy.getHP() <= 0) {
+                //giveLoot(p,enemy)
                 System.out.println("Combat over");
                 done = true;
             }
@@ -128,6 +129,11 @@ public class ConsoleDriver {
                 enemy.fight(p);
             }
         }
+    }
+
+    //TODO: finish giveLoot method
+    public void giveLoot(Player p, Character c) {
+        //gives loot to the player after they defeat an enemy
     }
     public void introDialogue() throws InterruptedException {
         System.out.println("\n \n \n \n \n \n \n \n");
