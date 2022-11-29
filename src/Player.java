@@ -197,26 +197,37 @@ public class Player extends Character{
         else{
             try{
                 displayItems();
-                System.out.println("Please enter the number for the item you would like to use");
+                System.out.println("Please enter a number for the item you would like to use");
                 int choice = sc.nextInt();
 
-                System.out.println("\u001B[36m" + "You used " + this.itemPack.get(choice).getName() );
-                itemPack.remove(this.itemPack.get(choice));
-
-                //TODO: add checker to determine different actions based on item type (equip weapon/armor, heal)
-                //This needs to be implemented through a consumable class (if time allows)
-                System.out.println("You recovered " + healRemainder(maxHP/3) + " HP" + "\u001B[0m");
-
-                if(HP + maxHP/3 < maxHP) {
-                    this.setHP(this.getHP() + maxHP / 3);
-                    this.itemPack.remove(choice);
+                Item chosenItem = this.itemPack.get(choice);            //obtains item chosen by the player, then carries out an action based on its type
+                if(chosenItem instanceof Weapon w) {
+                    System.out.println("Would you like to equip " + w.getName() + "?\n  (1 for yes, 2 for no)");
+                    String ch = sc.next();
+                    if(ch.equals("1")) {
+                        equipWeapon(w);
+                    }
                 }
-                else{
-                    this.setHP(maxHP);
+                if(chosenItem instanceof Armor a) {
+                    System.out.println("Would you like to equip " + a.getName() + "?\n  (1 for yes, 2 for no)");
+                    String ch = sc.next();
+                    if(ch.equals("1")) {
+                        equipArmor(a);
+                    }
+                }
+                if(chosenItem instanceof Consumable c) {
+                    System.out.println("Would you like to use " + c.getName() + "?\n  (1 for yes, 2 for no)");
+                    String ch = sc.next();
+                    if(ch.equals("1")) {
+                        useConsumable(c,choice);
+                    }
+                }
+                else {
+                    System.out.println("This item is mostly useless, best to be sold or kept forever");
                 }
             }
             catch(Exception e) {
-                System.out.println("You nincompoop. Enter a number next time.");
+                System.out.println("You nincompoop. Enter a good number next time.");
             }
 
         }//end else
@@ -239,7 +250,23 @@ public class Player extends Character{
     /**
      * allows the user to equip a weapon of their choice
      */
-    public void equipWeapon() {}//implement later
+    public void equipWeapon(Weapon w) {
+        this.weapon = w;
+        System.out.println("You equipped: " + w.getName() + "\nDamage: " + w.getDamage());
+    }
+
+    public void equipArmor(Armor newArmor) {
+        this.maxHP += newArmor.getStrength() - armor.getStrength();
+        this.armor = newArmor;
+        if(HP > maxHP) {HP = maxHP;}
+        System.out.println("You equipped: " + newArmor.getName() + "\nStrength: " + newArmor.getStrength());
+    }
+
+    public void useConsumable(Consumable c, int index) {
+        HP += healRemainder(c.getHealing());
+        itemPack.remove(this.itemPack.get(index));
+        System.out.println("You used " + c.getName() + ", recovering " + healRemainder(c.getHealing()) + " HP");
+    }
 
     /**
      * allows player to choose one of a companions to fight for them once during a battle
