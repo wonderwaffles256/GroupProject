@@ -7,6 +7,7 @@ public class Room {
     private String name;
     private boolean completed;
     private Enemy e;
+    private Chest c;
     private boolean treasureRoom;
     /**
      * default constructor for rooms
@@ -14,6 +15,12 @@ public class Room {
     public Room() {
         name = null;
         completed = false;
+
+        Random r = new Random();
+        int num = (r.nextInt(5)+1);
+        if (num == 5) {
+            treasureRoom = true;
+        } else { treasureRoom = false; }
     }
 
     /**
@@ -26,12 +33,25 @@ public class Room {
     public Room(Enemy e, String name) {
         this.name = name;
         this.e = e;
+        this.c = null;
         completed = false;
-        treasureRoom = isTreasureRoom();
+        treasureRoom = false;
+    }
+
+    public Room(Chest c, String name) {
+        this.name = name;
+        this.c = c;
+        this.e = null;
+        completed = false;
+        treasureRoom = true;
     }
 
     public Room(String name) {
         this.name = name;
+    }
+
+    public boolean hasEnemy() {
+        return e != null;
     }
 
     /**
@@ -70,12 +90,7 @@ public class Room {
     }
 
     public boolean isTreasureRoom() {
-        Random r = new Random();
-       int num = (r.nextInt(10)+1);
-       if (num == 7) {
-           return true;
-       }
-       return false;
+        return treasureRoom;
     }
 }
 
