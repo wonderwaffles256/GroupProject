@@ -102,7 +102,7 @@ public class Player extends Character{
      * player flirts with enemy
      * if successful then enemy becomes a companion
      */
-    public boolean flirt(Character c) {
+    public boolean flirt(Character c, Player p) {
         Scanner sc = new Scanner(System.in);
 
         boolean done = false;
@@ -116,12 +116,11 @@ public class Player extends Character{
                     int choice = sc.nextInt();
 
                     if(flirtCheck(choice,e)) {
-                        //add enemy to companions
-                        if (!(e.getName().equals("Baljbeet"))) {
+                        if (!(e.getName().equals("Baljbeet"))) {                    //adds enemy to companions
                             companions.add(e);
                         }
-                        //print line resulting from correct option
-                        System.out.println(e.getFlirtDialogue().get(choice));
+
+                        System.out.println(e.getFlirtDialogue().get(choice));       //prints line resulting from correct option
                         System.out.println("\u001B[33m" + e.getName() + " has joined the team!" + "\u001B[0m");
                         e.setHP(0);
                         return true;
@@ -133,52 +132,56 @@ public class Player extends Character{
 
                 }//end enemy check
                 else if (c instanceof Girlfriend g) {
-                    //TODO: implement flirt w/ Girlfriend
+                    if(g.getFlirtLimit() < 3) {
                     System.out.println("You attempt to flirt with your girlfriend.");
-                    StringBuilder choices = new StringBuilder();                        //holds choices made by the player
+                    StringBuilder choices = new StringBuilder();                        //holds each choice made by the player in sequence
 
-                    for(String dialogue : g.getFlirtOptions()) {         //iterates through each set of options (numbered 1-n)
+                    for (String options : g.getFlirtOptions()) {         //iterates through each set of options (numbered 1->n)
                         System.out.println("""
                                 Please enter the number of your desired option.
                                     If you want to bail out, enter 0.
-                                
+                                                                
                                 Do you:\s
                                 """);
-                        System.out.println(dialogue);
+                        System.out.println(options);
                         int choice = sc.nextInt();
 
                         choices.append(choice);
-                        if(choice == 0) {
+                        if (choice <= 0) {                              //allows player to exit the flirt
                             System.out.println("Coward");
                             break;
                         }
 
-                        System.out.println(g.getFlirtResponses().get(choice-1));     //prints a response based on the player's choice
+                        System.out.println(g.getFlirtResponses().get(choice) + "\n");     //prints a response based on the player's choice from the flirtResponse list
                     }
-                    if(choices.toString().equals(g.getFlirtSuccess())) {
-                        int successInd = g.getFlirtResponses().size() - 1;
-                        System.out.println(g.getFlirtResponses().get(successInd));
-                        //TODO: decide what a successful flirt does for girlfriends
-                        return true;
+                    if (choices.toString().equals(g.getFlirtSuccess())) {      //checks if the player has chosen the correct sequence options using the string builder (choices)
+                        System.out.println(g.getFlirtResponses().get(0));      //index 0 of flirtResponses holds dialogue for a successful flirt
+                        Thread.sleep(1000);
+                        System.out.println(g.getName() + " is so impressed by your groveling that she begins to foster a kernel of respect for you.");
 
-                    }
-                    else {
+                        p.setClout(p.getClout() + (g.getDifficulty() - 0.5));               //adds lots of clout based on difficulty
+                        System.out.println("Your clout increased substantially");
+                        g.setFlirtLimit(3);                                                 //ensures any future flirts cannot be attempted
+
+                    } else {
                         System.out.println("Your feeble fumbling at flattery falls flat on its face");
-                    }
-
+                        Thread.sleep(1000);
+                        g.setFlirtLimit(g.getFlirtLimit() + 1);                 //increases flirt limit
+                    }//end success checker
                 }
+                else{System.out.println(g.getName() + " seems reluctant to converse further");}//end flirt limit checker
+                }//end girlfriend case
 
-            }
+            }//end try block
             catch(Exception E) {
                 System.out.println("You must be a monkey. Please enter a number");
             }
-        }
+        }//end while loop
 
-        return false;
+        return false;                        //returns a boolean for the combat method to decide whether it needs to end
     }
 
-    //TODO: fix to work with Girlfriends
-    //checks if the chosen option during flirting equals the enemy's flirt requirement
+    //checks if a chosen option during flirting equals the enemy's flirt requirement
     public boolean flirtCheck(int option, Enemy e) {
         return e.getFlirtDialogue().get(option).equals(e.getFlirtRequirement());
     }
@@ -186,7 +189,7 @@ public class Player extends Character{
     /**
      * player uses items from his itemPack to heal hp or gain some other buff
      */
-    public void flask() {                           //NEED TO CREATE CONSUMABLES CLASS FOR FULL FUNCTIONALITY
+    public void flask() {
         Scanner sc = new Scanner(System.in);
         if(this.itemPack.isEmpty()) {
             System.out.println("You ain't got nothin boy!\n" + "Go get some junk!");
@@ -200,7 +203,7 @@ public class Player extends Character{
                 System.out.println("\u001B[36m" + "You used " + this.itemPack.get(choice).getName() );
                 itemPack.remove(this.itemPack.get(choice));
 
-                //TODO: do not allow player to consume armor/weapons
+                //TODO: add checker to determine different actions based on item type (equip weapon/armor, heal)
                 //This needs to be implemented through a consumable class (if time allows)
                 System.out.println("You recovered " + healRemainder(maxHP/3) + " HP" + "\u001B[0m");
 
@@ -241,6 +244,7 @@ public class Player extends Character{
     /**
      * allows player to choose one of a companions to fight for them once during a battle
      */
+    //TODO: make companions functional
     public void useCompanions() {}//implement after flirting
 
 
@@ -250,7 +254,7 @@ public class Player extends Character{
      */
     public void file(Character opp){
         System.out.println("\u001B[36m" + name + " has " + HP + " HP and can thawck for " + this.weapon.getDamage() + " Damage." + "\u001B[0m");
-        System.out.println( "\u001B[31m" + opp.getName() + " has " + opp.getHP() + "left. Hope you can demolish that" + "\u001B[0m");
+        System.out.println( "\u001B[31m" + opp.getName() + " has " + opp.getHP() + "left. Hope you can overcome that" + "\u001B[0m");
     }
 
 }
