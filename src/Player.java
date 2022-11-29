@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -103,38 +102,70 @@ public class Player extends Character{
      * player flirts with enemy
      * if successful then enemy becomes a companion
      */
-    public boolean flirt(Character e) {
+    public boolean flirt(Character c) {
         Scanner sc = new Scanner(System.in);
 
         boolean done = false;
         while(!done) {
             try {
-                if(e instanceof Enemy) {
+                if(c instanceof Enemy e) {
                     done = true;
                     System.out.println("\u001B[36m" + "You advance upon " + "\u001B[31m" + e.getName() + "\u001B[36m" + ", it looks startled.\n" +
                             "Do you:\n" + "\u001B[33m");
-                    System.out.println(((Enemy) e).getFlirtDialogue().get(0));      //prints opening options for flirting
+                    System.out.println(e.getFlirtDialogue().get(0));      //prints opening options for flirting
                     int choice = sc.nextInt();
 
-                    if(flirtCheck(choice,(Enemy) e)) {
+                    if(flirtCheck(choice,e)) {
                         //add enemy to companions
                         if (!(e.getName().equals("Baljbeet"))) {
                             companions.add(e);
                         }
                         //print line resulting from correct option
-                        System.out.println(((Enemy) e).getFlirtDialogue().get(choice));
+                        System.out.println(e.getFlirtDialogue().get(choice));
                         System.out.println("\u001B[33m" + e.getName() + " has joined the team!" + "\u001B[0m");
                         e.setHP(0);
                         return true;
                     }
                     else {
-                        System.out.println("\u001B[31m"  +  ((Enemy) e).getFlirtDialogue().get(choice) + "\u001B[0m");
+                        System.out.println("\u001B[31m"  +  e.getFlirtDialogue().get(choice) + "\u001B[0m");
                         System.out.println("\u001B[36m" + "Your advances do not impress the enemy." + "\u001B[0m");
                     }
 
                 }//end enemy check
-                else if (e instanceof Girlfriend) {
+                else if (c instanceof Girlfriend g) {
                     //TODO: implement flirt w/ Girlfriend
+                    System.out.println("You attempt to flirt with your girlfriend.");
+                    StringBuilder choices = new StringBuilder();                        //holds choices made by the player
+
+                    for(String dialogue : g.getFlirtOptions()) {         //iterates through each set of options (numbered 1-n)
+                        System.out.println("""
+                                Please enter the number of your desired option.
+                                    If you want to bail out, enter 0.
+                                
+                                Do you:\s
+                                """);
+                        System.out.println(dialogue);
+                        int choice = sc.nextInt();
+
+                        choices.append(choice);
+                        if(choice == 0) {
+                            System.out.println("Coward");
+                            break;
+                        }
+
+                        System.out.println(g.getFlirtResponses().get(choice-1));     //prints a response based on the player's choice
+                    }
+                    if(choices.toString().equals(g.getFlirtSuccess())) {
+                        int successInd = g.getFlirtResponses().size() - 1;
+                        System.out.println(g.getFlirtResponses().get(successInd));
+                        //TODO: decide what a successful flirt does for girlfriends
+                        return true;
+
+                    }
+                    else {
+                        System.out.println("Your feeble fumbling at flattery falls flat on its face");
+                    }
+
                 }
 
             }

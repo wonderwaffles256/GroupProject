@@ -278,9 +278,12 @@ public class ConsoleDriver {
         else {
             System.out.println("Very well, good luck on your adventures traveler");
         }
-        Location loc1 = new Location("Forest", difficulty, Enemies);
-//        Location loc2 = new Location("Castle", difficulty, castleEnemies);
-//        Location loc3 = new Location("Desert", difficulty, desertEnemies);
+        String loc1Msg = "You enter what seems to be a forest. Huge, weeping trees tower above.";
+        String loc2Msg = "You come across a magnificent castle. It must've stood here for centuries. You enter warily.";
+        String loc3Msg = "You enter a desert. It's dry.";
+        Location loc1 = new Location("Forest", difficulty, forestEnemies, loc1Msg);
+//        Location loc2 = new Location("Castle", difficulty, castleEnemies, loc2Msg);
+//        Location loc3 = new Location("Desert", difficulty, desertEnemies, loc3Msg);
 
 
         location1(player, Enemies, loc1);
@@ -294,8 +297,15 @@ public class ConsoleDriver {
         }
         Stack<Room> rooms = L.getRooms();
         int completed = 0;
-        while(!L.isCompleted()) {
-            combat(p,rooms.pop().getEnemy());
+        while(!(rooms.isEmpty())) {
+            Room r = rooms.pop();
+            if (! r.isTreasureRoom()) {
+                Enemy e = r.getEnemy();
+                combat(p, e);
+            } else {
+                // Chest c = r.getChest();  TODO: implement getChest()
+                System.out.println("chest room");
+            }
             completed++;
             L.setProgress(completed);
             if (!(L.isCompleted())) {
