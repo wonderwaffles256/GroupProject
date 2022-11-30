@@ -30,6 +30,9 @@ public class Location {
     public boolean isCompleted() {
         return progress == numRooms;
     }
+    public ArrayList<Enemy> getLocationEnemies() {
+        return locationEnemies;
+    }
 
     /**
      * constructor

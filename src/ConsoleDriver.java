@@ -97,7 +97,7 @@ public class ConsoleDriver {
                         p.fight(enemy);
                     }
                     case "2" -> {
-                        done = p.flirt(enemy, p);
+                        done = p.flirt(enemy,p);
                         goodinput = true;
                     }
                     case "3" -> {
@@ -121,7 +121,6 @@ public class ConsoleDriver {
                 System.exit(0);
             }
             if(enemy.getHP() <= 0) {
-                //giveLoot(p,enemy)
                 System.out.println("Combat over");
                 done = true;
             }
@@ -129,11 +128,6 @@ public class ConsoleDriver {
                 enemy.fight(p);
             }
         }
-    }
-
-    //TODO: finish giveLoot method
-    public void giveLoot(Player p, Character c) {
-        //gives loot to the player after they defeat an enemy
     }
     public void introDialogue() throws InterruptedException {
         System.out.println("\n \n \n \n \n \n \n \n");
@@ -267,6 +261,11 @@ public class ConsoleDriver {
                 Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() + 1)));
             }
 
+
+
+        ArrayList<Item> itemPack = new ArrayList<>();
+        ArrayList<Character> companions = new ArrayList<>();
+        itemPack.add(water);
         Player player = new Player(100, name, overalls, oneshot, 10);
 
         //tutorial
@@ -282,38 +281,47 @@ public class ConsoleDriver {
         String loc1Msg = "You enter what seems to be a forest. Huge, weeping trees tower above.";
         String loc2Msg = "You come across a magnificent castle. It must've stood here for centuries. You enter warily.";
         String loc3Msg = "You enter a desert. It's dry.";
+        Queue<Location> locations = new LinkedList<>();
         Location loc1 = new Location("Forest", difficulty, forestEnemies, loc1Msg);
-//        Location loc2 = new Location("Castle", difficulty, castleEnemies, loc2Msg);
-//        Location loc3 = new Location("Desert", difficulty, desertEnemies, loc3Msg);
+        Location loc2 = new Location("Castle", difficulty, castleEnemies, loc2Msg);
+        Location loc3 = new Location("Desert", difficulty, desertEnemies, loc3Msg);
+        locations.add(loc1);
+        locations.add(loc2);
+        locations.add(loc3);
 
 
-        location1(player, Enemies, loc1);
+        location(player, locations);
     }
 
     //might be able to use this method for all 3 locations
-    public void location1 (Player p, ArrayList<Enemy> forestEnemies, Location L) {
-        System.out.println("Your enemies are:");        //added for testing, remove at a later date
-        for (Enemy forestEnemy : forestEnemies) {
-            System.out.println(forestEnemy.getName());
-        }
-        Stack<Room> rooms = L.getRooms();
-        int completed = 0;
-        while(!(rooms.isEmpty())) {
-            Room r = rooms.pop();
-            if (! r.isTreasureRoom()) {
-                Enemy e = r.getEnemy();
-                combat(p, e);
-            } else {
-                // Chest c = r.getChest();  TODO: implement getChest()
-                System.out.println("chest room");
+    public void location (Player p, Queue<Location> locations) {
+        while (locations.size() > 0) {
+            Location L = locations.poll();
+            ArrayList<Enemy> Enemies = new ArrayList<>(L.getLocationEnemies());
+
+            System.out.println("Your enemies are:");        //added for testing, remove at a later date
+            for (Enemy forestEnemy : Enemies) {
+                System.out.println(forestEnemy.getName());
             }
-            completed++;
-            L.setProgress(completed);
-            if (!(L.isCompleted())) {
-                System.out.println("You continue on your path, determined to survive the oncoming hordes");
+            Stack<Room> rooms = L.getRooms();
+            int completed = 0;
+            while (!(rooms.isEmpty())) {
+                Room r = rooms.pop();
+                if (!r.isTreasureRoom()) {
+                    Enemy e = r.getEnemy();
+                    combat(p, e);
+                } else {
+                    // Chest c = r.getChest();  TODO: implement getChest()
+                    System.out.println("chest room");
+                }
+                completed++;
+                L.setProgress(completed);
+                if (!(L.isCompleted())) {
+                    System.out.println("You continue on your path, determined to survive the oncoming hordes");
+                }
             }
+            System.out.println("Congrats, you beat the first location!");
         }
-        System.out.println("Congrats, you beat the first location!");
     }
 
 }
