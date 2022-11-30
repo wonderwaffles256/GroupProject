@@ -7,14 +7,16 @@ public class Girlfriend extends Character{
     private ArrayList<String> dialogue;
     private boolean spAtkUsed;
     private ArrayList<String> flirtOptions;         //Holds a list of strings to display flirting options to the player
-    private ArrayList<String> flirtResponses;       //Holds a list of responses to each option plus an extra for a successful flirt
+    private ArrayList<String> flirtResponses;       //Holds a list of responses to each option plus an extra at index 0 for a successful flirt
     private String flirtSuccess;                    //string of numbers indicating which options from the flirtOptions list are correct
+    private int flirtLimit;
 
     public Girlfriend() {
         super();
         medal = null;
         difficulty = 0;
         spAtkUsed = false;
+        flirtLimit = 0;
     }
 
     /**
@@ -33,6 +35,7 @@ public class Girlfriend extends Character{
         this.medal = medal;
         this.difficulty = difficulty;
         this.flirtSuccess = flirtSuccess;
+        flirtLimit = 0;
 
         this.dialogue = new ArrayList<>();      this.flirtOptions = new ArrayList<>();          this.flirtResponses = new ArrayList<>();
         this.dialogue.addAll(dialogue);         this.flirtOptions.addAll(flirtDialogue);        this.flirtResponses.addAll(flirtResponses);
@@ -46,9 +49,11 @@ public class Girlfriend extends Character{
     public ArrayList<String> getFlirtOptions() {return flirtOptions;}
     public ArrayList<String> getFlirtResponses() {return flirtResponses;}
     public String getFlirtSuccess() {return flirtSuccess;}
+    public int getFlirtLimit() {return flirtLimit;}
 
     //setter
     public void setDifficulty(int difficulty) {this.difficulty = difficulty;}
+    public void setFlirtLimit(int limit) {flirtLimit = limit;}
 
     /**
      * Alternate attack specifically for the girlfriend that increases in strength based on its difficulty.
