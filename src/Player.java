@@ -7,7 +7,6 @@ public class Player extends Character{
     private int CORN;                       //CORN will start at 0
     private ArrayList<Item> itemPack;
     private ArrayList<Character> companions;
-    private int maxHP;
     private String currentLocation;
     boolean locComplete;
 
@@ -35,10 +34,10 @@ public class Player extends Character{
 
     //constructor given input
     public Player(int HP, String name, Armor armor, Weapon weapon, double critChance) {
-        super(HP + armor.getStrength(), name, armor, weapon, critChance);
+        super(HP, name, armor, weapon, critChance);
         clout = 1;
         CORN = 0;
-        maxHP = HP + armor.getStrength();
+
         locComplete = false;
         this.itemPack = new ArrayList<>();
         this.companions = new ArrayList<>();
@@ -54,7 +53,6 @@ public class Player extends Character{
     //getters
     public double getClout() {return clout;}
     public int getCORN() {return CORN;}
-    public int getMaxHP() {return maxHP;}
     public String getCurrentLocation() {return currentLocation;}
     public boolean getLocComplete() {return locComplete;}
     public ArrayList<Item> getItemPack() {return itemPack;}
@@ -79,9 +77,16 @@ public class Player extends Character{
     //TODO: implement companion option
     //TODO: implement way to get loot from an enemy
     public void fight(Character opponent){
-        double dmg = ((double) this.getWeapon().getDamage()) * clout;
-        opponent.setHP((int) Math.round((double) opponent.getHP() - dmg));
-        System.out.println("\u001B[36m" + "Using your " + this.weapon.getName() + " you hit " + opponent.getName() + " for " + Math.round(dmg) + " damage!" + "\u001B[0m");
+        boolean usedCompanion = false;
+        if(companions.size() > 0) {
+            usedCompanion = useCompanions(opponent);
+        }
+        if(!usedCompanion){
+            double dmg = ((double) this.getWeapon().getDamage()) * clout;
+            opponent.setHP((int) Math.round((double) opponent.getHP() - dmg));
+            System.out.println("\u001B[36m" + "Using your " + this.weapon.getName() + " you hit " + opponent.getName() + " for " + Math.round(dmg) + " damage!" + "\u001B[0m");
+
+        }
         if(opponent.getHP() <= 0) {
             System.out.println("\u001B[36" + "You have vanquished " + "\u001B[31m" + opponent.getName() + "\u001B[0m");
         }
@@ -108,16 +113,14 @@ public class Player extends Character{
         while(!done) {
             try {
                 if(c instanceof Enemy e) {
-                    done = true;
                     System.out.println("\u001B[36m" + "You advance upon " + "\u001B[31m" + e.getName() + "\u001B[36m" + ", it looks startled.\n" +
                             "Do you:\n" + "\u001B[33m");
                     System.out.println(e.getFlirtDialogue().get(0));      //prints opening options for flirting
                     int choice = sc.nextInt();
+                    done = true;
 
                     if(flirtCheck(choice,e)) {
-                        if (!(e.getName().equals("Baljbeet"))) {                    //adds enemy to companions
-                            companions.add(e);
-                        }
+                        companions.add(e);                                          //adds enemy to companions
 
                         System.out.println(e.getFlirtDialogue().get(choice));       //prints line resulting from correct option
                         System.out.println("\u001B[33m" + e.getName() + " has joined the team!" + "\u001B[0m");
@@ -144,6 +147,7 @@ public class Player extends Character{
                                 """);
                         System.out.println(options);
                         int choice = sc.nextInt();
+                        sc.nextLine();
 
                         choices.append(choice);
                         if (choice <= 0) {                              //allows player to exit the flirt
@@ -159,6 +163,7 @@ public class Player extends Character{
                         System.out.println(g.getName() + " is so impressed by your groveling that she begins to foster a kernel of respect for you.");
 
                         p.setClout(p.getClout() + (g.getDifficulty() - 0.5));               //adds lots of clout based on difficulty
+                        Thread.sleep(1000);
                         System.out.println("Your clout increased substantially");
                         g.setFlirtLimit(3);                                                 //ensures any future flirts cannot be attempted
 
@@ -167,13 +172,15 @@ public class Player extends Character{
                         Thread.sleep(1000);
                         g.setFlirtLimit(g.getFlirtLimit() + 1);                 //increases flirt limit
                     }//end success checker
+                        done = true;
                 }
-                else{System.out.println(g.getName() + " seems reluctant to converse further");}//end flirt limit checker
+                else{System.out.println(g.getName() + " seems reluctant to converse further"); done = true;}//end flirt limit checker
                 }//end girlfriend case
 
             }//end try block
             catch(Exception E) {
-                System.out.println("You must be a monkey. Please enter a number");
+                System.out.println("You must be a monkey. Please enter a number\n");
+                sc.nextLine();
             }
         }//end while loop
 
@@ -186,7 +193,7 @@ public class Player extends Character{
     }
 
     /**
-     * player uses items from his itemPack to heal hp or gain some other buff
+     * Allows player to equip items or use consumables from their item pack
      */
     public void flask() {
         Scanner sc = new Scanner(System.in);
@@ -246,9 +253,13 @@ public class Player extends Character{
         }
     }
 
-    /**
-     * allows the user to equip a weapon of their choice
-     */
+    public void displayCompanions() {
+        for(int i = 0; i < this.companions.size(); i++) {
+            Character companion = this.companions.get(i);
+            System.out.println("Companion " + i + ": " + companion.getName()  + " ___ Weapon: " + companion.getWeapon().getName() + " - " + companion.getWeapon().getDamage() + " dmg");
+        }
+    }
+
     public void equipWeapon(Weapon w) {
         this.weapon = w;
         System.out.println("You equipped: " + w.getName() + "\nDamage: " + w.getDamage());
@@ -271,8 +282,48 @@ public class Player extends Character{
     /**
      * allows player to choose one of a companions to fight for them once during a battle
      */
-    //TODO: make companions functional
-    public void useCompanions() {}//implement after flirting
+    public boolean useCompanions(Character opponent){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Would you like to use one of your companions instead? \n(y for yes, anything else for no)\n");
+        String ch = sc.next();
+        if(ch.equals("y") || ch.equals("Y")) {
+            boolean done = false;
+            while(!done) {
+                try{
+                    System.out.println("Please select which companion you would like to use\n(enter -1 or less to return to a regular fight)");
+                    displayCompanions();
+                    int choice = sc.nextInt();
+                    if(choice >= 0) {
+                        done = true;
+                        Enemy companion = (Enemy) this.companions.get(choice);
+                        if(!companion.getTired()) {
+                            companion.fight(opponent);
+                            companion.setTired(true);
+                            System.out.println(companion.getName() + " seems tired from battle.");
+                            return true;
+                        }
+                        else{
+                            System.out.println(companion.getName() + " is to tired to fight.\n");
+                            Thread.sleep(1000);
+                        }//end companion fight
+                    }
+                    else {
+                        System.out.println("After taking a good look at your cast of companions, you decide their strength simply cannot match your own.\n");
+                        Thread.sleep(1000);
+                        done = true;
+                    }//end companion selection
+
+                }//end try block
+                catch (Exception e) {
+                    System.out.println("Did you barf all over the keyboard? Because I don't see any numbers.\nTry Again\n");
+                    sc.nextLine();
+                }
+            }//end companion menu
+
+        }//end companion prompt
+        else {System.out.println("Your confidence is inspiring\n");}
+        return false;
+    }
 
 
     /**
@@ -282,6 +333,8 @@ public class Player extends Character{
     public void file(Character opp){
         System.out.println("\u001B[36m" + name + " has " + HP + " HP and can thawck for " + this.weapon.getDamage() + " Damage." + "\u001B[0m");
         System.out.println( "\u001B[31m" + opp.getName() + " has " + opp.getHP() + "left. Hope you can overcome that" + "\u001B[0m");
+        System.out.println("Current Companions: \n");
+        displayCompanions();
     }
 
 }

@@ -10,6 +10,7 @@ public abstract class Character {
     protected Armor armor;
     protected Weapon weapon;
     protected double critChance;
+    protected int maxHP;
 
     public Character() {
         HP = 0;
@@ -33,10 +34,12 @@ public abstract class Character {
         this.armor = armor;
         this.weapon = weapon;
         this.critChance = critChance;
+        maxHP = HP + armor.getStrength();
     }
 
     //getters
     public int getHP() {return HP;}
+    public int getMaxHP() {return maxHP;}
     public String getName() {return name;}
     public Weapon getWeapon() {return weapon;}
     public Armor getArmor() {return armor;}
@@ -47,6 +50,7 @@ public abstract class Character {
     public void setWeapon(Weapon weapon) {this.weapon = weapon;}
     public void setArmor(Armor armor) {this.armor = armor;}
     public void setHP(int HP) {this.HP = HP;}
+    public void setMaxHP(int maxHP) {this.maxHP = maxHP;}
     public void setName(String name) {this.name = name;}
 
     //uses current weapon to fight an enemy, girlfriend, or player

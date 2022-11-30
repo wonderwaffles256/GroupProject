@@ -55,29 +55,22 @@ public class RunGame {
                 }
             }
 
-            if(p.getHP() <= 0 || enemy.getHP() <= 0) {
+            if(p.getHP() <= 0) {
+                System.out.println("You tried to fight for the love of your life, but you ended up dying to " + "\u001B[31m" + enemy.getName() + "\u001B[0m");
                 done = true;
             }
-        }
+            else if(enemy.getHP() <= 0) {
+                //giveLoot(p,enemy)
+                System.out.println("Combat over");
+                enemy.setHP(enemy.getMaxHP());
+                done = true;
+            }
+            if (!(done)) {
+                enemy.fight(p);
+            }
+        }//end while loop
 
-        if(p.getHP() <= 0){
-            System.out.println("You died");
-            p.setHP(p.getMaxHP());
-            p.setClout(1);
-        }
-        else if(enemy.getHP() <= 0){
-            if(enemy instanceof Girlfriend){
-                System.out.println("OMG I think I love you");
-            }
-            else{
-                System.out.println("You have vanquished " + enemy.getName());
-                p.setClout(p.getClout() + 0.1);
-                System.out.println("Your clout increased");
-            }
-        }
-        else {
-            System.out.println("Combat resolved");
-        }
+
     }
 
     public void start(int difficulty) {
@@ -124,6 +117,7 @@ public class RunGame {
         System.out.println("As you walk over a hill, you can see a farm off in the distance.");
         System.out.println("At the base of the hill resides a small, round figure.");
         System.out.println("It's shadowy form turns toward you");
+        combat(player,beet);
         combat(player,beet);
 
     }

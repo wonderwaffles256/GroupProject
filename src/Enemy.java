@@ -6,6 +6,7 @@ public class Enemy extends Character{
     private int spawnChance;             // indicates which location this enemy appears in
     private ArrayList<String> battleDialogue;       //list of dialogue meant to be displayed in battle
     private ArrayList<String> flirtDialogue;        //list of options and results from flirting
+    private boolean tired;
 
     /**
      * default constructor
@@ -43,6 +44,8 @@ public class Enemy extends Character{
 
         this.flirtDialogue = new ArrayList<>();
         this.flirtDialogue.addAll(flirtDialogue);
+
+        tired = false;
     }
 
     //getters
@@ -51,10 +54,12 @@ public class Enemy extends Character{
     public String getFlirtRequirement() {return flirtRequirement;}
     public ArrayList<String> getFlirtDialogue() {return flirtDialogue;}
     public ArrayList<String> getBattleDialogue() {return battleDialogue;}
+    public boolean getTired() {return tired;}
 
     //setters
     public void setType(int spawnChance) {this.spawnChance = spawnChance;}
     public void setFlirtRequirement(String flirtRequirement) {this.flirtRequirement = flirtRequirement;}
+    public void setTired(boolean tired) {this.tired = tired;}
 
     /**
      * Returns a string of randomly generated battleDialogue
@@ -73,8 +78,12 @@ public class Enemy extends Character{
 
     public void fight(Character opponent){
         opponent.setHP(opponent.HP - this.weapon.getDamage());
-        System.out.println( "\u001B[31m" + this.name + " whalopped you with its " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!" + "\u001B[0m");
-
+        if(opponent instanceof Player) {
+            System.out.println( "\u001B[31m" + this.name + " whalopped you with its " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!" + "\u001B[0m");
+        }
+        else if(opponent instanceof Enemy || opponent instanceof Girlfriend) {
+            System.out.println(this.name + " valiantly displayed its affection with violence, dealing " + this.weapon.getDamage() + " damage");
+        }
     }
 
     public int getSpawnRate() {
