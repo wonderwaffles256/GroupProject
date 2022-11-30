@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Player extends Character{
@@ -30,12 +31,10 @@ public class Player extends Character{
      * @param armor armor rating of player
      * @param weapon weapon held by player
      * @param critChance chance of landing critical hit
-     * @param itemPack arraylist of items the player has
-     * @param companions arraylist of all the companions the player has
      */
 
     //constructor given input
-    public Player(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> itemPack, ArrayList<Character> companions) {
+    public Player(int HP, String name, Armor armor, Weapon weapon, double critChance) {
         super(HP + armor.getStrength(), name, armor, weapon, critChance);
         clout = 1;
         CORN = 0;
@@ -44,8 +43,8 @@ public class Player extends Character{
         this.itemPack = new ArrayList<>();
         this.companions = new ArrayList<>();
 
-        this.itemPack.addAll(itemPack);
-        this.companions.addAll(companions);
+        this.itemPack.addAll(Arrays.asList(weapon, armor));
+        for(int i=0; i<3; i++) {this.itemPack.add(new Consumable("Bottled Water", 2, 15, "Capitalism's finest"));}
     }
 
     /**
@@ -202,23 +201,23 @@ public class Player extends Character{
 
                 Item chosenItem = this.itemPack.get(choice);            //obtains item chosen by the player, then carries out an action based on its type
                 if(chosenItem instanceof Weapon w) {
-                    System.out.println("Would you like to equip " + w.getName() + "?\n  (1 for yes, 2 for no)");
+                    System.out.println("Would you like to equip " + w.getName() + "?\n  (y for yes, anything else for no)");
                     String ch = sc.next();
-                    if(ch.equals("1")) {
+                    if(ch.equals("y") || ch.equals("Y")) {
                         equipWeapon(w);
                     }
                 }
-                if(chosenItem instanceof Armor a) {
-                    System.out.println("Would you like to equip " + a.getName() + "?\n  (1 for yes, 2 for no)");
+                else if(chosenItem instanceof Armor a) {
+                    System.out.println("Would you like to equip " + a.getName() + "?\n  (y for yes, anything else for no)");
                     String ch = sc.next();
-                    if(ch.equals("1")) {
+                    if(ch.equals("y") || ch.equals("Y")) {
                         equipArmor(a);
                     }
                 }
-                if(chosenItem instanceof Consumable c) {
-                    System.out.println("Would you like to use " + c.getName() + "?\n  (1 for yes, 2 for no)");
+                else if(chosenItem instanceof Consumable c) {
+                    System.out.println("Would you like to use " + c.getName() + "?\n  (y for yes, anything else for no)");
                     String ch = sc.next();
-                    if(ch.equals("1")) {
+                    if(ch.equals("y") || ch.equals("Y")) {
                         useConsumable(c,choice);
                     }
                 }
@@ -263,9 +262,10 @@ public class Player extends Character{
     }
 
     public void useConsumable(Consumable c, int index) {
-        HP += healRemainder(c.getHealing());
+        int remainder = healRemainder(c.getHealing());
+        HP += remainder;
         itemPack.remove(this.itemPack.get(index));
-        System.out.println("You used " + c.getName() + ", recovering " + healRemainder(c.getHealing()) + " HP");
+        System.out.println("You used " + c.getName() + ", recovering " + remainder + " HP");
     }
 
     /**

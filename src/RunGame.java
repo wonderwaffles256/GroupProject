@@ -48,7 +48,7 @@ public class RunGame {
             if(!done && enemy.getHP() > 0) {
                 if(enemy instanceof Girlfriend){
                     System.out.println(((Girlfriend) enemy).dialogue());
-                    ((Girlfriend) enemy).fight(p);
+                    enemy.fight(p);
                 }
                 else{
                     enemy.fight(p);
@@ -116,14 +116,9 @@ public class RunGame {
         beetFlirtDialogue.add("Heh... she did beet me as a child");                                         //string for an incorrect option
         //
 
-        ArrayList<Item> itemPack = new ArrayList<>();
-        ArrayList<Character> companions = new ArrayList<>();
-
-        itemPack.add(heal);
-
         Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 80, beetBattleDialogue, beetFlirtDialogue);
 
-        Player player = new Player(100, "Player", overalls, gun, 10, itemPack, companions);
+        Player player = new Player(100, "Player", overalls, gun, 10);
 
         //------------------------------------------------After Stuff Loaded In-----------------------------------------------------//
         System.out.println("As you walk over a hill, you can see a farm off in the distance.");

@@ -267,12 +267,7 @@ public class ConsoleDriver {
                 Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() + 1)));
             }
 
-
-
-        ArrayList<Item> itemPack = new ArrayList<>();
-        ArrayList<Character> companions = new ArrayList<>();
-        itemPack.add(water);
-        Player player = new Player(100, name, overalls, oneshot, 10, itemPack, companions);
+        Player player = new Player(100, name, overalls, oneshot, 10);
 
         //tutorial
         System.out.println("Would you like to play the tutorial and read the intro dialogue? \n press 1 for yes and 2 for no");
