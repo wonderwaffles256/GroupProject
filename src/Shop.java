@@ -68,8 +68,6 @@ public class Shop {
     /**
      * a menu for navigating the shop that lets the player buy and sell
      */
-
-    //TODO: have this method allow the player to sell items for CORN
     public void Shopmenu(Player p) {
         char BSL = 'B';
         System.out.println("Welcome to the SHOP also known as SHEETZ.");
@@ -81,7 +79,6 @@ public class Shop {
                 buyMenu(p);
             } else if (BSL == 'S') {
                 sell(p);
-// add sell here
             } else {
                 System.out.println("I don't understand what you just said. Try my suggested answers...Some people's kids");
             }
@@ -203,7 +200,10 @@ public class Shop {
         }
     }
 
-
+    /**
+     * This method allows a player to sell an item to the shop keep for 5/6 of the item's value
+     * @param p - player who wants to sell his own items and needs to get CORN from the sold items
+     */
     public void sell(Player p) {
         System.out.println("So ya wanna sell sum do ya. All right what do ya wanna sell?");
         int count = 0;
