@@ -155,8 +155,11 @@ public class ConsoleDriver {
         Weapon umbrella = new Weapon("Umbrella", 15, 6, "Im Mary Poppins y`all");
         Weapon magicWand = new Weapon("Magic Wand", 15, 6,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
         Weapon laserRifle = new Weapon("Laser Rifle", 30, 8, "can shoot enemies all the way from a galaxy far far away");
-        Weapon oneshot = new Weapon("Death Star", 10000, 500, "Kills the enemy insantly");
+        Weapon oneshot = new Weapon("Death Star", 300, 500, "Kills the enemy insantly");
         Weapon Bow = new Weapon("Bow", 15, 7, "good ol trusty");
+        Weapon stick = new Weapon("A Cool Stick",150,50,"A cool stick that looks like a sword.");
+        Weapon paddle = new Weapon("A paddle",10,5,"A child Abuse paddle");
+
 
 
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
@@ -166,9 +169,13 @@ public class ConsoleDriver {
         Armor peachDress = new Armor("princess peaches dress", 50, 25, "A pretty pink dress");
         Armor cloak = new Armor("cloak", 20, 10, "a dark cloak");
 
+        Consumable water = new Consumable("Kirkland Brand Water Bottle", 1,5, "cheap but reliable");
+        Consumable tiny = new Consumable("Bud Lite", 5,10,"A bud lite that heals a small amount");
+        Consumable small = new Consumable("Bud Heavy", 10, 25, "A heavy Bud Lite that heals a bit of health");
+        Consumable medium = new Consumable("Moonshine",20,50,"Some good ol fashioned moonshine that heals a good bit of health.");
+        Consumable large = new Consumable("Vodka",50,110,"Some Russian vodka that could knock out a bear");
 
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
-        Item water = new Item("Kirkland Brand Water Bottle", 1, "cheap but reliable");
 
         ArrayList<Item> beetLoot = new ArrayList<>();
         ArrayList<String> beetBattleDialogue = new ArrayList<>();
@@ -238,8 +245,20 @@ public class ConsoleDriver {
 //        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDesign);
 //        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDesign);
 //        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,5, arthurBattleDialogue, arthurFlirtDialogue);
-//
-        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood));        //contains one of the enemies in order of creation
+//        Enemy yurMum =
+        String NyeSuccess = "With our combined power we shall end global warming and make the whole world lukewarm!";
+        ArrayList<Item> NyeLoot = new ArrayList<>();
+        ArrayList<String> NyeBattleDialogue = new ArrayList<>();
+        NyeBattleDialogue.add("It just doesn't make any sense as to why you would challenge me, an academic unit.");
+        ArrayList<String> NyeFlirtDialogue = new ArrayList<>();
+        NyeFlirtDialogue.add("1 - describe your intense plan to end Global warming \n" + "2 - Sing his Theme Song \n" + "3 - Tell him that he taught you science in 5th grade");
+        NyeFlirtDialogue.add(NyeSuccess);
+        NyeFlirtDialogue.add("That song really annoyed me and so do you");
+        NyeFlirtDialogue.add("Obviously you never paid enough attention during that class so I'll teach you what it's like to lose");
+        Enemy BillNye = new Enemy(20,"Bill Nye",buisness,laserRifle,6,NyeLoot,NyeSuccess,9,NyeBattleDialogue,NyeFlirtDialogue);
+
+
+        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye));        //contains one of the enemies in order of creation
         ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
         ArrayList<Enemy> forestEnemies = new ArrayList<>();
         ArrayList<Enemy> castleEnemies = new ArrayList<>();
