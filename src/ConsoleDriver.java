@@ -159,6 +159,7 @@ public class ConsoleDriver {
         Weapon Bow = new Weapon("Bow", 15, 7, "good ol trusty");
         Weapon stick = new Weapon("A Cool Stick",150,50,"A cool stick that looks like a sword.");
         Weapon paddle = new Weapon("A paddle",10,5,"A child Abuse paddle");
+        Weapon chemo = new Weapon("10-rounds of Chemotherapy",100,99,"Jesse how could you be so stupid. I am the one who Chemos.");
 
 
 
@@ -168,6 +169,7 @@ public class ConsoleDriver {
         Armor suitOfArmor = new Armor("suit of armor", 70, 20, "looks cool, but its the 20th century");
         Armor peachDress = new Armor("princess peaches dress", 50, 25, "A pretty pink dress");
         Armor cloak = new Armor("cloak", 20, 10, "a dark cloak");
+        Armor hat = new Armor("Pork Pie Hat",25,7,"A familiar hat that smells like a meth lab");
 
         Consumable water = new Consumable("Nestle Spring Water", 2, 5, "Capitalism's finest");
         Consumable tiny = new Consumable("Bud Lite", 5,10,"Choice beer for the middle class diabetic. Restores a small bit of health");
@@ -259,8 +261,19 @@ public class ConsoleDriver {
         NyeFlirtDialogue.add("Obviously you never paid enough attention during that class so I'll teach you what it's like to lose");
         Enemy BillNye = new Enemy(20,"Bill Nye",buisness,laserRifle,6,NyeLoot,NyeSuccess,9,NyeBattleDialogue,NyeFlirtDialogue);
 
+        String WaltSuccess = "Maybe now I can go make Jr. some breakfast";
+        ArrayList<Item> WaltLoot = new ArrayList<>();
+        ArrayList<String> WaltBattleDialogue = new ArrayList<>();
+        WaltBattleDialogue.add("Say my name.");
+        ArrayList<String> WaltFlirtDialogue = new ArrayList<>();
+        WaltFlirtDialogue.add("1 - Cure his cancer \n" + "2 - Give him some Methylamine \n" + "3 - Knock on his door");
+        WaltFlirtDialogue.add(WaltSuccess);
+        WaltFlirtDialogue.add("How could you be so stupid to give me this out in the open. Apply Yourself.");
+        WaltFlirtDialogue.add("I am the one who knocks!");
+        Enemy BreakBad = new Enemy(10,"Walter White",hat,chemo,5,WaltLoot,WaltSuccess,8,WaltBattleDialogue,WaltFlirtDialogue);
 
-        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye));        //contains one of the enemies in order of creation
+
+        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad));        //contains one of the enemies in order of creation
 
         ArrayList<Item> itemPack = new ArrayList<>();
         ArrayList<Character> companions = new ArrayList<>();
