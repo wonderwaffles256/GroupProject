@@ -88,7 +88,7 @@ public class ConsoleDriver {
             boolean goodinput = false;
             while (!goodinput) {
                 System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), Flee ( 4 ), or File( 5 ).\n" +
-                        "Please input 1 2 3 or 4. NOTHING ELSE and hit Enter.");
+                        "Please input 1 2 3 4 or 5. NOTHING ELSE and hit Enter.");
                 String in = scnr.nextLine();
                 switch (in) {
                     case "1" -> {
@@ -176,8 +176,8 @@ public class ConsoleDriver {
         Consumable large = new Consumable("Vodka",50,110,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
 
-        ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock));
-
+        ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock,overalls,buisness,suitOfArmor,peachDress,cloak,gun,club,sword,BatWithNails,umbrella,magicWand,laserRifle,oneshot,Bow,stick,paddle));
+        Chest c = new Chest(allItems);
         ArrayList<Item> beetLoot = new ArrayList<>();
         ArrayList<String> beetBattleDialogue = new ArrayList<>();
         ArrayList<String> beetFlirtDialogue = new ArrayList<>();
@@ -310,8 +310,8 @@ public class ConsoleDriver {
                     Enemy e = r.getEnemy();
                     combat(p, e);
                 } else {
-                    System.out.println("Chest Room");
-                    // Chest c = r.getChest();  TODO: implement getChest()
+                     Item I = r.getChest();
+                     chestRoom(I,p);
                 }
                 completed++;
                 L.setProgress(completed);
@@ -331,11 +331,65 @@ public class ConsoleDriver {
         }
         Enemies.clear();
         Random r = new Random();
-        int loop;
         for (int i = 0; i < 7; i++) {
-            Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size())));
+            Enemy e = new Enemy(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size())));
+            Enemies.add(e);
         }
         return Enemies;
+    }
+
+    public void chestRoom(Item i, Player p) {
+        Scanner scnr = new Scanner(System.in);
+        boolean loop = false;
+        System.out.println("\u001B[35m" + "You come across an old chest");
+        if (i instanceof Weapon) {
+            System.out.println("Inside the chest is a weapon \n You inspect the weapon: " + "\u001B[0m" );
+            System.out.println(i.getName() + " does " + ((Weapon) i).getDamage() + " damage \n its inscription reads: "  + i.getDescription());
+            System.out.println("your current weapon does " + p.getWeapon().getDamage());
+            System.out.println("Would you like to equip this item? \n 1 for yes, and 2 for no");
+            p.addItemPack(i);
+            while (!loop) {
+                if (scnr.nextInt() == 1) {
+                    p.equipWeapon((Weapon) i);
+                    loop = true;
+                    System.out.println("You continue on your path");
+                }
+                else if (scnr.nextInt() == 2) {
+                    loop = true;
+                    System.out.println("You continue on your path");
+                }
+            }
+        }
+        else if (i instanceof Consumable) {
+            System.out.println("Inside the chest is a drink \n You inspect the drink"+ "\u001B[0m");
+            System.out.println(i.getName() + " heals for " + ((Consumable) i).getHealing() + "\n its inscription reads: " + i.getDescription() + "\n you place the item in your flask" + "\u001B[0m");
+            p.addItemPack(i);
+
+        }
+        else if (i instanceof Armor) {
+            System.out.println("Inside the chest is some clothes \n You inspect the clothes" + "\u001B[0m");
+            System.out.println(i.getName() + " has an armor rating of " + ((Armor) i).getStrength() + "\n its inscription reads: " + i.getDescription());
+            System.out.println("your current armor has a rating of " + p.getArmor().getStrength());
+            System.out.println("Would you like to equip this Armor? \n 1 for yes, and 2 for no");
+            p.addItemPack(i);
+            while (!loop) {
+                if (scnr.nextInt() == 1) {
+                    p.equipArmor((Armor) i);
+                    loop = true;
+                    System.out.println("You continue on your path");
+                }
+                else if (scnr.nextInt() == 2) {
+                    loop = true;
+                    System.out.println("You continue on your path");
+                }
+            }
+        }
+
+        else {
+            System.out.println("Inside the chest is a item \n You inspect the item" + "\u001B[0m");
+            System.out.println(i.getName() + "it is worth" + i.getValue() + "\n its inscription reads: " + i.getDescription() + "\n you place the item in your pack");
+            p.addItemPack(i);
+        }
     }
 
 }

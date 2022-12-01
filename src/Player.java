@@ -63,6 +63,7 @@ public class Player extends Character{
     public void setClout(double clout) {this.clout = clout;}
     public void setCurrentLocation(String currLoc) {this.currentLocation = currLoc;}
     public void setLocComplete(boolean complete) {this.locComplete = complete;}
+    public void addItemPack(Item i) {itemPack.add(i);}
 
     /**
      * when user obtains corn it sums the newly obtained bits with the existing amount
@@ -351,5 +352,4 @@ public class Player extends Character{
             System.out.println("\u001B[34m  None\n\u001B[0m");
         }
     }
-
 }

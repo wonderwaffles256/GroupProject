@@ -18,6 +18,4 @@ public class Chest {
     public Item getLoot() {
         return loot;
     }
-    //TODO: add random loot generator
-
 }

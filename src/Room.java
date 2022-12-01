@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Random;
 
 /**
@@ -17,7 +18,7 @@ public class Room {
         completed = false;
 
         Random r = new Random();
-        int num = (r.nextInt(5)+1);
+        int num = 0;
     }
 
     /**
@@ -91,24 +92,7 @@ public class Room {
     }
 
     public Item getChest() {
-        Item i = c.getLoot();
-        System.out.println("\u001B[35m" + "You come across an old chest");
-        if (i instanceof Weapon) {
-            System.out.println("You inspect the weapon" + "\u001B[0m");
-
-        }
-        else if (i instanceof Consumable) {
-            System.out.println("You inspect the drink"+ "\u001B[0m");
-
-        }
-        else if (i instanceof Armor) {
-            System.out.println("You inspect the Armor"+ "\u001B[0m");
-
-        }
-        else {
-            System.out.println("You inspect the item"+ "\u001B[0m");
-        }
-        return i;
+        return c.getLoot();
     }
 }
 

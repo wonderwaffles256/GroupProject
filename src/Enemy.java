@@ -75,6 +75,18 @@ public class Enemy extends Character{
     public Enemy flirtSuccess(String flirtRequirement) {
         return new Enemy();
     }//implement later
+    public Enemy(Enemy e) {
+        name = e.name;
+        HP = e.HP;
+        armor = e.armor;
+        weapon = e.weapon;
+        critChance = e.critChance;
+        loot = e.loot;
+        flirtRequirement = e.flirtRequirement;
+        spawnChance = e.spawnChance;             // indicates which location this enemy appears in
+        battleDialogue = e.battleDialogue;
+        flirtDialogue = e.flirtDialogue;
+    }
 
     public void fight(Character opponent){
         opponent.setHP(opponent.HP - this.weapon.getDamage());

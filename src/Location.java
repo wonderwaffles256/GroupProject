@@ -71,7 +71,7 @@ public class Location {
         Random rand = new Random();
         for(int i=0; i < numRooms; i++) {
             String name = getName() + i;
-            int num = (rand.nextInt(5)+1);; // generate a random number to determine whether chest or combat room
+            int num = (rand.nextInt(10)+1);; // generate a random number to determine whether chest or combat room
             if (num == 5) {
                 Chest c = new Chest(); // TODO: make this generate random loot.
                 Room r = new Room(c,name);
