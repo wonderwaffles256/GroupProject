@@ -51,7 +51,6 @@ public class Location {
         this.progress = 0;
         this.rooms = new Stack<>();
         generateRooms();
-
         this.entranceMessage = entranceMessage;
     }
 

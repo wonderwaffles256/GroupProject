@@ -18,9 +18,6 @@ public class Room {
 
         Random r = new Random();
         int num = (r.nextInt(5)+1);
-        if (num == 5) {
-            treasureRoom = true;
-        } else { treasureRoom = false; }
     }
 
     /**
@@ -91,6 +88,26 @@ public class Room {
 
     public boolean isTreasureRoom() {
         return treasureRoom;
+    }
+    public Item getChest() {
+        Item i = c.randomLoot();
+        System.out.println("\u001B[35m" + "You come across an old chest");
+        if (i instanceof Weapon) {
+            System.out.println("You inspect the weapon" + "\u001B[0m");
+
+        }
+        else if (i instanceof Consumable) {
+            System.out.println("You inspect the drink"+ "\u001B[0m");
+
+        }
+        else if (i instanceof Armor) {
+            System.out.println("You inspect the Armor"+ "\u001B[0m");
+
+        }
+        else {
+            System.out.println("You inspect the item"+ "\u001B[0m");
+        }
+        return i;
     }
 }
 
