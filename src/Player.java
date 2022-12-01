@@ -74,8 +74,7 @@ public class Player extends Character{
      * Player's version of the fight method. Multiplies damage by their current clout modifier.
      * @param opponent - the Character being fought
      */
-    //TODO: implement companion option
-    //TODO: implement way to get loot from an enemy
+
     public void fight(Character opponent){
         boolean usedCompanion = false;
         if(companions.size() > 0) {
@@ -88,7 +87,7 @@ public class Player extends Character{
 
         }
         if(opponent.getHP() <= 0) {
-            System.out.println("\u001B[36" + "You have vanquished " + "\u001B[31m" + opponent.getName() + "\u001B[0m");
+            System.out.println("\u001B[36m" + "You have vanquished " + "\u001B[31m" + opponent.getName() + "\u001B[0m");
         }
     }
 
@@ -201,40 +200,51 @@ public class Player extends Character{
             System.out.println("You ain't got nothin boy!\n" + "Go get some junk!");
         }
         else{
-            try{
-                displayItems();
-                System.out.println("Please enter a number for the item you would like to use");
-                int choice = sc.nextInt();
+            boolean done = false;
+            while(!done) {
+                try{
+                    displayItems();
+                    System.out.println("Please enter a number for the item you would like to use. (-1 or less to exit, ending your turn)");
+                    int choice = sc.nextInt();
 
-                Item chosenItem = this.itemPack.get(choice);            //obtains item chosen by the player, then carries out an action based on its type
-                if(chosenItem instanceof Weapon w) {
-                    System.out.println("Would you like to equip " + w.getName() + "?\n  (y for yes, anything else for no)");
-                    String ch = sc.next();
-                    if(ch.equals("y") || ch.equals("Y")) {
-                        equipWeapon(w);
+                    if(choice < 0) {
+                        break;
+                    }
+                    Item chosenItem = this.itemPack.get(choice);            //obtains item chosen by the player, then carries out an action based on its type
+                    if(chosenItem instanceof Weapon w) {
+                        System.out.println("Would you like to equip " + w.getName() + "?\n  (y for yes, anything else for no)");
+                        String ch = sc.next();
+                        if(ch.equals("y") || ch.equals("Y")) {
+                            equipWeapon(w);
+                            done = true;
+                        }
+                    }
+                    else if(chosenItem instanceof Armor a) {
+                        System.out.println("Would you like to equip " + a.getName() + "?\n  (y for yes, anything else for no)");
+                        String ch = sc.next();
+                        if(ch.equals("y") || ch.equals("Y")) {
+                            equipArmor(a);
+                            done = true;
+                        }
+                    }
+                    else if(chosenItem instanceof Consumable c) {
+                        System.out.println("Would you like to use " + c.getName() + "?\n  (y for yes, anything else for no)");
+                        String ch = sc.next();
+                        if(ch.equals("y") || ch.equals("Y")) {
+                            useConsumable(c,choice);
+                            done = true;
+                        }
+                    }
+                    else {
+                        System.out.println("This item is mostly useless, best to be sold or kept as a keepsake");
                     }
                 }
-                else if(chosenItem instanceof Armor a) {
-                    System.out.println("Would you like to equip " + a.getName() + "?\n  (y for yes, anything else for no)");
-                    String ch = sc.next();
-                    if(ch.equals("y") || ch.equals("Y")) {
-                        equipArmor(a);
-                    }
-                }
-                else if(chosenItem instanceof Consumable c) {
-                    System.out.println("Would you like to use " + c.getName() + "?\n  (y for yes, anything else for no)");
-                    String ch = sc.next();
-                    if(ch.equals("y") || ch.equals("Y")) {
-                        useConsumable(c,choice);
-                    }
-                }
-                else {
-                    System.out.println("This item is mostly useless, best to be sold or kept forever");
+                catch(Exception e) {
+                    System.out.println("You nincompoop. Enter a good number next time.");
+                    sc.nextLine();
                 }
             }
-            catch(Exception e) {
-                System.out.println("You nincompoop. Enter a good number next time.");
-            }
+
 
         }//end else
     }
@@ -249,14 +259,14 @@ public class Player extends Character{
 
     public void displayItems() {
         for(int i = 0; i < this.itemPack.size(); i++) {
-            System.out.println("Item " + i + ": " + this.itemPack.get(i).getName());
+            System.out.println("\u001B[32mItem " + i + ": " + this.itemPack.get(i).getName() + " _____________  " + this.itemPack.get(i).getDescription() +"\u001B[0m");
         }
     }
 
     public void displayCompanions() {
         for(int i = 0; i < this.companions.size(); i++) {
             Character companion = this.companions.get(i);
-            System.out.println("Companion " + i + ": " + companion.getName()  + " ___ Weapon: " + companion.getWeapon().getName() + " - " + companion.getWeapon().getDamage() + " dmg");
+            System.out.println("\u001B[34mCompanion " + i + ": " + companion.getName()  + " ___ Weapon: " + companion.getWeapon().getName() + " - " + companion.getWeapon().getDamage() + " dmg\u001B[0m");
         }
     }
 
@@ -331,10 +341,15 @@ public class Player extends Character{
      * @param opp - enemy player is fighting
      */
     public void file(Character opp){
-        System.out.println("\u001B[36m" + name + " has " + HP + " HP and can thawck for " + this.weapon.getDamage() + " Damage." + "\u001B[0m");
-        System.out.println( "\u001B[31m" + opp.getName() + " has " + opp.getHP() + "left. Hope you can overcome that" + "\u001B[0m");
-        System.out.println("Current Companions: \n");
-        displayCompanions();
+        System.out.println("\u001B[34m" + name + " has " + HP + " HP, wielding a " + this.weapon.getName() + "\n" +
+                opp.getName() + " has " + opp.getHP() + " left. Hope you can overcome that\n"
+                + "Current Companions: \u001B[0m");
+        if(companions.size() > 0) {
+            displayCompanions();
+        }
+        else {
+            System.out.println("\u001B[34m  None\n\u001B[0m");
+        }
     }
 
 }

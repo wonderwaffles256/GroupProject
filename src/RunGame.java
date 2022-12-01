@@ -7,6 +7,9 @@ public class RunGame {
     public static void main(String[] args) {
         RunGame game = new RunGame();
         game.start(1);
+//        for(int i=0; i<10; i++) {
+//            System.out.println("\u001B[3" + i + "m Hello World");
+//        }
     }
 
     public void combat(Player p,Character enemy){
@@ -45,16 +48,6 @@ public class RunGame {
                 }
             }
 
-            if(!done && enemy.getHP() > 0) {
-                if(enemy instanceof Girlfriend){
-                    System.out.println(((Girlfriend) enemy).dialogue());
-                    enemy.fight(p);
-                }
-                else{
-                    enemy.fight(p);
-                }
-            }
-
             if(p.getHP() <= 0) {
                 System.out.println("You tried to fight for the love of your life, but you ended up dying to " + "\u001B[31m" + enemy.getName() + "\u001B[0m");
                 done = true;
@@ -62,6 +55,7 @@ public class RunGame {
             else if(enemy.getHP() <= 0) {
                 //giveLoot(p,enemy)
                 System.out.println("Combat over");
+                p.setClout(p.getClout() + 0.1);
                 enemy.setHP(enemy.getMaxHP());
                 done = true;
             }

@@ -29,12 +29,12 @@ public abstract class Character {
      * @param critChance - the chance a player has to critically hit an enemy or even miss the enemy completely
      */
     public Character(int HP, String name, Armor armor, Weapon weapon, double critChance) {
-        this.HP = HP;
+        maxHP = HP + armor.getStrength();
+        this.HP = maxHP;
         this.name = name;
         this.armor = armor;
         this.weapon = weapon;
         this.critChance = critChance;
-        maxHP = HP + armor.getStrength();
     }
 
     //getters

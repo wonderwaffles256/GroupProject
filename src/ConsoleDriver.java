@@ -155,7 +155,7 @@ public class ConsoleDriver {
         Weapon umbrella = new Weapon("Umbrella", 15, 6, "Im Mary Poppins y`all");
         Weapon magicWand = new Weapon("Magic Wand", 15, 6,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
         Weapon laserRifle = new Weapon("Laser Rifle", 30, 8, "can shoot enemies all the way from a galaxy far far away");
-        Weapon oneshot = new Weapon("Death Star", 300, 500, "Kills the enemy insantly");
+        Weapon oneshot = new Weapon("Death Star", 300, 500, "Fire when ready");
         Weapon Bow = new Weapon("Bow", 15, 7, "good ol trusty");
         Weapon stick = new Weapon("A Cool Stick",150,50,"A cool stick that looks like a sword.");
         Weapon paddle = new Weapon("A paddle",10,5,"A child Abuse paddle");
@@ -169,11 +169,11 @@ public class ConsoleDriver {
         Armor peachDress = new Armor("princess peaches dress", 50, 25, "A pretty pink dress");
         Armor cloak = new Armor("cloak", 20, 10, "a dark cloak");
 
-        Consumable water = new Consumable("Kirkland Brand Water Bottle", 1,5, "cheap but reliable");
-        Consumable tiny = new Consumable("Bud Lite", 5,10,"A bud lite that heals a small amount");
-        Consumable small = new Consumable("Bud Heavy", 10, 25, "A heavy Bud Lite that heals a bit of health");
-        Consumable medium = new Consumable("Moonshine",20,50,"Some good ol fashioned moonshine that heals a good bit of health.");
-        Consumable large = new Consumable("Vodka",50,110,"Some Russian vodka that could knock out a bear");
+        Consumable water = new Consumable("Nestle Spring Water", 2, 5, "Capitalism's finest");
+        Consumable tiny = new Consumable("Bud Lite", 5,10,"Choice beer for the middle class diabetic. Restores a small bit of health");
+        Consumable small = new Consumable("Bud Heavy", 10, 25, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
+        Consumable medium = new Consumable("Moonshine",20,50,"Strong liquor, straight from the Prohibition");
+        Consumable large = new Consumable("Vodka",50,110,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
 
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
 
