@@ -77,7 +77,7 @@ public class ConsoleDriver {
     /**
      * Prints a menu to inform user and gather input
      */
-    public void combat(Player p,Character enemy) {
+    public void combat(Player p,Character enemy) throws InterruptedException{
         System.out.println("\u001B[31m" + enemy.getName() + " has appeared!" + "\u001B[0m");
         Scanner scnr = new Scanner(System.in);
 
@@ -92,7 +92,6 @@ public class ConsoleDriver {
                 String in = scnr.nextLine();
                 switch (in) {
                     case "1" -> {
-                        //TODO: prompt for using companions
                         goodinput = true;
                         p.fight(enemy);
                     }
@@ -115,13 +114,14 @@ public class ConsoleDriver {
                 }
             }
 
-            //TODO: have death reset health/clout instead of ending the game
             if(p.getHP() <= 0) {
                 System.out.println("You tried to fight for the love of your life, but you ended up dying to " + "\u001B[31m" + enemy.getName() + "\u001B[0m");
-                System.exit(0);
+                p.death();
+                done = true;
             }
             if(enemy.getHP() <= 0) {
                 System.out.println("Combat over");
+                enemy.setHP(enemy.getMaxHP());
                 done = true;
             }
             if (!(done)) {
@@ -306,7 +306,7 @@ public class ConsoleDriver {
     }
 
     //might be able to use this method for all 3 locations
-    public void location (Player p, Queue<Location> locations) {
+    public void location (Player p, Queue<Location> locations) throws InterruptedException{
         while (locations.size() > 0) {
             Location L = locations.poll();
             ArrayList<Enemy> Enemies = new ArrayList<>(L.getLocationEnemies());

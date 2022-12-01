@@ -119,13 +119,16 @@ public class Player extends Character{
                     int choice = sc.nextInt();
                     done = true;
 
-                    if(flirtCheck(choice,e)) {
+                    if(flirtCheck(choice,e) && !companions.contains(e)) {
                         companions.add(e);                                          //adds enemy to companions
 
                         System.out.println(e.getFlirtDialogue().get(choice));       //prints line resulting from correct option
                         System.out.println("\u001B[33m" + e.getName() + " has joined the team!" + "\u001B[0m");
                         e.setHP(0);
                         return true;
+                    }
+                    else if(companions.contains(e)) {
+                        System.out.println(e.getName() + " sees that you're already in a serious relationship. It turns it's nose in jealousy.");
                     }
                     else {
                         System.out.println("\u001B[31m"  +  e.getFlirtDialogue().get(choice) + "\u001B[0m");
@@ -288,6 +291,43 @@ public class Player extends Character{
         HP += remainder;
         itemPack.remove(this.itemPack.get(index));
         System.out.println("You used " + c.getName() + ", recovering " + remainder + " HP");
+    }
+
+    public void death() throws InterruptedException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Continue Adventuring? (y for yes, anything else for no)");
+        String ch = sc.next();
+        if(ch.equals("y") || ch.equals("Y")) {
+            Thread.sleep(1500);
+            System.out.println("As you begin to black out, you hear the faint voices of your companions slowly growing quieter. It seems they decided to leave for good.");
+            HP = maxHP;
+            clout = 1;
+            CORN = 0;
+            companions.clear();
+            Thread.sleep(1500);
+            System.out.println("You awaken at the foot of a tree. Your wounds seem to have healed, but at the cost of your friends.");
+            Thread.sleep(1500);
+            System.out.println("You reach into your pockets. Whatever money you had has vanished.");
+        }
+        else {
+            Thread.sleep(1500);
+            System.out.println("Game Over");
+            Thread.sleep(1500);
+            System.out.println("---------------------Farmer's Only Quest------------------------");
+            Thread.sleep(1500);
+            System.out.println("Programmers, Writers, Designers, and Masters of the Universe:\n");
+            Thread.sleep(1500);
+            System.out.println("                      Daniel Newcomb");
+            Thread.sleep(1500);
+            System.out.println("                      Sean Malencia");
+            Thread.sleep(1500);
+            System.out.println("                      Owen Schulze");
+            Thread.sleep(1500);
+            System.out.println("                      Noah Adams");
+            Thread.sleep(1500);
+            System.out.println("                   Thanks for playing!");
+            System.exit(0);
+        }
     }
 
     /**
