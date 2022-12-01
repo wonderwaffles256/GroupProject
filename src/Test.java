@@ -8,6 +8,7 @@ public class Test { //made to test chest room for right now but can be used for 
         Consumable water = new Consumable("Nestle Spring Water", 2, 5, "Capitalism's finest");
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
         ArrayList<Item> items = new ArrayList<>(Arrays.asList(gun,overalls,water,rock));
+        System.out.println(items.size());
         Chest c = new Chest(items);
 
         Chest treasure = new Chest();

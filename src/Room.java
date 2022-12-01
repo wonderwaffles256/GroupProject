@@ -89,8 +89,9 @@ public class Room {
     public boolean isTreasureRoom() {
         return treasureRoom;
     }
+
     public Item getChest() {
-        Item i = c.randomLoot();
+        Item i = c.getLoot();
         System.out.println("\u001B[35m" + "You come across an old chest");
         if (i instanceof Weapon) {
             System.out.println("You inspect the weapon" + "\u001B[0m");
