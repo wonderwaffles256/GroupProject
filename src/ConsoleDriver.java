@@ -174,8 +174,9 @@ public class ConsoleDriver {
         Consumable small = new Consumable("Bud Heavy", 10, 25, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
         Consumable medium = new Consumable("Moonshine",20,50,"Strong liquor, straight from the Prohibition");
         Consumable large = new Consumable("Vodka",50,110,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
-
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
+
+        ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock));
 
         ArrayList<Item> beetLoot = new ArrayList<>();
         ArrayList<String> beetBattleDialogue = new ArrayList<>();
@@ -245,6 +246,7 @@ public class ConsoleDriver {
 //        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDesign);
 //        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDesign);
 //        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,5, arthurBattleDialogue, arthurFlirtDialogue);
+//
 //        Enemy yurMum =
         String NyeSuccess = "With our combined power we shall end global warming and make the whole world lukewarm!";
         ArrayList<Item> NyeLoot = new ArrayList<>();
@@ -259,28 +261,6 @@ public class ConsoleDriver {
 
 
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye));        //contains one of the enemies in order of creation
-        ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
-        ArrayList<Enemy> forestEnemies = new ArrayList<>();
-        ArrayList<Enemy> castleEnemies = new ArrayList<>();
-        ArrayList<Enemy> desertEnemies = new ArrayList<>();
-        Queue<ArrayList<Enemy>> locationEnemies = new LinkedList<>();
-
-        //TODO: try to put this in a method (maybe)
-        for(int i = 0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
-            for(int z = 0; z < Enemies.get(i).getSpawnRate(); z++) {
-                EnemiesWithWeights.add(Enemies.get(i));
-            }
-        }
-        Random r = new Random();
-        int loop = 0;
-        if (difficulty == 1) {loop = 3;} else if (difficulty == 2) {loop = 5;} else {difficulty = 7;}
-
-
-            for (int i = 0; i < loop; i++) {
-                Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size() + 1)));
-            }
-
-
 
         ArrayList<Item> itemPack = new ArrayList<>();
         ArrayList<Character> companions = new ArrayList<>();
@@ -301,9 +281,9 @@ public class ConsoleDriver {
         String loc2Msg = "You come across a magnificent castle. It must've stood here for centuries. You enter warily.";
         String loc3Msg = "You enter a desert. It's dry.";
         Queue<Location> locations = new LinkedList<>();
-        Location loc1 = new Location("Forest", difficulty, forestEnemies, loc1Msg);
-        Location loc2 = new Location("Castle", difficulty, castleEnemies, loc2Msg);
-        Location loc3 = new Location("Desert", difficulty, desertEnemies, loc3Msg);
+        Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg);
+        Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg);
+        Location loc3 = new Location("Desert", difficulty, randomizeEnemies(Enemies), loc3Msg);
         locations.add(loc1);
         locations.add(loc2);
         locations.add(loc3);
@@ -319,8 +299,8 @@ public class ConsoleDriver {
             ArrayList<Enemy> Enemies = new ArrayList<>(L.getLocationEnemies());
 
             System.out.println("Your enemies are:");        //added for testing, remove at a later date
-            for (Enemy forestEnemy : Enemies) {
-                System.out.println(forestEnemy.getName());
+            for (int i=0; i < L.getNumRooms(); i++) {
+                System.out.println(Enemies.get(i).getName());
             }
             Stack<Room> rooms = L.getRooms();
             int completed = 0;
@@ -330,8 +310,8 @@ public class ConsoleDriver {
                     Enemy e = r.getEnemy();
                     combat(p, e);
                 } else {
+                    System.out.println("Chest Room");
                     // Chest c = r.getChest();  TODO: implement getChest()
-                    System.out.println("chest room");
                 }
                 completed++;
                 L.setProgress(completed);
@@ -341,6 +321,21 @@ public class ConsoleDriver {
             }
             System.out.println("Congrats, you beat the first location!");
         }
+    }
+    public ArrayList<Enemy> randomizeEnemies(ArrayList<Enemy> Enemies) {
+        ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
+        for(int i =0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
+            for (int z = 0; z < Enemies.get(i).getSpawnRate(); z++) {
+                EnemiesWithWeights.add(Enemies.get(i));
+            }
+        }
+        Enemies.clear();
+        Random r = new Random();
+        int loop;
+        for (int i = 0; i < 7; i++) {
+            Enemies.add(EnemiesWithWeights.get(r.nextInt(EnemiesWithWeights.size())));
+        }
+        return Enemies;
     }
 
 }
