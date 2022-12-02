@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Enemy extends Character{
     private ArrayList<Item> loot;
@@ -86,6 +87,20 @@ public class Enemy extends Character{
         spawnChance = e.spawnChance;             // indicates which location this enemy appears in
         battleDialogue = e.battleDialogue;
         flirtDialogue = e.flirtDialogue;
+    }
+
+    public void giveLoot(Player p) {
+        Random chance = new Random();
+        //gives player a random piece of loot from the list
+        if(chance.nextInt(100) >= 75) {
+            int i = chance.nextInt(loot.size());
+            p.addItemPack(loot.get(i));
+            System.out.println("On the corpse of " + name + ", you found a " + loot.get(i).getName());
+        }
+        else {
+            p.giveCORN(chance);
+        }
+
     }
 
     public void fight(Character opponent){

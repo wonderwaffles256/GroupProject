@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Girlfriend extends Character{
-    private String medal;           //awarded when you defeat your girlfriend
+    private Item medal;           //awarded when you defeat your girlfriend
     private int difficulty;         //use 1,2,3 to denote difficulties
     private ArrayList<String> dialogue;
     private boolean spAtkUsed;
@@ -32,7 +32,7 @@ public class Girlfriend extends Character{
      */
     public Girlfriend(int HP, String name, Armor armor, Weapon weapon, double critChance, String medal, int difficulty, ArrayList<String> dialogue, ArrayList<String> flirtDialogue, ArrayList<String> flirtResponses, String flirtSuccess) {
         super(HP, name, armor, weapon, critChance);
-        this.medal = medal;
+        this.medal = makeMedal(difficulty);
         this.difficulty = difficulty;
         this.flirtSuccess = flirtSuccess;
         flirtLimit = 0;
@@ -43,9 +43,18 @@ public class Girlfriend extends Character{
         spAtkUsed = false;
     }
 
+    public Item makeMedal(int difficulty) {
+        switch (difficulty) {
+            case 1 -> {return new Item("Bronze Medal", 100, "Participation award");}
+            case 2 -> {return new Item("Silver Medal", 250, "A shiny silver medallion. The back says 'made in Taiwan'");}
+            case 3 -> {return new Item("Gold Medal", 500, "As shiny as a freshly buffed bald man's forehead. The ultimate flex.");}
+        }
+        return null;
+    }
+
     //getters
     public int getDifficulty() {return difficulty;}
-    public String getMedal() {return medal;}
+    public Item getMedal() {return medal;}
     public ArrayList<String> getFlirtOptions() {return flirtOptions;}
     public ArrayList<String> getFlirtResponses() {return flirtResponses;}
     public String getFlirtSuccess() {return flirtSuccess;}
@@ -77,6 +86,13 @@ public class Girlfriend extends Character{
      */
     //TODO: have this return a string from the battle dialogue list
     public String dialogue() {return "Impress me or die";}
+
+    //TODO: decide how much dialogue needs to go in this method (might make more sense to put the end dialogue elsewhere)
+    public void giveMedal(Player p) {
+        System.out.println("After pouring your blood, sweat, and tears onto " + name + "'s bosom in the heat of battle, she finally starts to settle down.");
+        System.out.println(""); // cool ending dialogue
+        p.addItemPack(medal);
+    }
 
     /**
      * This method is for when the girlfriend attacks the player
