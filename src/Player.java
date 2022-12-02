@@ -43,7 +43,7 @@ public class Player extends Character{
         this.itemPack = new ArrayList<>();
         this.companions = new ArrayList<>();
 
-        this.itemPack.addAll(Arrays.asList(weapon, armor));
+        //this.itemPack.addAll(Arrays.asList(weapon, armor));
         for(int i=0; i<3; i++) {this.itemPack.add(new Consumable("Bottled Water", 2, 15, "Capitalism's finest"));}
     }
 
@@ -263,6 +263,8 @@ public class Player extends Character{
     }
 
     public void displayItems() {
+        System.out.println("Equipped Weapon: " + this.weapon.getName() + " ______________ " + this.weapon.getDescription());
+        System.out.println("Equipped Armor: " + this.armor.getName() + " ______________ " + this.armor.getDescription());
         for(int i = 0; i < this.itemPack.size(); i++) {
             System.out.println("\u001B[32mItem " + i + ": " + this.itemPack.get(i).getName() + " _____________  " + this.itemPack.get(i).getDescription() +"\u001B[0m");
         }
@@ -276,13 +278,23 @@ public class Player extends Character{
     }
 
     public void equipWeapon(Weapon w) {
-        this.weapon = w;
+        if(!itemPack.contains(w)) {
+            itemPack.add(w);
+        }
+        this.itemPack.add(this.weapon);
+        this.itemPack.remove(w);
+        this.weapon = new Weapon(w);
         System.out.println("You equipped: " + w.getName() + "\nDamage: " + w.getDamage());
     }
 
     public void equipArmor(Armor newArmor) {
+        if(!itemPack.contains(newArmor)) {
+            itemPack.add(newArmor);
+        }
+        this.itemPack.add(this.armor);
+        this.itemPack.remove(newArmor);
         this.maxHP += newArmor.getStrength() - armor.getStrength();
-        this.armor = newArmor;
+        this.armor = new Armor(newArmor);
         if(HP > maxHP) {HP = maxHP;}
         System.out.println("You equipped: " + newArmor.getName() + "\nStrength: " + newArmor.getStrength());
     }

@@ -26,6 +26,11 @@ public class Weapon extends Item{
         this.damage = damage;
     }
 
+    public Weapon(Weapon w) {
+        super(w.getName(), w.getValue(), w.getDescription());
+        this.damage = w.getDamage();
+    }
+
     /**
      * getter for the damage of a weapon
      * @return returns damage of weapon

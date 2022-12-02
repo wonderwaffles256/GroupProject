@@ -44,6 +44,7 @@ public class Shop {
         System.out.println("Please input the number of the item to buy [#] or a negative value to leave the shop [-1]");
     }
 
+    //TODO: simplify dialogue in these methods
     /**
      * prints out all the available Weapons in the shop
      */
@@ -77,7 +78,7 @@ public class Shop {
     /**
      * a menu for navigating the shop that lets the player buy and sell
      */
-    public void Shopmenu(Player p) {
+    public void shopMenu(Player p) {
         char BSL = 'B';
         System.out.println("Welcome to the SHOP also known as SHEETZ.");
         while (BSL != 'L') {
@@ -139,7 +140,7 @@ public class Shop {
             if (p.getCORN() < c.getValue()) {
                 System.out.println("Bon Ami but not Bon enough. Come back with more CORN.");
             } else {
-                p.getItemPack().add(c);
+                p.addItemPack(c);
                 p.setCORN(p.getCORN() - c.getValue());
                 System.out.println("Pleasure doing business with ya");
             }
@@ -171,11 +172,10 @@ public class Shop {
                 char equip = scnr.nextLine().charAt(0);
                 if (equip == 'Y') {
                     System.out.println("Ight yur weapon is equipped and ya old one is in yur bag.");
-                    p.getItemPack().add(p.getWeapon());
-                    p.setWeapon(w);
+                    p.equipWeapon(w);
                 } else {
                     System.out.println("Imma just put her in ya bag then.");
-                    p.getItemPack().add(w);
+                    p.addItemPack(w);
                 }
             }
         }
@@ -207,11 +207,10 @@ public class Shop {
                 char equip = scnr.nextLine().charAt(0);
                 if (equip == 'Y') {
                     System.out.println("Just go redress yur scury butt.");
-                    p.getItemPack().add(p.getArmor());
-                    p.setArmor(a);
+                    p.equipArmor(a);
                 } else {
                     System.out.println("Imma just put her in ya bag then.");
-                    p.getItemPack().add(a);
+                    p.addItemPack(a);
                 }
             }
         }

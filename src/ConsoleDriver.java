@@ -310,7 +310,7 @@ public class ConsoleDriver {
 
         while  (locations.size() > 0) {
             location(player, locations.poll());
-            s.Shopmenu(player);
+            s.shopMenu(player);
         }
 
     }
