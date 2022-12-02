@@ -1,5 +1,4 @@
 import java.util.*;
-//TODO girlfriend tree map flirt options
 //TODO companions jump in and fight randomly
 //TODO make girlfriend
 //TODO fix death
