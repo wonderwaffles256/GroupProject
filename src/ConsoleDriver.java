@@ -1,4 +1,8 @@
 import java.util.*;
+//TODO girlfriend tree map flirt options
+//TODO companions jump in and fight randomly
+//TODO make girlfriend
+//TODO fix death
 
 public class ConsoleDriver {
     public static void main(String[] args) throws InterruptedException {
@@ -96,7 +100,12 @@ public class ConsoleDriver {
                         p.fight(enemy);
                     }
                     case "2" -> {
-                        done = p.flirt(enemy,p);
+                        if (enemy instanceof MiniBoss) {
+                            ((MiniBoss) enemy).flirt();
+                        }
+                        else {
+                            done = p.flirt(enemy, p);
+                        }
                         goodinput = true;
                     }
                     case "3" -> {
@@ -125,6 +134,10 @@ public class ConsoleDriver {
                 }
                 else if(enemy instanceof Girlfriend g) {
                     g.giveMedal(p);
+                }
+                else if (enemy instanceof MiniBoss) {
+                    ((MiniBoss) enemy).deathDialogue();
+                    ((MiniBoss) enemy).giveLoot(p);
                 }
 
                 System.out.println("Combat over");
@@ -165,7 +178,8 @@ public class ConsoleDriver {
         Weapon Bow = new Weapon("Bow", 15, 7, "good ol trusty");
         Weapon stick = new Weapon("A Cool Stick",150,50,"A cool stick that looks like a sword.");
         Weapon paddle = new Weapon("A paddle",10,5,"A child Abuse paddle");
-        Weapon chemo = new Weapon("10-rounds of Chemotherapy",100,99,"Jesse how could you be so stupid. I am the one who Chemos.");
+        Weapon chemo = new Weapon("10-rounds of Chemotherapy",100,60,"Jesse how could you be so stupid. I am the one who Chemos.");
+        Weapon heel = new Weapon("Heel", 29,35,"Worn by the meaniest of girls and swung by those even meaner" );
 
 
 
@@ -265,7 +279,7 @@ public class ConsoleDriver {
         NyeFlirtDialogue.add(NyeSuccess);
         NyeFlirtDialogue.add("That song really annoyed me and so do you");
         NyeFlirtDialogue.add("Obviously you never paid enough attention during that class so I'll teach you what it's like to lose");
-        Enemy BillNye = new Enemy(20,"Bill Nye",buisness,laserRifle,6,NyeLoot,NyeSuccess,9,NyeBattleDialogue,NyeFlirtDialogue);
+        Enemy BillNye = new Enemy(20,"Bill Nye",buisness,laserRifle,6,NyeLoot,NyeSuccess,5,NyeBattleDialogue,NyeFlirtDialogue);
 
         String WaltSuccess = "Maybe now I can go make Jr. some breakfast";
         ArrayList<Item> WaltLoot = new ArrayList<>();
@@ -276,7 +290,7 @@ public class ConsoleDriver {
         WaltFlirtDialogue.add(WaltSuccess);
         WaltFlirtDialogue.add("How could you be so stupid to give me this out in the open. Apply Yourself.");
         WaltFlirtDialogue.add("I am the one who knocks!");
-        Enemy BreakBad = new Enemy(10,"Walter White",hat,chemo,5,WaltLoot,WaltSuccess,8,WaltBattleDialogue,WaltFlirtDialogue);
+        Enemy BreakBad = new Enemy(10,"Walter White",hat,chemo,5,WaltLoot,WaltSuccess,3,WaltBattleDialogue,WaltFlirtDialogue);
 
 
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad));        //contains one of the enemies in order of creation
@@ -300,19 +314,57 @@ public class ConsoleDriver {
         String loc2Msg = "You come across a magnificent castle. It must've stood here for centuries. You enter warily.";
         String loc3Msg = "You enter a desert. It's dry.";
         Queue<Location> locations = new LinkedList<>();
-        Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg);
-        Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg);
-        Location loc3 = new Location("Desert", difficulty, randomizeEnemies(Enemies), loc3Msg);
+
+        ArrayList<Item> reginaLoot = new ArrayList<>();
+        reginaLoot.add(peachDress);
+        reginaLoot.add(heel);
+        String reginaFlirt = "And right now, your getting on my last nerve! Switch";
+        String reginaBattle = "Im not like a regular mom.  Im a cool mom";
+        String reginaDeath = "Im going to forgive you because im a very Zen person.  And im on a lot of pain medication right now";
+        String reginaIntro = "Get in loser.  We`re going shopping";
+        MiniBoss reginaGeorge = new MiniBoss(75,"Regina George", peachDress,heel,4,reginaLoot,reginaFlirt,reginaIntro,reginaBattle,reginaDeath);
+
+        ArrayList<Item> karenLoot = new ArrayList<>();
+        karenLoot.add(peachDress);
+        karenLoot.add(heel);
+        String karenFlirt = "Why are you dressed so scary?";
+        String karenBattle = "Well... Im kinda psychic.  I have a fifth sense.";
+        String karenDeath = "So that's against the rules, and you cant sit with us";
+        String karenIntro = "On Wednesdays we wear pink";
+        MiniBoss karen = new MiniBoss(90,"Karen Smith", peachDress,heel,6,karenLoot,karenFlirt,karenIntro,karenBattle,karenDeath);
+
+        ArrayList<Item> gretchenLoot = new ArrayList<>();
+        gretchenLoot.add(peachDress);
+        gretchenLoot.add(heel);
+        String gretchenFlirt = "Im sorry that people are so jealous of me.  But i can`t help it that im popular";
+        String gretchenBattle = "thats so fetch";
+        String gretchenDeath = "Oh no, I cant say anything else until i have a parent or lawyer present";
+        String gretchenIntro = "you can only wear your hair in a ponytail once a week, so i guess you chose today";
+        MiniBoss gretchen = new MiniBoss(100,"Gretchen Weiners", peachDress,heel,8,gretchenLoot,gretchenFlirt,gretchenIntro,gretchenBattle,gretchenDeath);
+
+        Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg,reginaGeorge);
+        Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg,karen);
+        Location loc3 = new Location("Desert", difficulty, randomizeEnemies(Enemies), loc3Msg,gretchen);
         locations.add(loc1);
         locations.add(loc2);
         locations.add(loc3);
         Shop s = new Shop(allItems);
+        Queue<MiniBoss> miniBosses= new LinkedList();
+        miniBosses.add(reginaGeorge);
+        miniBosses.add(karen);
+        miniBosses.add(karen);
 
         while  (locations.size() > 0) {
-            location(player, locations.poll());
+            location(player, locations.peek());
+            miniBossFight(player,miniBosses.poll(),locations.poll());
             s.shopMenu(player);
         }
 
+    }
+    public void miniBossFight(Player p, MiniBoss B, Location L) throws InterruptedException {
+        B.introFight(p);
+        combat(p,B);
+        System.out.println("Congrats! you have completed the " + L.getName() + " location");
     }
 
     //might be able to use this method for all 3 locations
@@ -324,7 +376,7 @@ public class ConsoleDriver {
                 if (!r.isTreasureRoom()) {
                     Enemy e = r.getEnemy();
                     combat(p, e);
-                } else {
+                } else  {
                      Item I = r.getChest();
                      chestRoom(I,p);
                 }
@@ -334,8 +386,6 @@ public class ConsoleDriver {
                     System.out.println("You continue on your path, determined to survive the oncoming hordes");
                 }
             }
-            System.out.println("Congrats, you beat the first location!");
-
         }
 
     public ArrayList<Enemy> randomizeEnemies(ArrayList<Enemy> Enemies) {

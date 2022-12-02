@@ -10,6 +10,8 @@ public class Room {
     private Enemy e;
     private Chest c;
     private boolean treasureRoom;
+    private MiniBoss b;
+    private boolean isMiniBossRoom = false;
     /**
      * default constructor for rooms
      */

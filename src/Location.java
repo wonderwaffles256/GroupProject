@@ -13,6 +13,7 @@ public class Location {
     private Stack<Room> rooms;       //holds a set of rooms generated for this location
     private ArrayList<Enemy> locationEnemies;
     private String entranceMessage; // message printed on instantiation of this room
+    private MiniBoss b;
 
     /**
      * default constructor
@@ -39,7 +40,7 @@ public class Location {
      * @param name - name of the location
      * @param difficulty - difficulty set by the endgame girlfriend
      */
-    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies, String entranceMessage) {
+    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies, String entranceMessage, MiniBoss b) {
         this.name = name;
         switch(difficulty) {
             case 1 -> this.numRooms = 3;
@@ -52,6 +53,7 @@ public class Location {
         this.rooms = new Stack<>();
         generateRooms();
         this.entranceMessage = entranceMessage;
+        this.b = b;
     }
 
     /**
@@ -73,7 +75,7 @@ public class Location {
             String name = getName() + i;
             int num = (rand.nextInt(10)+1);; // generate a random number to determine whether chest or combat room
             if (num == 5) {
-                Chest c = new Chest(); // TODO: make this generate random loot.
+                Chest c = new Chest();
                 Room r = new Room(c,name);
                 rooms.push(r);
             } else { // TODO: fix if not enough enemies

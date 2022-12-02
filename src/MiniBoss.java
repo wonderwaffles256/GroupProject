@@ -8,15 +8,17 @@ public class MiniBoss extends Character {
     private String flirtDialogue;
     private String introDialogue;
     private String battleDialogue;
+    private String deathDialogue;
 
 
     //cool idea
-    public MiniBoss(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot,String flirtDialogue,String introDialogue, String battleDialogue) {
+    public MiniBoss(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot,String flirtDialogue,String introDialogue, String battleDialogue, String deathDialogue) {
         super(HP,name,armor,weapon,critChance);
         this.loot.addAll(loot);
         this.flirtDialogue = flirtDialogue;
         this.introDialogue = introDialogue;
         this.battleDialogue = battleDialogue;
+        this.deathDialogue = deathDialogue;
     }
 
 
@@ -24,11 +26,11 @@ public class MiniBoss extends Character {
     public void fight(Character opponent) {
         opponent.setHP(opponent.HP - this.weapon.getDamage());
         if(opponent instanceof Player) {
-            System.out.println( "\u001B[31m" + this.name + " smashed you with its " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!" + "\u001B[0m");
+            System.out.println( "\u001B[31m" + this.name + " smacked you with her " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!" + "\u001B[0m");
             System.out.println("\u001B[31m" + this.battleDialogue + "\u001B[0m");
         }
         else if(opponent instanceof Enemy || opponent instanceof Girlfriend) {
-            System.out.println(this.name + " valiantly displayed its affection with violence, dealing " + this.weapon.getDamage() + " damage");
+            System.out.println(this.name + " valiantly displayed her affection with violence, dealing " + this.weapon.getDamage() + " damage");
         }
     }
 
@@ -52,5 +54,8 @@ public class MiniBoss extends Character {
     public void introFight(Player p) {
         System.out.println(introDialogue);
         fight(p);
+    }
+    public void deathDialogue() {
+        System.out.println(deathDialogue);
     }
     }
