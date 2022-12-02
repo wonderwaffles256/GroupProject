@@ -153,29 +153,34 @@ public class Shop {
      * @param p - the player who is buying the weapon from the shop
      */
     public void buyW(Player p) {
-        System.out.println("Alright then here are all the weapons we have for sale print the [#] of the weapon you want.    Make sure to watch the stats. ");
-        displayW();
-        System.out.println("Thought you should know but yur current weapon does " + p.getWeapon().getDamage() + " damage. Might help ya pick.");
-        System.out.println("Also, ya have " + p.getCORN() + " to spend.");
-        int choice = scnr.nextInt();
-        scnr.nextLine();
-        if (choice > inventoryW.size() || choice < 0) {
-            System.out.println("Sorry, fella that ain't in stock");
-        } else {
-            Weapon w = inventoryW.get(choice);
-            if (p.getCORN() < w.getValue()) {
-                System.out.println("Pathetic. Can't even afford it.");
+        if(inventoryW.size() == 0){
+            System.out.println("Sorry bud I must be outta weapons in stock.");
+        }
+        else {
+            System.out.println("Alright then here are all the weapons we have for sale print the [#] of the weapon you want.    Make sure to watch the stats. ");
+            displayW();
+            System.out.println("Thought you should know but yur current weapon does " + p.getWeapon().getDamage() + " damage. Might help ya pick.");
+            System.out.println("Also, ya have " + p.getCORN() + " to spend.");
+            int choice = scnr.nextInt();
+            scnr.nextLine();
+            if (choice > inventoryW.size() || choice < 0) {
+                System.out.println("Sorry, fella that ain't in stock");
             } else {
-                p.setCORN(p.getCORN() - w.getValue());
-                inventoryW.remove(choice);
-                System.out.println("Wanna equip ya new damage dealer, boy. Yes[Y] or no[N].");
-                char equip = scnr.nextLine().charAt(0);
-                if (equip == 'Y') {
-                    System.out.println("Ight yur weapon is equipped and ya old one is in yur bag.");
-                    p.equipWeapon(w);
+                Weapon w = inventoryW.get(choice);
+                if (p.getCORN() < w.getValue()) {
+                    System.out.println("Pathetic. Can't even afford it.");
                 } else {
-                    System.out.println("Imma just put her in ya bag then.");
-                    p.addItemPack(w);
+                    p.setCORN(p.getCORN() - w.getValue());
+                    inventoryW.remove(choice);
+                    System.out.println("Wanna equip ya new damage dealer, boy. Yes[Y] or no[N].");
+                    char equip = scnr.nextLine().charAt(0);
+                    if (equip == 'Y') {
+                        System.out.println("Ight yur weapon is equipped and ya old one is in yur bag.");
+                        p.equipWeapon(w);
+                    } else {
+                        System.out.println("Imma just put her in ya bag then.");
+                        p.addItemPack(w);
+                    }
                 }
             }
         }
@@ -187,30 +192,35 @@ public class Shop {
      * @param p - the player who is buying the armor from the shop
      */
     public void buyA(Player p) {
-        System.out.println("Alright then here is all mi armor laddy print da [#] of the armor ye want.    Make sure to watch the stats. ");
-        displayA();
-        System.out.println("Thought you should know but ya current armor has " + p.getArmor().getStrength() + " strength. Might help ye pick.");
-        System.out.println("Also, ya have " + p.getCORN() + " to spend.");
-        int choice = scnr.nextInt();
-        scnr.nextLine();
-        System.out.println();
-        if (choice > inventoryA.size() || choice < 0) {
-            System.out.println("Sorry, fella that ain't in stock");
-        } else {
-            Armor a = inventoryA.get(choice);
-            if (p.getCORN() < a.getValue()) {
-                System.out.println("This ain't a charity laddy come back with more CORN");
+        if(inventoryA.size() == 0){
+            System.out.println("Seems I am out of armor so guess ya gotta look someplace else for that.");
+        }
+        else {
+            System.out.println("Alright then here is all mi armor laddy print da [#] of the armor ye want.    Make sure to watch the stats. ");
+            displayA();
+            System.out.println("Thought you should know but ya current armor has " + p.getArmor().getStrength() + " strength. Might help ye pick.");
+            System.out.println("Also, ya have " + p.getCORN() + " to spend.");
+            int choice = scnr.nextInt();
+            scnr.nextLine();
+            System.out.println();
+            if (choice > inventoryA.size() || choice < 0) {
+                System.out.println("Sorry, fella that ain't in stock");
             } else {
-                p.setCORN(p.getCORN() - a.getValue());
-                inventoryA.remove(choice);
-                System.out.println("Wanna equip ye new drip, lad. Yes[Y] or no[N].");
-                char equip = scnr.nextLine().charAt(0);
-                if (equip == 'Y') {
-                    System.out.println("Just go redress yur scury butt.");
-                    p.equipArmor(a);
+                Armor a = inventoryA.get(choice);
+                if (p.getCORN() < a.getValue()) {
+                    System.out.println("This ain't a charity laddy come back with more CORN");
                 } else {
-                    System.out.println("Imma just put her in ya bag then.");
-                    p.addItemPack(a);
+                    p.setCORN(p.getCORN() - a.getValue());
+                    inventoryA.remove(choice);
+                    System.out.println("Wanna equip ye new drip, lad. Yes[Y] or no[N].");
+                    char equip = scnr.nextLine().charAt(0);
+                    if (equip == 'Y') {
+                        System.out.println("Just go redress yur scury butt.");
+                        p.equipArmor(a);
+                    } else {
+                        System.out.println("Imma just put her in ya bag then.");
+                        p.addItemPack(a);
+                    }
                 }
             }
         }
