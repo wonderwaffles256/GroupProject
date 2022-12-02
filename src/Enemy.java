@@ -92,6 +92,7 @@ public class Enemy extends Character{
         opponent.setHP(opponent.HP - this.weapon.getDamage());
         if(opponent instanceof Player) {
             System.out.println( "\u001B[31m" + this.name + " whalopped you with its " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!" + "\u001B[0m");
+            System.out.println("\u001B[31m" + this.battleDialogue + "\u001B[0m");
         }
         else if(opponent instanceof Enemy || opponent instanceof Girlfriend) {
             System.out.println(this.name + " valiantly displayed its affection with violence, dealing " + this.weapon.getDamage() + " damage");

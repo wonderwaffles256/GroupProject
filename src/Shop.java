@@ -11,13 +11,22 @@ public class Shop {
     Scanner scnr = new Scanner(System.in);
 
 
-    public Shop(ArrayList<Weapon> weapons, ArrayList<Armor> armor, ArrayList<Consumable> consumables) {
+    public Shop(ArrayList<Item> items) {
         inventoryW = new ArrayList<>();
         inventoryA = new ArrayList<>();
         inventoryC = new ArrayList<>();
-        inventoryW.addAll(weapons);
-        inventoryC.addAll(consumables);
-        inventoryA.addAll(armor);
+
+        for(Item I : items) {
+            if (I instanceof Armor) {
+                inventoryA.add((Armor) I);
+            }
+            else if (I instanceof Weapon) {
+                inventoryW.add((Weapon) I);
+            }
+           else if (I instanceof Consumable) {
+                inventoryC.add((Consumable) I);
+            }
+        }
     }
 
     /**

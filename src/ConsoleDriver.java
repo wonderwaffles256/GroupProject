@@ -300,21 +300,17 @@ public class ConsoleDriver {
         locations.add(loc1);
         locations.add(loc2);
         locations.add(loc3);
+        Shop s = new Shop(allItems);
 
+        while  (locations.size() > 0) {
+            location(player, locations.poll());
+            s.Shopmenu(player);
+        }
 
-        location(player, locations);
     }
 
     //might be able to use this method for all 3 locations
-    public void location (Player p, Queue<Location> locations) throws InterruptedException{
-        while (locations.size() > 0) {
-            Location L = locations.poll();
-            ArrayList<Enemy> Enemies = new ArrayList<>(L.getLocationEnemies());
-
-            System.out.println("Your enemies are:");        //added for testing, remove at a later date
-            for (int i=0; i < L.getNumRooms(); i++) {
-                System.out.println(Enemies.get(i).getName());
-            }
+    public void location (Player p, Location L) throws InterruptedException{
             Stack<Room> rooms = L.getRooms();
             int completed = 0;
             while (!(rooms.isEmpty())) {
@@ -334,7 +330,7 @@ public class ConsoleDriver {
             }
             System.out.println("Congrats, you beat the first location!");
         }
-    }
+
     public ArrayList<Enemy> randomizeEnemies(ArrayList<Enemy> Enemies) {
         ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
         for(int i =0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
