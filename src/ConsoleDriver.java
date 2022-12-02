@@ -329,6 +329,7 @@ public class ConsoleDriver {
                 }
             }
             System.out.println("Congrats, you beat the first location!");
+
         }
 
     public ArrayList<Enemy> randomizeEnemies(ArrayList<Enemy> Enemies) {

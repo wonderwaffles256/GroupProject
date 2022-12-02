@@ -86,6 +86,8 @@ public class Enemy extends Character{
         spawnChance = e.spawnChance;             // indicates which location this enemy appears in
         battleDialogue = e.battleDialogue;
         flirtDialogue = e.flirtDialogue;
+        loot.add(armor);
+        loot.add(weapon);
     }
 
     public void fight(Character opponent){
