@@ -5,74 +5,44 @@ import java.util.Scanner;
  * by obtaining in game currency players are able to buy and sell items
  */
 public class Shop {
-    private ArrayList<Weapon> inventoryW;
-    private ArrayList<Armor> inventoryA;
-    private ArrayList<Consumable> inventoryC;
+    private ArrayList<Item> weapons;
+    private ArrayList<Item> armors;
+    private ArrayList<Item> consumables;
     Scanner scnr = new Scanner(System.in);
 
 
     public Shop(ArrayList<Item> items) {
-        inventoryW = new ArrayList<>();
-        inventoryA = new ArrayList<>();
-        inventoryC = new ArrayList<>();
+        weapons = new ArrayList<>();
+        armors = new ArrayList<>();
+        consumables = new ArrayList<>();
 
         for(Item I : items) {
             if (I instanceof Armor) {
-                inventoryA.add((Armor) I);
+                armors.add((Armor) I);
             }
             else if (I instanceof Weapon) {
-                inventoryW.add((Weapon) I);
+                weapons.add((Weapon) I);
             }
            else if (I instanceof Consumable) {
-                inventoryC.add((Consumable) I);
+                consumables.add(I);
             }
         }
     }
 
-    /**
-     * prints out all the available Consumables in the shop
-     */
-    public void displayC() {
+    public void display(ArrayList<Item> items) {
         int count = 0;
-        for (Consumable sell : inventoryC) {
-            System.out.println("We are selling  " + sell.getName() + " a healing item for " + sell.getValue() + " CORN. This item heals " + sell.getHealing());
-            System.out.println("Item number: " + count);
-            System.out.println(sell.getName() + " description: " + sell.getDescription());
+        for(Item item : items) {
+            if(item instanceof Weapon w) {
+                System.out.println("\u001B[32mItem " + count + ": " + w.getName() + " ____________ " + w.getDamage() + " dmg. " + w.getDescription() + "\u001B[0m");
+            }
+            if(item instanceof Armor a) {
+                System.out.println("\u001B[32mItem " + count + ": " + a.getName() + " ____________ " + a.getStrength() + " strength. " + a.getDescription() + "\u001B[0m");
+            }
+            if(item instanceof Consumable c) {
+                System.out.println("\u001B[32mItem " + count + ": " + c.getName() + " ____________ recovers" + c.getHealing() + " HP. ___ " + c.getDescription() + "\u001B[0m");
+            }
             count++;
         }
-
-        System.out.println("Please input the number of the item to buy [#] or a negative value to leave the shop [-1]");
-    }
-
-    //TODO: simplify dialogue in these methods
-    /**
-     * prints out all the available Weapons in the shop
-     */
-    public void displayW() {
-        int count = 0;
-        for (Weapon sell : inventoryW) {
-            System.out.println("We are selling " + sell.getName() + " a weapon for " + sell.getValue() + " CORN. This item deals " + sell.getDamage() + " damage.");
-            System.out.println("Item number: " + count);
-            System.out.println(sell.getName() + " description: " + sell.getDescription());
-            count++;
-        }
-
-        System.out.println("Please input the number of the weapon you would like to buy [#] or a negative value to leave this shop [-1]");
-    }
-
-    /**
-     * prints out all the available Weapons in the shop
-     */
-    public void displayA() {
-        int count = 0;
-        for (Armor sell : inventoryA) {
-            System.out.println("We are selling  " + sell.getName() + " a healing item for " + sell.getValue() + " CORN. This item heals " + sell.getStrength());
-            System.out.println("Item number: " + count);
-            System.out.println(sell.getName() + " description: " + sell.getDescription());
-            count++;
-        }
-
-        System.out.println("Please input the number of the armor you would like to buy [#] or a negative value to leave this shop [-1]");
     }
 
     /**
@@ -127,16 +97,17 @@ public class Shop {
      * @param p - used to equip weapon and to subtract corn from to purchase the desired weapon the player wants
      */
     public void buyC(Player p) {
-        System.out.println("Alright then here are all the consumables we have for sale pick the [#] of the one you want.    Hope they ain't expired.");
-        displayC();
+        System.out.println("Alright then here are all the consumables we have for sale. Pick the [#] of the one you want.    Hope they ain't expired.");
+        display(consumables);
         System.out.println("Also, ya have " + p.getCORN() + " to spend.");
+        System.out.println("Please enter an Item's number. (-1 or less to exit)");
         int choice = scnr.nextInt();
         scnr.nextLine();
         System.out.println();
-        if (choice > inventoryC.size() || choice < 0) {
+        if (choice > consumables.size() || choice < 0) {
             System.out.println("Sorry, fella that ain't in stock");
         } else {
-            Consumable c = inventoryC.get(choice);
+            Consumable c = (Consumable) consumables.get(choice);
             if (p.getCORN() < c.getValue()) {
                 System.out.println("Bon Ami but not Bon enough. Come back with more CORN.");
             } else {
@@ -153,25 +124,25 @@ public class Shop {
      * @param p - the player who is buying the weapon from the shop
      */
     public void buyW(Player p) {
-        if(inventoryW.size() == 0){
+        if(weapons.size() == 0){
             System.out.println("Sorry bud I must be outta weapons in stock.");
         }
         else {
             System.out.println("Alright then here are all the weapons we have for sale print the [#] of the weapon you want.    Make sure to watch the stats. ");
-            displayW();
+            display(weapons);
             System.out.println("Thought you should know but yur current weapon does " + p.getWeapon().getDamage() + " damage. Might help ya pick.");
             System.out.println("Also, ya have " + p.getCORN() + " to spend.");
             int choice = scnr.nextInt();
             scnr.nextLine();
-            if (choice > inventoryW.size() || choice < 0) {
+            if (choice > weapons.size() || choice < 0) {
                 System.out.println("Sorry, fella that ain't in stock");
             } else {
-                Weapon w = inventoryW.get(choice);
+                Weapon w = (Weapon) weapons.get(choice);
                 if (p.getCORN() < w.getValue()) {
                     System.out.println("Pathetic. Can't even afford it.");
                 } else {
                     p.setCORN(p.getCORN() - w.getValue());
-                    inventoryW.remove(choice);
+                    weapons.remove(choice);
                     System.out.println("Wanna equip ya new damage dealer, boy. Yes[Y] or no[N].");
                     char equip = scnr.nextLine().charAt(0);
                     if (equip == 'Y') {
@@ -192,26 +163,26 @@ public class Shop {
      * @param p - the player who is buying the armor from the shop
      */
     public void buyA(Player p) {
-        if(inventoryA.size() == 0){
+        if(armors.size() == 0){
             System.out.println("Seems I am out of armor so guess ya gotta look someplace else for that.");
         }
         else {
             System.out.println("Alright then here is all mi armor laddy print da [#] of the armor ye want.    Make sure to watch the stats. ");
-            displayA();
+            display(armors);
             System.out.println("Thought you should know but ya current armor has " + p.getArmor().getStrength() + " strength. Might help ye pick.");
             System.out.println("Also, ya have " + p.getCORN() + " to spend.");
             int choice = scnr.nextInt();
             scnr.nextLine();
             System.out.println();
-            if (choice > inventoryA.size() || choice < 0) {
+            if (choice > armors.size() || choice < 0) {
                 System.out.println("Sorry, fella that ain't in stock");
             } else {
-                Armor a = inventoryA.get(choice);
+                Armor a = (Armor) armors.get(choice);
                 if (p.getCORN() < a.getValue()) {
                     System.out.println("This ain't a charity laddy come back with more CORN");
                 } else {
                     p.setCORN(p.getCORN() - a.getValue());
-                    inventoryA.remove(choice);
+                    armors.remove(choice);
                     System.out.println("Wanna equip ye new drip, lad. Yes[Y] or no[N].");
                     char equip = scnr.nextLine().charAt(0);
                     if (equip == 'Y') {
@@ -258,11 +229,11 @@ public class Shop {
             System.out.println("Pleasure doing business wit ya bud. Have day.");
             p.setCORN(p.getCORN() + p.getItemPack().get(choose).getValue()*5/6);
             if(p.getItemPack().get(choose) instanceof Weapon ){
-                inventoryW.add((Weapon) p.getItemPack().get(choose));
+                weapons.add((Weapon) p.getItemPack().get(choose));
                 System.out.println("You can always buy this weapon back at the shop.");
             }
             else if(p.getItemPack().get(choose) instanceof Armor){
-                inventoryA.add((Armor) p.getItemPack().get(choose));
+                armors.add((Armor) p.getItemPack().get(choose));
                 System.out.println("You can always buy this armor back at the shop.");
             }
             p.getItemPack().remove(choose);

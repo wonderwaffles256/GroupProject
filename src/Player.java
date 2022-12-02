@@ -169,12 +169,15 @@ public class Player extends Character{
                         p.setClout(p.getClout() + (g.getDifficulty() - 0.5));               //adds lots of clout based on difficulty
                         Thread.sleep(1000);
                         System.out.println("Your clout increased substantially");
-                        g.setFlirtLimit(3);                                                 //ensures any future flirts cannot be attempted
+                        g.setFlirtLimit(5);                                                 //ensures any future flirts cannot be attempted
 
                     } else {
                         System.out.println("Your feeble fumbling at flattery falls flat on its face");
                         Thread.sleep(1000);
-                        g.setFlirtLimit(g.getFlirtLimit() + 1);                 //increases flirt limit
+                        if(g.getFlirtLimit() < 3) {
+                            g.setFlirtLimit(g.getFlirtLimit() + 1);                 //increases flirt limit
+                        }
+
                     }//end success checker
                         done = true;
                 }
