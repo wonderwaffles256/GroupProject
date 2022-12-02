@@ -120,8 +120,14 @@ public class ConsoleDriver {
                 done = true;
             }
             if(enemy.getHP() <= 0) {
+                if(enemy instanceof Enemy e) {
+                    e.giveLoot(p);
+                }
+                else if(enemy instanceof Girlfriend g) {
+                    g.giveMedal(p);
+                }
+
                 System.out.println("Combat over");
-                enemy.setHP(enemy.getMaxHP());
                 done = true;
             }
             if (!(done)) {

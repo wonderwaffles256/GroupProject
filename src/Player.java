@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player extends Character{
@@ -328,6 +329,13 @@ public class Player extends Character{
             System.out.println("                   Thanks for playing!");
             System.exit(0);
         }
+    }
+
+    public void giveCORN(Random chance) {
+        //gives random corn
+        int newCORN = chance.nextInt(10,25);
+        this.CORN += newCORN;
+        System.out.println("You find a shiny stash of " + newCORN + " CORN sticking out of its pocket");
     }
 
     /**
