@@ -337,6 +337,10 @@ public class Player extends Character{
         this.CORN += newCORN;
         System.out.println("You find a shiny stash of " + newCORN + " CORN sticking out of its pocket");
     }
+    public void giveCORN() {
+        Random r = new Random();
+        this.CORN += r.nextInt(25,50);
+    }
 
     /**
      * allows player to choose one of a companions to fight for them once during a battle
