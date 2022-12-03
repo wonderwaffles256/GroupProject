@@ -147,7 +147,7 @@ public class Shop {
                     char equip = scnr.nextLine().charAt(0);
                     if (equip == 'Y') {
                         System.out.println("Ight yur weapon is equipped and ya old one is in yur bag.");
-                        p.equipWeapon(w);
+                        p.equipItem(w);
                     } else {
                         System.out.println("Imma just put her in ya bag then.");
                         p.addItemPack(w);
@@ -187,7 +187,7 @@ public class Shop {
                     char equip = scnr.nextLine().charAt(0);
                     if (equip == 'Y') {
                         System.out.println("Just go redress yur scury butt.");
-                        p.equipArmor(a);
+                        p.equipItem(a);
                     } else {
                         System.out.println("Imma just put her in ya bag then.");
                         p.addItemPack(a);
@@ -229,11 +229,11 @@ public class Shop {
             System.out.println("Pleasure doing business wit ya bud. Have day.");
             p.setCORN(p.getCORN() + p.getItemPack().get(choose).getValue()*5/6);
             if(p.getItemPack().get(choose) instanceof Weapon ){
-                weapons.add((Weapon) p.getItemPack().get(choose));
+                weapons.add(p.getItemPack().get(choose));
                 System.out.println("You can always buy this weapon back at the shop.");
             }
             else if(p.getItemPack().get(choose) instanceof Armor){
-                armors.add((Armor) p.getItemPack().get(choose));
+                armors.add(p.getItemPack().get(choose));
                 System.out.println("You can always buy this armor back at the shop.");
             }
             p.getItemPack().remove(choose);

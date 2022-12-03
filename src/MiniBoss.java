@@ -12,17 +12,15 @@ public class MiniBoss extends Character {
 
 
     //cool idea
-    public MiniBoss(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot,String flirtDialogue,String introDialogue, String battleDialogue, String deathDialogue) {
-        super(HP,name,armor,weapon,critChance);
+    public MiniBoss(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot,String flirtDialogue,String introDialogue, ArrayList<String> battleDialogue, String deathDialogue) {
+        super(HP,name,armor,weapon,critChance, battleDialogue);
         this.loot.addAll(loot);
         this.flirtDialogue = flirtDialogue;
         this.introDialogue = introDialogue;
-        this.battleDialogue = battleDialogue;
         this.deathDialogue = deathDialogue;
     }
 
 
-    @Override
     public void fight(Character opponent) {
         opponent.setHP(opponent.HP - this.weapon.getDamage());
         if(opponent instanceof Player) {
@@ -54,6 +52,9 @@ public class MiniBoss extends Character {
     public void introFight(Player p) {
         System.out.println(introDialogue);
         fight(p);
+    }
+    public void dialogue() {
+
     }
     public void deathDialogue() {
         System.out.println(deathDialogue);

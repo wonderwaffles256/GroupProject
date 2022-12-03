@@ -5,9 +5,9 @@ public class Enemy extends Character{
     private ArrayList<Item> loot;
     private String flirtRequirement; // (data type TBD)
     private int spawnChance;             // indicates which location this enemy appears in
-    private ArrayList<String> battleDialogue;       //list of dialogue meant to be displayed in battle
     private ArrayList<String> flirtDialogue;        //list of options and results from flirting
     private boolean tired;
+    private Random r = new Random();
 
     /**
      * default constructor
@@ -33,15 +33,12 @@ public class Enemy extends Character{
      * @param flirtDialogue - list of flirtDialogue related to enemy
      */
     public Enemy(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<Item> loot, String flirtRequirement, int spawnChance, ArrayList<String> battleDialogue, ArrayList<String> flirtDialogue) {
-        super(HP,name,armor,weapon,critChance);
+        super(HP,name,armor,weapon,critChance, battleDialogue);
         this.flirtRequirement = flirtRequirement;
         this.spawnChance = spawnChance;
 
         this.loot = new ArrayList<>();
         this.loot.addAll(loot);
-
-        this.battleDialogue = new ArrayList<>();
-        this.battleDialogue.addAll(battleDialogue);
 
         this.flirtDialogue = new ArrayList<>();
         this.flirtDialogue.addAll(flirtDialogue);
@@ -64,17 +61,20 @@ public class Enemy extends Character{
 
     /**
      * Returns a string of randomly generated battleDialogue
-     * @return String;
      */
-    public String dialogue() {return "Cool Dialogue";}//think of more cool battleDialogue
+    public void dialogue() {
+        int i = r.nextInt(this.battleDialogue.size());
+        System.out.println(this.battleDialogue.get(i));
+    }
 
     /**
      * checks to see if player has met this enemy's flirt requirement for companionship
-     * @param flirtRequirement - string representing the requirement for a successful flirt (usually an item)
+     * @param option - integer representing the player's choice o flirting options
      * @return - returns the enemy on a success
      */
-    public Enemy flirtSuccess(String flirtRequirement) {
-        return new Enemy();
+    public boolean flirtCheck(int option) {
+        return flirtDialogue.get(option).equals(flirtRequirement);
+
     }//implement later
     public Enemy(Enemy e) {
         name = e.name;
@@ -92,15 +92,14 @@ public class Enemy extends Character{
     }
 
     public void giveLoot(Player p) {
-        Random chance = new Random();
         //gives player a random piece of loot from the list
-        if(chance.nextInt(100) >= 75) {
-            int i = chance.nextInt(loot.size());
+        if(r.nextInt(100) >= 75) {
+            int i = r.nextInt(loot.size());
             p.addItemPack(loot.get(i));
             System.out.println("On the corpse of " + name + ", you found a " + loot.get(i).getName());
         }
         else {
-            p.giveCORN(chance);
+            p.giveCORN(r);
         }
 
     }

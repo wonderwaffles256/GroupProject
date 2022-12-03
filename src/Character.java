@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,6 +12,7 @@ public abstract class Character {
     protected Weapon weapon;
     protected double critChance;
     protected int maxHP;
+    protected ArrayList<String> battleDialogue;
 
     public Character() {
         HP = 0;
@@ -28,13 +30,15 @@ public abstract class Character {
      * @param weapon - weapon give the player a specific amount of damage that is dealt to an enemy.
      * @param critChance - the chance a player has to critically hit an enemy or even miss the enemy completely
      */
-    public Character(int HP, String name, Armor armor, Weapon weapon, double critChance) {
+    public Character(int HP, String name, Armor armor, Weapon weapon, double critChance, ArrayList<String> battleDialogue) {
         maxHP = HP + armor.getStrength();
         this.HP = maxHP;
         this.name = name;
         this.armor = armor;
         this.weapon = weapon;
         this.critChance = critChance;
+        this.battleDialogue = new ArrayList<>();
+        this.battleDialogue.addAll(battleDialogue);
     }
 
     //getters
@@ -61,6 +65,8 @@ public abstract class Character {
      * @param opponent - the Character being fought
      */
     public abstract void fight(Character opponent);
+
+    public abstract void dialogue();
 
     /**
      * equip armor adds the strength value to the hp value to make a player equip a piece of armor.

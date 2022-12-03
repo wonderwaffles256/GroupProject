@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,7 +6,7 @@ public class Player extends Character{
     private double clout;                   //clout will start at 0
     private int CORN;                       //CORN will start at 0
     private ArrayList<Item> itemPack;
-    private ArrayList<Character> companions;
+    private ArrayList<Enemy> companions;
     private String currentLocation;
     boolean locComplete;
 
@@ -35,7 +34,7 @@ public class Player extends Character{
 
     //constructor given input
     public Player(int HP, String name, Armor armor, Weapon weapon, double critChance) {
-        super(HP, name, armor, weapon, critChance);
+        super(HP, name, armor, weapon, critChance, new ArrayList<>());
         clout = 1;
         CORN = 0;
 
@@ -57,7 +56,7 @@ public class Player extends Character{
     public String getCurrentLocation() {return currentLocation;}
     public boolean getLocComplete() {return locComplete;}
     public ArrayList<Item> getItemPack() {return itemPack;}
-    public ArrayList<Character> getCompanions() {return companions;}
+    public ArrayList<Enemy> getCompanions() {return companions;}
 
     //setters
     public void setCORN(int CORN) {this.CORN = CORN;}
@@ -93,17 +92,17 @@ public class Player extends Character{
             System.out.println("\u001B[36m" + "You have vanquished " + "\u001B[31m" + opponent.getName() + "\u001B[0m");
         }
     }
+
    public void critChance(Character opponent) {
         Random rand = new Random();
-        for ( Character c : companions) {
-            Enemy companion = (Enemy) c;
-            if (!companion.getTired()) {
-              int chance = (int) rand.nextDouble(companion.getCritChance() + 1);
-              if (chance == companion.getCritChance()) {
-                  int damage = (int) ( companion.getWeapon().getDamage() * .5);
+        for ( Enemy c : companions) {;
+            if (!c.getTired()) {
+              int chance = (int) rand.nextDouble(c.getCritChance() + 1);
+              if (chance == c.getCritChance()) {
+                  int damage = (int) ( c.getWeapon().getDamage() * .5);
                   opponent.setHP(opponent.HP - damage);
-                  System.out.println(companion.getName() + " jumped in and did an additional " + damage + " damage");
-                  companion.setTired(true);
+                  System.out.println(c.getName() + " jumped in and did an additional " + damage + " damage");
+                  c.setTired(true);
               }
             }
         }
@@ -136,7 +135,7 @@ public class Player extends Character{
                     int choice = sc.nextInt();
                     done = true;
 
-                    if(flirtCheck(choice,e) && !companions.contains(e)) {
+                    if(e.flirtCheck(choice) && !companions.contains(e)) {
                         companions.add(e);                                          //adds enemy to companions
 
                         System.out.println(e.getFlirtDialogue().get(choice));       //prints line resulting from correct option
@@ -208,11 +207,6 @@ public class Player extends Character{
         }//end while loop
 
         return false;                        //returns a boolean for the combat method to decide whether it needs to end
-    }
-
-    //checks if a chosen option during flirting equals the enemy's flirt requirement
-    public boolean flirtCheck(int option, Enemy e) {
-        return e.getFlirtDialogue().get(option).equals(e.getFlirtRequirement());
     }
 
     /**
@@ -295,6 +289,29 @@ public class Player extends Character{
             System.out.println("\u001B[34mCompanion " + i + ": " + companion.getName()  + " ___ Weapon: " + companion.getWeapon().getName() + " - " + companion.getWeapon().getDamage() + " dmg\u001B[0m");
         }
     }
+    //change to equipItem
+    public void equipItem(Item i) {
+        if(i instanceof Weapon w) {
+            if(!itemPack.contains(w)) {
+                itemPack.add(w);
+            }
+            this.itemPack.add(this.weapon);
+            this.itemPack.remove(w);
+            this.weapon = new Weapon(w);
+            System.out.println("You equipped: " + w.getName() + "\nDamage: " + w.getDamage());
+        }
+        if(i instanceof Armor a) {
+            if(!itemPack.contains(a)) {
+                itemPack.add(a);
+            }
+            this.itemPack.add(this.armor);
+            this.itemPack.remove(a);
+            this.maxHP += a.getStrength() - armor.getStrength();
+            this.armor = new Armor(a);
+            if(HP > maxHP) {HP = maxHP;}
+            System.out.println("You equipped: " + a.getName() + "\nStrength: " + a.getStrength());
+        }
+    }
 
     public void equipWeapon(Weapon w) {
         if(!itemPack.contains(w)) {
@@ -306,16 +323,16 @@ public class Player extends Character{
         System.out.println("You equipped: " + w.getName() + "\nDamage: " + w.getDamage());
     }
 
-    public void equipArmor(Armor newArmor) {
-        if(!itemPack.contains(newArmor)) {
-            itemPack.add(newArmor);
+    public void equipArmor(Armor a) {
+        if(!itemPack.contains(a)) {
+            itemPack.add(a);
         }
         this.itemPack.add(this.armor);
-        this.itemPack.remove(newArmor);
-        this.maxHP += newArmor.getStrength() - armor.getStrength();
-        this.armor = new Armor(newArmor);
+        this.itemPack.remove(a);
+        this.maxHP += a.getStrength() - armor.getStrength();
+        this.armor = new Armor(a);
         if(HP > maxHP) {HP = maxHP;}
-        System.out.println("You equipped: " + newArmor.getName() + "\nStrength: " + newArmor.getStrength());
+        System.out.println("You equipped: " + a.getName() + "\nStrength: " + a.getStrength());
     }
 
     public void useConsumable(Consumable c, int index) {
@@ -419,6 +436,11 @@ public class Player extends Character{
         return false;
     }
 
+    public void restCompanions() {
+        for(Enemy c : companions) {
+             c.setTired(false);
+        }
+    }
 
     /**
      * displays information about the current enemy and player
@@ -434,5 +456,8 @@ public class Player extends Character{
         else {
             System.out.println("\u001B[34m  None\n\u001B[0m");
         }
+    }
+    public void dialogue() {
+        System.out.println(name);
     }
 }
