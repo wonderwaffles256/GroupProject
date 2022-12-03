@@ -368,6 +368,7 @@ public class ConsoleDriver {
 
     //might be able to use this method for all 3 locations
     public void location (Player p, Location L) throws InterruptedException{
+        System.out.println("New location: " + L);
             Stack<Room> rooms = L.getRooms();
             int completed = 0;
             while (!(rooms.isEmpty())) {
