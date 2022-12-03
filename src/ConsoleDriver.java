@@ -434,16 +434,17 @@ public class ConsoleDriver {
         else if (i instanceof Armor) {
             System.out.println("Inside the chest is some clothes \n You inspect the clothes" + "\u001B[0m");
             System.out.println(i.getName() + " has an armor rating of " + ((Armor) i).getStrength() + "\n its inscription reads: " + i.getDescription());
-            System.out.println("your current armor has a rating of " + p.getArmor().getStrength());
+            System.out.println("your current armor, " + p.getArmor().getName() + ", has a rating of " + p.getArmor().getStrength());
             System.out.println("Would you like to equip this Armor? \n 1 for yes, and 2 for no");
             p.addItemPack(i);
             while (!loop) {
-                if (scnr.nextInt() == 1) {
+                int ans = scnr.nextInt();
+                if (ans == 1) {
                     p.equipArmor((Armor) i);
                     loop = true;
                     System.out.println("You continue on your path");
                 }
-                else if (scnr.nextInt() == 2) {
+                else if (ans == 2) {
                     loop = true;
                     System.out.println("You continue on your path");
                 }
