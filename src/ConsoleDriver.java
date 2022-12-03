@@ -1,5 +1,5 @@
 import java.util.*;
-//TODO companions jump in and fight randomly
+//TODO companions jump in and fight randomly -done and works but should be reviewed.  method is critchance in player
 //TODO make girlfriend
 //TODO fix death
 //TODO port console driver over to runGame
