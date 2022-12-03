@@ -218,12 +218,12 @@ public class Shop {
             }
             count++;
         }
-        System.out.println("Please print the number of the item you would like to sell.");
+        System.out.println("Please print the number of the item you would like to sell, or print -1 to return to main menu");
         int choose = scnr.nextInt();
         scnr.nextLine();
         System.out.println();
         if(choose < 0 || choose > p.getItemPack().size()){
-            System.out.println("Sorry fella but that item doesn't exist");
+            if (choose != -1) System.out.println("Sorry fella but that item doesn't exist");
         }
         else{
             System.out.println("Pleasure doing business wit ya bud. Have day.");
