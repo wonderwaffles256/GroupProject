@@ -81,15 +81,31 @@ public class Player extends Character{
         boolean usedCompanion = false;
         if(companions.size() > 0) {
             usedCompanion = useCompanions(opponent);
+            critChance(opponent);
         }
         if(!usedCompanion){
             double dmg = ((double) this.getWeapon().getDamage()) * clout;
             opponent.setHP((int) Math.round((double) opponent.getHP() - dmg));
             System.out.println("\u001B[36m" + "Using your " + this.weapon.getName() + " you hit " + opponent.getName() + " for " + Math.round(dmg) + " damage!" + "\u001B[0m");
-
+            critChance(opponent);
         }
         if(opponent.getHP() <= 0) {
             System.out.println("\u001B[36m" + "You have vanquished " + "\u001B[31m" + opponent.getName() + "\u001B[0m");
+        }
+    }
+   public void critChance(Character opponent) {
+        Random rand = new Random();
+        for ( Character c : companions) {
+            Enemy companion = (Enemy) c;
+            if (!companion.getTired()) {
+              int chance = (int) rand.nextDouble(companion.getCritChance() + 1);
+              if (chance == companion.getCritChance()) {
+                  int damage = (int) ( companion.getWeapon().getDamage() * .5);
+                  opponent.setHP(opponent.HP - damage);
+                  System.out.println(companion.getName() + " jumped in and did an additional " + damage + " damage");
+                  companion.setTired(true);
+              }
+            }
         }
     }
 

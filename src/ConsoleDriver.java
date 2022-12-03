@@ -2,6 +2,8 @@ import java.util.*;
 //TODO companions jump in and fight randomly
 //TODO make girlfriend
 //TODO fix death
+//TODO port console driver over to runGame
+//TODO make more enemies
 
 public class ConsoleDriver {
     public static void main(String[] args) throws InterruptedException {
