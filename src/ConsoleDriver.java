@@ -1,6 +1,6 @@
 import java.util.*;
 //TODO companions jump in and fight randomly -done and works but should be reviewed.  method is critchance in player
-//TODO make girlfriend
+//TODO make girlfriend mainly needs dialogue
 //TODO fix death
 //TODO port console driver over to runGame
 //TODO make more enemies
@@ -183,7 +183,6 @@ public class ConsoleDriver {
         Weapon heel = new Weapon("Heel", 29,35,"Worn by the meaniest of girls and swung by those even meaner" );
 
 
-
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
         Armor noArmor = new Armor("none", 0, 0, "Nothing cheaper than a birthday suit");
         Armor buisness = new Armor("suit", 100, 30, "Always the best dressed in the room");
@@ -346,6 +345,11 @@ public class ConsoleDriver {
         Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg,reginaGeorge);
         Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg,karen);
         Location loc3 = new Location("Desert", difficulty, randomizeEnemies(Enemies), loc3Msg,gretchen);
+
+
+        Girlfriend gf = makeGirlFriend(difficulty);
+
+
         locations.add(loc1);
         locations.add(loc2);
         locations.add(loc3);
@@ -360,6 +364,15 @@ public class ConsoleDriver {
             miniBossFight(player,miniBosses.poll(),locations.poll());
             s.shopMenu(player);
         }
+        boolean flirtedSuccessfullywGF = false;
+        System.out.println("After a long journey you make it to your girlfriends house.");
+        Thread.sleep(1000);
+        System.out.println("You knock on her door to see" + gf.getName() + " standing in front of you.");
+        Thread.sleep(1000);
+        System.out.println("She looks rather angry with you and it seems like she also want to test you to see if you are worthy of dating her");
+        combat(player,gf);
+        if(gf.getFlirtLimit() == 5){flirtedSuccessfullywGF = true;}
+        ending(flirtedSuccessfullywGF);
 
     }
     public void miniBossFight(Player p, MiniBoss B, Location L) throws InterruptedException {
@@ -385,7 +398,7 @@ public class ConsoleDriver {
                 completed++;
                 L.setProgress(completed);
                 if (!(L.isCompleted())) {
-                    System.out.println("You continue on your path, determined to survive the oncoming hordes");
+                    System.out.println("You continue on your path, determined to survive the oncoming hordes as you go to the next location");
                 }
             }
         }
@@ -461,4 +474,39 @@ public class ConsoleDriver {
         }
     }
 
+    public Girlfriend makeGirlFriend(int difficulty){
+        ArrayList<String> girlDialogue = new ArrayList<>();
+        ArrayList<String> girlFlirtDialogue = new ArrayList<>();
+        ArrayList<String> girlFlirtResponses = new ArrayList<>();
+        String girlFlirtSuccess;
+        switch (difficulty) {
+            case 1 -> {
+                Weapon IQ = new Weapon("Massive IQ",300,45,"IQ that is great enough to catch even the creepiest of costumed freaks");
+                Armor glasses = new Armor("Glasses",200,11,"A pair of glasses that always seem to fall off at inopportune times");
+                girlFlirtSuccess = "Jinkies, you really know how to talk to a girl I think I love you!";
+                girlDialogue.add("");
+                girlFlirtDialogue.add("");
+                girlFlirtResponses.add("");
+                return new Girlfriend(500,"Velma",glasses,IQ,5.5,difficulty,girlDialogue,girlFlirtDialogue,girlFlirtResponses,girlFlirtSuccess);
+            }
+            case 2 ->{//create difficulty 2 gf
+                girlFlirtSuccess = "sop";
+                return new Girlfriend();
+            }
+            case 3 -> {//create difficulty 3 gf
+                girlFlirtSuccess = "Hi";
+                return new Girlfriend();
+            }
+        }
+        return null;
+    }
+
+    public void ending(boolean goodEnd){
+        if(goodEnd){
+
+        }
+        else{
+
+        }
+    }
 }
