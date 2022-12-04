@@ -405,7 +405,7 @@ public class ConsoleDriver {
 
     public ArrayList<Enemy> randomizeEnemies(ArrayList<Enemy> Enemies) {
         ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
-        for(int i =0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
+         for(int i =0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
             for (int z = 0; z < Enemies.get(i).getSpawnRate(); z++) {
                 EnemiesWithWeights.add(Enemies.get(i));
             }
@@ -484,9 +484,16 @@ public class ConsoleDriver {
                 Weapon IQ = new Weapon("Massive IQ",300,45,"IQ that is great enough to catch even the creepiest of costumed freaks");
                 Armor glasses = new Armor("Glasses",200,11,"A pair of glasses that always seem to fall off at inopportune times");
                 girlFlirtSuccess = "Jinkies, you really know how to talk to a girl I think I love you!";
-                girlDialogue.add("");
-                girlFlirtDialogue.add("");
-                girlFlirtResponses.add("");
+                girlDialogue.add("I'm going to have to solve the mystery of the single boyfriend");
+                girlFlirtDialogue.add("1 - give her a scooby snack\n" + "2 - talk about how her glasses look nice\n" + "3 - Solve a mystery that she has been troubled over for a long time");
+                girlFlirtDialogue.add("4 - Rant about 5th century war strategies\n" + "5 - Explain how DB Cooper escaped to Uganda where he ran an underground child sweatshop\n" + "6 - say the greatest mystery is what we learned along the way");
+                //The correct options are 3 and 5
+                girlFlirtResponses.add("Eww those things taste gross. How can Shaggy eat those");
+                girlFlirtResponses.add("Honestly I hate them they always fall off my face");
+                girlFlirtResponses.add("Oh really you have a mystery to solve. Mysteries are my favorite thing on the planet");
+                girlFlirtResponses.add("I smart not a history buff");
+                girlFlirtResponses.add("OMG is that actually what happened I'll have to investigate with the gang");
+                girlFlirtResponses.add("Those types of endings always suck");
                 return new Girlfriend(500,"Velma",glasses,IQ,5.5,difficulty,girlDialogue,girlFlirtDialogue,girlFlirtResponses,girlFlirtSuccess);
             }
             case 2 ->{//create difficulty 2 gf
@@ -503,10 +510,15 @@ public class ConsoleDriver {
 
     public void ending(boolean goodEnd){
         if(goodEnd){
-
+            System.out.println("Good End");
+            System.out.println("With your amassed clout and your amazing pick-up lines you manage to convince your Girlfriend to fully date you.");
+            System.out.println("She has some pain from how much she got hit but shes still loves you");
+            System.out.println("If you want more pay $30 for a better written ending");
         }
         else{
-
+            System.out.println("Bad End");
+            System.out.println("In your attempt to convince your girlfriend to stay with you end up killing your girlfriend");
+            System.out.println("The cops are quick to arrive on the scene and after seeing your weapon the cops fire on site and kill you immediately");
         }
     }
 }
