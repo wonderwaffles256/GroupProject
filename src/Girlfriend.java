@@ -77,6 +77,11 @@ public class Girlfriend extends Character{
             player.setHP(player.HP - this.weapon.getDamage());
             System.out.println("Your Girlfriend hits you with the Mystery Machine dealing" + this.weapon.getDamage() + " Damage!");
         }
+        else if(difficulty == 3){
+            System.out.println("Ra ra Rasputin\n" + "Lover of the Russian queen\n" + "There was a cat that really was gone");
+            System.out.println("Rasputin pulls out a sword and dances like a Barynya dancer while the song Rasputin plays in the background");
+            player.setHP(player.getHP()*2/3);
+        }
     }
 
     //TODO: decide how much battleDialogue needs to go in this method (might make more sense to put the end battleDialogue elsewhere)
