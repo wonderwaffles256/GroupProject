@@ -494,6 +494,10 @@ public class ConsoleDriver {
     }
 
     public Girlfriend makeGirlFriend(int difficulty){
+        //IMPORTANT NOTE: flirtResponse's first string (index 0) must be a response for succeeding in the flirt. Each string after that (index 1 on) corresponds to an option in flirtOptions
+        //For example, this means that if there are 6 total options in flirtOptions (numbered 1-6), the size of flirtResponses must be 7.
+        //(index 0 holds success response, where indexes 1-6 hold responses to options 1-6)
+
         ArrayList<String> girlDialogue = new ArrayList<>();
         ArrayList<String> girlFlirtDialogue = new ArrayList<>();
         ArrayList<String> girlFlirtResponses = new ArrayList<>();
@@ -502,11 +506,12 @@ public class ConsoleDriver {
             case 1 -> {
                 Weapon IQ = new Weapon("Massive IQ",300,45,"IQ that is great enough to catch even the creepiest of costumed freaks");
                 Armor glasses = new Armor("Glasses",200,11,"A pair of glasses that always seem to fall off at inopportune times");
+                //The correct options are 3 and 5
                 girlFlirtSuccess = "35";
                 girlDialogue.add("I'm going to have to solve the mystery of the single boyfriend");
                 girlFlirtDialogue.add("1 - give her a scooby snack\n" + "2 - talk about how her glasses look nice\n" + "3 - Solve a mystery that she has been troubled over for a long time");
                 girlFlirtDialogue.add("4 - Rant about 5th century war strategies\n" + "5 - Explain how DB Cooper escaped to Uganda where he ran an underground child sweatshop\n" + "6 - say the greatest mystery is what we learned along the way");
-                //The correct options are 3 and 5
+
                 girlFlirtResponses.add("Jinkies! I...I think I kinda...you could, you know...be part of the gang with me from now on.");
                 girlFlirtResponses.add("Eww those things taste gross. How can Shaggy eat those");
                 girlFlirtResponses.add("Honestly I hate them they always fall off my face");
