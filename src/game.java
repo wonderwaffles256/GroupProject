@@ -378,7 +378,12 @@ public class game {
         System.out.println("She looks rather angry with you and it seems like she also wants to test you to see if you are worthy of dating her");
         combat(player,gf);
 
-        ending(gf.getFlirtLimit() == 5);
+        if (gf.getFlirtLimit() == 5) {
+            ending(0);
+        }
+        else {
+            ending(1);
+        }
 
     }
 
@@ -532,19 +537,40 @@ public class game {
         frame.pack();
         frame.setVisible(true);    }
 
-    public void ending(boolean goodEnd){
-        if(goodEnd){
-            System.out.println("Good End");
+    public void ending(int goodEnd) throws InterruptedException {
+        if(goodEnd == 0){
+            System.out.println("Congratulations, you achieved the Good Ending");
+            Thread.sleep(1000);
             System.out.println("With your amassed clout and your amazing pick-up lines you manage to convince your Girlfriend to fully date you.");
+            Thread.sleep(2000);
             System.out.println("She has some pain from how much she got hit but shes still loves you");
+            Thread.sleep(2000);
             System.out.println("If you want more pay $30 for a better written ending");
+            Thread.sleep(1000);
+
             Credits();
         }
-        else{
-            System.out.println("Bad End");
+        else if (goodEnd == 1){
+            System.out.println("You may have won, but at a cost of the Bad Ending");
+            Thread.sleep(1000);
             System.out.println("In your attempt to convince your girlfriend to stay with you end up killing your girlfriend");
-            System.out.println("The cops are quick to arrive on the scene and after seeing your weapon the cops fire on site and kill you immediately");
+            Thread.sleep(2000);
+            System.out.println("The cops are quick to arrive on the scene and after seeing your weapon the cops arrest and detain you");
+            Thread.sleep(2000);
+            System.out.println("it has been 5 years since that fateful journey");
+            Thread.sleep(2000);
+            System.out.println("you now spend every day and night locked in a small prison room with no one to see and no one to talk to");
+            Thread.sleep(3000);
+            System.out.println("you continue to serve out your life sentence in hopes of escaping one day, but for now you wait...");
             Credits();
+        }
+        else if (goodEnd == 2) {
+            System.out.println("in fear of your girlfriends wrath you flee from the scene");
+            System.out.println("your journey has come to and end, and as you look around you see your companions who gave their lives for a cause you couldn't bring yourself to complete");
+            System.out.println("you return to that field where you sat before all of this began");
+            System.out.println("as you lay back down to think some more, you fall asleep");
+            introDialogue();
+            start(1,"a failed hero");
         }
     }
    }
