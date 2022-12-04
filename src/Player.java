@@ -140,7 +140,6 @@ public class Player extends Character{
 
                         System.out.println(e.getFlirtDialogue().get(choice));       //prints line resulting from correct option
                         System.out.println("\u001B[33m" + e.getName() + " has joined the team!" + "\u001B[0m");
-                        e.setHP(0);
                         return true;
                     }
                     else if(companions.contains(e)) {
@@ -233,7 +232,7 @@ public class Player extends Character{
                         System.out.println("Would you like to equip " + w.getName() + "?\n  (y for yes, anything else for no)");
                         String ch = sc.next();
                         if(ch.equals("y") || ch.equals("Y")) {
-                            equipWeapon(w);
+                            equipItem(w);
                             done = true;
                         }
                     }
@@ -241,7 +240,7 @@ public class Player extends Character{
                         System.out.println("Would you like to equip " + a.getName() + "?\n  (y for yes, anything else for no)");
                         String ch = sc.next();
                         if(ch.equals("y") || ch.equals("Y")) {
-                            equipArmor(a);
+                            equipItem(a);
                             done = true;
                         }
                     }
@@ -311,28 +310,6 @@ public class Player extends Character{
             if(HP > maxHP) {HP = maxHP;}
             System.out.println("You equipped: " + a.getName() + "\nStrength: " + a.getStrength());
         }
-    }
-
-    public void equipWeapon(Weapon w) {
-        if(!itemPack.contains(w)) {
-            itemPack.add(w);
-        }
-        this.itemPack.add(this.weapon);
-        this.itemPack.remove(w);
-        this.weapon = new Weapon(w);
-        System.out.println("You equipped: " + w.getName() + "\nDamage: " + w.getDamage());
-    }
-
-    public void equipArmor(Armor a) {
-        if(!itemPack.contains(a)) {
-            itemPack.add(a);
-        }
-        this.itemPack.add(this.armor);
-        this.itemPack.remove(a);
-        this.maxHP += a.getStrength() - armor.getStrength();
-        this.armor = new Armor(a);
-        if(HP > maxHP) {HP = maxHP;}
-        System.out.println("You equipped: " + a.getName() + "\nStrength: " + a.getStrength());
     }
 
     public void useConsumable(Consumable c, int index) {

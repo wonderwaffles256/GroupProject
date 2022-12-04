@@ -7,7 +7,6 @@ public class MiniBoss extends Character {
     private ArrayList<Item> loot = new ArrayList<>();
     private String flirtDialogue;
     private String introDialogue;
-    private String battleDialogue;
     private String deathDialogue;
 
 
@@ -25,7 +24,6 @@ public class MiniBoss extends Character {
         opponent.setHP(opponent.HP - this.weapon.getDamage());
         if(opponent instanceof Player) {
             System.out.println( "\u001B[31m" + this.name + " smacked you with her " + this.weapon.getName() + " for " + this.weapon.getDamage() + " damage!" + "\u001B[0m");
-            System.out.println("\u001B[31m" + this.battleDialogue + "\u001B[0m");
         }
         else if(opponent instanceof Enemy || opponent instanceof Girlfriend) {
             System.out.println(this.name + " valiantly displayed her affection with violence, dealing " + this.weapon.getDamage() + " damage");
@@ -50,6 +48,7 @@ public class MiniBoss extends Character {
         System.out.println(flirtDialogue);
     }
     public void introFight(Player p) {
+        System.out.println(name + "has appeared!");
         System.out.println(introDialogue);
         fight(p);
     }

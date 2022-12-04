@@ -84,7 +84,10 @@ public class ConsoleDriver {
      * Prints a menu to inform user and gather input
      */
     public void combat(Player p,Character enemy) throws InterruptedException{
-        System.out.println("\u001B[31m" + enemy.getName() + " has appeared!" + "\u001B[0m");
+        if(!(enemy instanceof MiniBoss)) {
+            Thread.sleep(1200);
+            System.out.println("\u001B[31m" + enemy.getName() + " has appeared!" + "\u001B[0m");
+        }
         Scanner scnr = new Scanner(System.in);
 
         boolean done = false;
@@ -120,7 +123,7 @@ public class ConsoleDriver {
                     }
                     case "5" -> p.file(enemy);
 
-                    default -> System.out.println("Please re-input");
+                    default -> System.out.println("Your intelligence must be the size of a pea. Input again");
                 }
             }
 
@@ -250,7 +253,7 @@ public class ConsoleDriver {
         pFlirtDialogue.add(pSuccess);
         Enemy pixie = new Enemy (15, "Pixie", noArmor,magicWand , 8, pLoot,pSuccess,6,pBattleDialogue,pFlirtDialogue);
 
-        String panSuccess = "YES! together we shall vanquish the rising wage gap and distribute the wealth through by breaking the law";
+        String panSuccess = "YES! together we shall vanquish the rising wage gap and distribute the wealth through violent revolution!";
         ArrayList<Item> panLoot = new ArrayList<>();
         ArrayList<String> panBattleDialogue = new ArrayList<>();
         panBattleDialogue.add("Who dares challenge the protector of the poor");
@@ -262,12 +265,16 @@ public class ConsoleDriver {
         Enemy robinHood = new Enemy(30, "Robin Hood", noArmor, Bow, 4, panLoot, panSuccess, 5, panBattleDialogue, panFlirtDialogue);
 
 
-//        Enemy grunt = new Enemy(15, "grunt", overalls, club, 6, gruntLoot, gruntSuccess, 7, gruntBattleDialogue, gruntFlirtDialogue);
 //        Enemy jBourne = new Enemy(35, "Jason Bourne", noArmor, gun, 7, bourneLoot, bourneSuccess, 5, bourneBattleDialogue, bournFlirtDialogue);
 //        Enemy Bond = new Enemy(30, "007", buisness, gun, 2, bondLoot, bondSuccess, 4, bondBattleDialogue, bondFlirtDialogue);
 //        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDesign);
 //        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDesign);
 //        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,5, arthurBattleDialogue, arthurFlirtDialogue);
+//        john wick
+//        snoopy
+//        snoop dog
+        //patrick bateman
+        //jar jar binks
 //
 //        Enemy yurMum =
         String NyeSuccess = "With our combined power we shall end global warming and make the whole world lukewarm!";
@@ -430,7 +437,7 @@ public class ConsoleDriver {
             p.addItemPack(i);
             while (!loop) {
                 if (scnr.nextInt() == 1) {
-                    p.equipWeapon((Weapon) i);
+                    p.equipItem(i);
                     loop = true;
                     System.out.println("You continue on your path");
                 }
@@ -482,7 +489,7 @@ public class ConsoleDriver {
             case 1 -> {
                 Weapon IQ = new Weapon("Massive IQ",300,45,"IQ that is great enough to catch even the creepiest of costumed freaks");
                 Armor glasses = new Armor("Glasses",200,11,"A pair of glasses that always seem to fall off at inopportune times");
-                girlFlirtSuccess = "Jinkies, you really know how to talk to a girl I think I love you!";
+                girlFlirtSuccess = "35";
                 girlDialogue.add("I'm going to have to solve the mystery of the single boyfriend");
                 girlFlirtDialogue.add("1 - give her a scooby snack\n" + "2 - talk about how her glasses look nice\n" + "3 - Solve a mystery that she has been troubled over for a long time");
                 girlFlirtDialogue.add("4 - Rant about 5th century war strategies\n" + "5 - Explain how DB Cooper escaped to Uganda where he ran an underground child sweatshop\n" + "6 - say the greatest mystery is what we learned along the way");
@@ -496,10 +503,12 @@ public class ConsoleDriver {
                 return new Girlfriend(500,"Velma",glasses,IQ,5.5,difficulty,girlDialogue,girlFlirtDialogue,girlFlirtResponses,girlFlirtSuccess);
             }
             case 2 ->{//create difficulty 2 gf
+                //Padme Amidala
                 girlFlirtSuccess = "sop";
                 return new Girlfriend();
             }
             case 3 -> {//create difficulty 3 gf
+                //Rasputin
                 girlFlirtSuccess = "Hi";
                 return new Girlfriend();
             }

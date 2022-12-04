@@ -33,13 +33,13 @@ public class Shop {
         int count = 0;
         for(Item item : items) {
             if(item instanceof Weapon w) {
-                System.out.println("\u001B[32mItem " + count + ": " + w.getName() + " ____________ " + w.getDamage() + " dmg. " + w.getDescription() + "\u001B[0m");
+                System.out.println("\u001B[32mItem " + count + ": " + w.getName() + " ____________ " + w.getDamage() + " dmg. " + w.getDescription() + "         cost - " + w.getValue() + "\u001B[0m");
             }
             if(item instanceof Armor a) {
-                System.out.println("\u001B[32mItem " + count + ": " + a.getName() + " ____________ " + a.getStrength() + " strength. " + a.getDescription() + "\u001B[0m");
+                System.out.println("\u001B[32mItem " + count + ": " + a.getName() + " ____________ " + a.getStrength() + " strength. " + a.getDescription() + "         cost - " + a.getValue() + "\u001B[0m");
             }
             if(item instanceof Consumable c) {
-                System.out.println("\u001B[32mItem " + count + ": " + c.getName() + " ____________ recovers" + c.getHealing() + " HP. ___ " + c.getDescription() + "\u001B[0m");
+                System.out.println("\u001B[32mItem " + count + ": " + c.getName() + " ____________ recovers" + c.getHealing() + " HP. ___ " + c.getDescription() + "         cost - " + c.getValue() + "\u001B[0m");
             }
             count++;
         }
@@ -54,8 +54,8 @@ public class Shop {
         while (BSL != 'L') {
             System.out.println("Would you like to buy[B], sell[S], or");
             System.out.println("would you like to leave[L]");
-            BSL = scnr.nextLine().charAt(0);
             try {
+                BSL = scnr.nextLine().charAt(0);
                 if (BSL == 'B') {
                     buyMenu(p);
                 } else if (BSL == 'S') {
@@ -63,7 +63,7 @@ public class Shop {
                 } else if (BSL == 'L') {
                     System.out.println("Thanks for coming. Hope you can reach ya girl, whippersnapper");
                 } else {
-                    System.out.println("I don't understand what you just said. Try my suggested answers...Some people's kids");
+                    System.out.println("I don't understand what you just said. Try my suggested answers... *mutters* Some people's kids");
                 }
             }catch(Exception e){
                 System.out.println("Sorry fella something didn't work quite right try that again.");
@@ -203,37 +203,26 @@ public class Shop {
      */
     public void sell(Player p) {
         System.out.println("So ya wanna sell sum do ya. All right what do ya wanna sell?");
-        int count = 0;
-        for(Item item : p.getItemPack()){
-            System.out.println("This is item number: " + count);
-            System.out.println(item.getName() + " has a sell for " + item.getValue()*5/6 + " CORN.");
-            if(item instanceof Consumable c){
-                System.out.println("This item heals for " + c.getHealing() + ".");
-            }
-            else if(item instanceof Weapon w){
-                System.out.println("This item deals " + w.getDamage() + " damage.");
-            }
-            else if(item instanceof Armor a){
-                System.out.println("This item has a strength of " + a.getStrength() + ".");
-            }
-            count++;
-        }
+
+        p.displayItems();
         System.out.println("Please print the number of the item you would like to sell, or print -1 to return to main menu");
         int choose = scnr.nextInt();
         scnr.nextLine();
         System.out.println();
+        Item item = p.getItemPack().get(choose);
+        System.out.println(item.getName() + " sells for " + item.getValue()*5/6 + " CORN");
         if(choose < 0 || choose > p.getItemPack().size()){
             if (choose != -1) System.out.println("Sorry fella but that item doesn't exist");
         }
         else{
-            System.out.println("Pleasure doing business wit ya bud. Have day.");
-            p.setCORN(p.getCORN() + p.getItemPack().get(choose).getValue()*5/6);
+            System.out.println("Pleasure doing business wit ya bud. Have a good one.");
+            p.setCORN(p.getCORN() + item.getValue()*5/6);
             if(p.getItemPack().get(choose) instanceof Weapon ){
-                weapons.add(p.getItemPack().get(choose));
+                weapons.add(item);
                 System.out.println("You can always buy this weapon back at the shop.");
             }
-            else if(p.getItemPack().get(choose) instanceof Armor){
-                armors.add(p.getItemPack().get(choose));
+            else if(item instanceof Armor){
+                armors.add(item);
                 System.out.println("You can always buy this armor back at the shop.");
             }
             p.getItemPack().remove(choose);
