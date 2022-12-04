@@ -4,6 +4,7 @@ import java.util.*;
 //TODO fix death
 //TODO port console driver over to runGame
 //TODO make more enemies
+//TODO implement miniBoss flirting mechanics
 
 public class ConsoleDriver {
     public static void main(String[] args) throws InterruptedException {
@@ -88,8 +89,7 @@ public class ConsoleDriver {
 
         boolean done = false;
         while (!done) {
-            //enemy says wacky funny dialogue
-            //TODO: print random word from battle dialogue (separate method?)
+            enemy.dialogue();
             boolean goodinput = false;
             while (!goodinput) {
                 System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), Flee ( 4 ), or File( 5 ).\n" +
@@ -101,8 +101,8 @@ public class ConsoleDriver {
                         p.fight(enemy);
                     }
                     case "2" -> {
-                        if (enemy instanceof MiniBoss) {
-                            ((MiniBoss) enemy).flirt();
+                        if (enemy instanceof MiniBoss m) {
+                            m.flirt();
                         }
                         else {
                             done = p.flirt(enemy, p);
@@ -124,29 +124,29 @@ public class ConsoleDriver {
                 }
             }
 
-            if(p.getHP() <= 0) {
-                System.out.println("You tried to fight for the love of your life, but you ended up dying to " + "\u001B[31m" + enemy.getName() + "\u001B[0m");
-                p.death();
-                done = true;
-            }
             if(enemy.getHP() <= 0) {
                 if(enemy instanceof Enemy e) {
                     e.giveLoot(p);
                 }
-                else if(enemy instanceof Girlfriend g) {
+                if(enemy instanceof Girlfriend g) {
                     g.giveMedal(p);
                 }
-                else if (enemy instanceof MiniBoss) {
-                    ((MiniBoss) enemy).deathDialogue();
-                    ((MiniBoss) enemy).giveLoot(p);
+                if (enemy instanceof MiniBoss m) {
+                    m.deathDialogue();
+                    m.giveLoot(p);
                 }
-
                 System.out.println("Combat over");
                 done = true;
             }
             if (!(done)) {
                 enemy.fight(p);
             }
+            if(p.getHP() <= 0) {
+                System.out.println("You tried to fight for the love of your life, but you ended up dying to " + "\u001B[31m" + enemy.getName() + "\u001B[0m");
+                p.death();
+                done = true;
+            }
+            p.restCompanions();
         }
     }
     public void introDialogue() throws InterruptedException {
@@ -184,7 +184,7 @@ public class ConsoleDriver {
 
 
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
-        Armor noArmor = new Armor("none", 0, 0, "Nothing cheaper than a birthday suit");
+        Armor noArmor = new Armor("Birthday Suit", 0, 0, "Nothing cheaper than a birthday suit");
         Armor buisness = new Armor("suit", 100, 30, "Always the best dressed in the room");
         Armor suitOfArmor = new Armor("suit of armor", 70, 20, "looks cool, but its the 20th century");
         Armor peachDress = new Armor("princess peaches dress", 50, 25, "A pretty pink dress");
@@ -292,12 +292,8 @@ public class ConsoleDriver {
         WaltFlirtDialogue.add("I am the one who knocks!");
         Enemy BreakBad = new Enemy(10,"Walter White",hat,chemo,5,WaltLoot,WaltSuccess,3,WaltBattleDialogue,WaltFlirtDialogue);
 
-
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad));        //contains one of the enemies in order of creation
 
-        ArrayList<Item> itemPack = new ArrayList<>();
-        ArrayList<Character> companions = new ArrayList<>();
-        itemPack.add(water);
         Player player = new Player(100, name, overalls, oneshot, 10);
 
         //tutorial
@@ -318,8 +314,9 @@ public class ConsoleDriver {
         ArrayList<Item> reginaLoot = new ArrayList<>();
         reginaLoot.add(peachDress);
         reginaLoot.add(heel);
+        ArrayList<String> reginaBattle = new ArrayList<>();
+        reginaBattle.add("Im not like a regular mom.  Im a cool mom");
         String reginaFlirt = "And right now, your getting on my last nerve! Switch";
-        String reginaBattle = "Im not like a regular mom.  Im a cool mom";
         String reginaDeath = "Im going to forgive you because im a very Zen person.  And im on a lot of pain medication right now";
         String reginaIntro = "Get in loser.  We`re going shopping";
         MiniBoss reginaGeorge = new MiniBoss(75,"Regina George", peachDress,heel,4,reginaLoot,reginaFlirt,reginaIntro,reginaBattle,reginaDeath);
@@ -327,8 +324,9 @@ public class ConsoleDriver {
         ArrayList<Item> karenLoot = new ArrayList<>();
         karenLoot.add(peachDress);
         karenLoot.add(heel);
+        ArrayList<String> karenBattle = new ArrayList<>();
+        karenBattle.add("Well... Im kinda psychic.  I have a fifth sense.");
         String karenFlirt = "Why are you dressed so scary?";
-        String karenBattle = "Well... Im kinda psychic.  I have a fifth sense.";
         String karenDeath = "So that's against the rules, and you cant sit with us";
         String karenIntro = "On Wednesdays we wear pink";
         MiniBoss karen = new MiniBoss(90,"Karen Smith", peachDress,heel,6,karenLoot,karenFlirt,karenIntro,karenBattle,karenDeath);
@@ -336,8 +334,9 @@ public class ConsoleDriver {
         ArrayList<Item> gretchenLoot = new ArrayList<>();
         gretchenLoot.add(peachDress);
         gretchenLoot.add(heel);
+        ArrayList<String> gretchenBattle = new ArrayList<>();
+        gretchenBattle.add("thats so fetch");
         String gretchenFlirt = "Im sorry that people are so jealous of me.  But i can`t help it that im popular";
-        String gretchenBattle = "thats so fetch";
         String gretchenDeath = "Oh no, I cant say anything else until i have a parent or lawyer present";
         String gretchenIntro = "you can only wear your hair in a ponytail once a week, so i guess you chose today";
         MiniBoss gretchen = new MiniBoss(100,"Gretchen Weiners", peachDress,heel,8,gretchenLoot,gretchenFlirt,gretchenIntro,gretchenBattle,gretchenDeath);

@@ -4,7 +4,7 @@ import java.util.Random;
 public class Girlfriend extends Character{
     private Item medal;           //awarded when you defeat your girlfriend
     private int difficulty;         //use 1,2,3 to denote difficulties
-    private ArrayList<String> dialogue;
+    private ArrayList<String> battleDialogue;
     private boolean spAtkUsed;
     private ArrayList<String> flirtOptions;         //Holds a list of strings to display flirting options to the player
     private ArrayList<String> flirtResponses;       //Holds a list of responses to each option plus an extra at index 0 for a successful flirt
@@ -27,17 +27,17 @@ public class Girlfriend extends Character{
      * @param weapon - weapon wielded by girlfriend
      * @param critChance - chance to land a critical hit
      * @param difficulty - level of difficulty related to the girlfriend
-     * @param dialogue - list of dialogue
+     * @param battleDialogue - list of battleDialogue
      */
-    public Girlfriend(int HP, String name, Armor armor, Weapon weapon, double critChance, int difficulty, ArrayList<String> dialogue, ArrayList<String> flirtDialogue, ArrayList<String> flirtResponses, String flirtSuccess) {
-        super(HP, name, armor, weapon, critChance);
+    public Girlfriend(int HP, String name, Armor armor, Weapon weapon, double critChance, int difficulty, ArrayList<String> battleDialogue, ArrayList<String> flirtDialogue, ArrayList<String> flirtResponses, String flirtSuccess) {
+        super(HP, name, armor, weapon, critChance, battleDialogue);
         this.medal = makeMedal(difficulty);
         this.difficulty = difficulty;
         this.flirtSuccess = flirtSuccess;
         flirtLimit = 0;
 
-        this.dialogue = new ArrayList<>();      this.flirtOptions = new ArrayList<>();          this.flirtResponses = new ArrayList<>();
-        this.dialogue.addAll(dialogue);         this.flirtOptions.addAll(flirtDialogue);        this.flirtResponses.addAll(flirtResponses);
+        this.flirtOptions = new ArrayList<>();          this.flirtResponses = new ArrayList<>();
+        this.flirtOptions.addAll(flirtDialogue);        this.flirtResponses.addAll(flirtResponses);
 
         spAtkUsed = false;
     }
@@ -80,16 +80,15 @@ public class Girlfriend extends Character{
     }
 
     /**
-     * Returns a string of dialogue from the dialogue list attached to this girlfriend
-     * @return String;
+     * Returns a string of battleDialogue from the battleDialogue list attached to this girlfriend
      */
-    //TODO: have this return a string from the battle dialogue list
-    public String dialogue() {return "Impress me or die";}
+    //TODO: have this return a string from the battle battleDialogue list
+    public void dialogue() {}
 
-    //TODO: decide how much dialogue needs to go in this method (might make more sense to put the end dialogue elsewhere)
+    //TODO: decide how much battleDialogue needs to go in this method (might make more sense to put the end battleDialogue elsewhere)
     public void giveMedal(Player p) {
         System.out.println("After pouring your blood, sweat, and tears onto " + name + "'s bosom in the heat of battle, she finally starts to settle down.");
-        System.out.println(""); // cool ending dialogue
+        System.out.println(""); // cool ending battleDialogue
         p.addItemPack(medal);
     }
 
