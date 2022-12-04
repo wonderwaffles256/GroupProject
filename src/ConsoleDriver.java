@@ -523,12 +523,12 @@ public class ConsoleDriver {
             }
             case 2 ->{//create difficulty 2 gf
                 //Padme Amidala
-                girlFlirtSuccess = "sop";
+                girlFlirtSuccess = "123";
                 return new Girlfriend();
             }
             case 3 -> {//create difficulty 3 gf
                 //Rasputin
-                girlFlirtSuccess = "Hi";
+                girlFlirtSuccess = "345";
                 return new Girlfriend();
             }
         }
