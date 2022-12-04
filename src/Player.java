@@ -51,12 +51,12 @@ public class Player extends Character{
      * @return clout
      */
     //getters
-    public double getClout() {return clout;}
-    public int getCORN() {return CORN;}
-    public String getCurrentLocation() {return currentLocation;}
-    public boolean getLocComplete() {return locComplete;}
-    public ArrayList<Item> getItemPack() {return itemPack;}
-    public ArrayList<Enemy> getCompanions() {return companions;}
+    public double getClout() {return this.clout;}
+    public int getCORN() {return this.CORN;}
+    public String getCurrentLocation() {return this.currentLocation;}
+    public boolean getLocComplete() {return this.locComplete;}
+    public ArrayList<Item> getItemPack() {return this.itemPack;}
+    public ArrayList<Enemy> getCompanions() {return this.companions;}
 
     //setters
     public void setCORN(int CORN) {this.CORN = CORN;}
@@ -113,8 +113,8 @@ public class Player extends Character{
      * this act of cowardice decreases their clout
      */
     public void flee() {
-        this.clout -= this.clout - 0.2;
-        System.out.println("How can you expect to impress a girl if you cannot impress yourself?.\n" +
+        this.clout = this.clout - 0.2;
+        System.out.println("How can you expect to conquer a girl if you cannot conquer yourself?.\n" +
                            "CLOUT reduced by 0.2!");
     }
 
@@ -161,9 +161,9 @@ public class Player extends Character{
                                 Please enter the number of your desired option.
                                     If you want to bail out, enter 0.
                                                                 
-                                Do you:\s
+                                Do you:
                                 """);
-                        System.out.println(options);
+                        System.out.println("\u0001B[33m" + options + "\u001B[0m");
                         int choice = sc.nextInt();
                         sc.nextLine();
 
@@ -285,7 +285,8 @@ public class Player extends Character{
     public void displayCompanions() {
         for(int i = 0; i < this.companions.size(); i++) {
             Character companion = this.companions.get(i);
-            System.out.println("\u001B[34mCompanion " + i + ": " + companion.getName()  + " ___ Weapon: " + companion.getWeapon().getName() + " - " + companion.getWeapon().getDamage() + " dmg\u001B[0m");
+            System.out.println("\u001B[34m      Companion " + i + ": " + companion.printInfo());
+
         }
     }
     //change to equipItem
@@ -336,31 +337,35 @@ public class Player extends Character{
             System.out.println("You reach into your pockets. Whatever money you had has vanished.");
         }
         else {
-            Thread.sleep(1500);
-            System.out.println("Game Over");
-            Thread.sleep(1500);
-            System.out.println("---------------------Farmer's Only Quest------------------------");
-            Thread.sleep(1500);
-            System.out.println("Programmers, Writers, Designers, and Masters of the Universe:\n");
-            Thread.sleep(1500);
-            System.out.println("                      Daniel Newcomb");
-            Thread.sleep(1500);
-            System.out.println("                      Sean Malencia");
-            Thread.sleep(1500);
-            System.out.println("                      Owen Schulze");
-            Thread.sleep(1500);
-            System.out.println("                      Noah Adams");
-            Thread.sleep(1500);
-            System.out.println("                   Thanks for playing!");
-            System.exit(0);
+            credits();
         }
+    }
+
+    public void credits() throws InterruptedException{
+        Thread.sleep(1500);
+        System.out.println("Game Over");
+        Thread.sleep(1500);
+        System.out.println("---------------------Farmer's Only Quest------------------------");
+        Thread.sleep(1500);
+        System.out.println("Programmers, Writers, Designers, and Masters of the Universe:\n");
+        Thread.sleep(1500);
+        System.out.println("                      Daniel Newcomb");
+        Thread.sleep(1500);
+        System.out.println("                      Sean Malencia");
+        Thread.sleep(1500);
+        System.out.println("                      Owen Schulze");
+        Thread.sleep(1500);
+        System.out.println("                      Noah Adams");
+        Thread.sleep(1500);
+        System.out.println("                   Thanks for playing!");
+        System.exit(0);
     }
 
     public void giveCORN(Random chance) {
         //gives random corn
         int newCORN = chance.nextInt(10,25);
         this.CORN += newCORN;
-        System.out.println("You find a shiny stash of " + newCORN + " CORN sticking out of its pocket");
+        System.out.println("\u001B[33mYou find a shiny stash of " + newCORN + " CORN sticking out of its pocket\u001B[0m");
     }
     public void giveCORN() {
         Random r = new Random();
@@ -417,6 +422,9 @@ public class Player extends Character{
         for(Enemy c : companions) {
              c.setTired(false);
         }
+        if(companions.size() > 0) {
+            System.out.println("Your companions have taken a good rest. They will be ready for the next battle");
+        }
     }
 
     /**
@@ -424,9 +432,9 @@ public class Player extends Character{
      * @param opp - enemy player is fighting
      */
     public void file(Character opp){
-        System.out.println("\u001B[34m" + name + " has " + HP + " HP, wielding a " + this.weapon.getName() + "\n" +
-                opp.getName() + " has " + opp.getHP() + " left. Hope you can overcome that\n"
-                + "Current Companions: \u001B[0m");
+        System.out.println(printInfo());
+        System.out.println(opp.printInfo());
+        System.out.println("\u001B[34mCompanions: \u001B[0m");
         if(companions.size() > 0) {
             displayCompanions();
         }
@@ -434,7 +442,5 @@ public class Player extends Character{
             System.out.println("\u001B[34m  None\n\u001B[0m");
         }
     }
-    public void dialogue() {
-        System.out.println(name);
-    }
+
 }

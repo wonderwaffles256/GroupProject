@@ -1,25 +1,13 @@
 import java.util.*;
-//TODO companions jump in and fight randomly -done and works but should be reviewed.  method is critchance in player
 //TODO make girlfriend mainly needs dialogue
-//TODO fix death
 //TODO port console driver over to runGame
-//TODO make more enemies
+//TODO make more enemies-
 //TODO implement miniBoss flirting mechanics
+//TODO delete unused code
 
 public class ConsoleDriver {
     public static void main(String[] args) throws InterruptedException {
         //bulk of logic elsewhere
-        //should only have input-output logic
-        //such as: talk to user, get user input, show changes to user
-
-        //eg
-        //create am object of type Game, Adventure...
-        //Game g = new Game();
-        //maybe while(g.hasWon())
-        //ask user for input
-        //call g.displayStatus() --- or displayBoard()
-
-        //can add a GUI with minimal if any changes to game logic
         ConsoleDriver game = new ConsoleDriver();
 
 
@@ -84,15 +72,18 @@ public class ConsoleDriver {
      * Prints a menu to inform user and gather input
      */
     public void combat(Player p,Character enemy) throws InterruptedException{
+        boolean gameOver = false;
         if(!(enemy instanceof MiniBoss)) {
-            Thread.sleep(1200);
+            Thread.sleep(1500);
             System.out.println("\u001B[31m" + enemy.getName() + " has appeared!" + "\u001B[0m");
+            Thread.sleep(1500);
         }
         Scanner scnr = new Scanner(System.in);
 
         boolean done = false;
         while (!done) {
             enemy.dialogue();
+            Thread.sleep(1750);
             boolean goodinput = false;
             while (!goodinput) {
                 System.out.println("Would you like to Fight( 1 ), Flirt( 2 ), Flask ( 3 ), Flee ( 4 ), or File( 5 ).\n" +
@@ -109,6 +100,7 @@ public class ConsoleDriver {
                         }
                         else {
                             done = p.flirt(enemy, p);
+                            Thread.sleep(2000);
                         }
                         goodinput = true;
                     }
@@ -123,7 +115,7 @@ public class ConsoleDriver {
                     }
                     case "5" -> p.file(enemy);
 
-                    default -> System.out.println("Your intelligence must be the size of a pea. Input again");
+                    default -> {System.out.println("Your intelligence must be the size of a pea. Input again"); Thread.sleep(1500);}
                 }
             }
 
@@ -145,13 +137,33 @@ public class ConsoleDriver {
                 enemy.fight(p);
             }
             if(p.getHP() <= 0) {
-                System.out.println("You tried to fight for the love of your life, but you ended up dying to " + "\u001B[31m" + enemy.getName() + "\u001B[0m");
-                p.death();
+                if(!(enemy instanceof Girlfriend g)) {
+                    Thread.sleep(1500);
+                    System.out.println("\u0001B[31mYour attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
+                    p.death();
+                }
+                else {
+                    System.out.println("What a pathetic display of ineptitude.");
+                    Thread.sleep(2500);
+                    System.out.println("You really thought you could defeat " + g.getName() + " with so little clout?.");
+                    Thread.sleep(3000);
+                    System.out.println("You lack ambition, and so did your friends.");
+                    Thread.sleep(3500);
+                    System.out.println("Goodbye, incel.");
+                    Thread.sleep(3000);
+                    p.credits();
+                    gameOver = true;
+                }
+
                 done = true;
             }
+        }
+        if(!gameOver && p.getCompanions().size() > 0) {
             p.restCompanions();
         }
+        Thread.sleep(1750);
     }
+
     public void introDialogue() throws InterruptedException {
         System.out.println("\n \n \n \n \n \n \n \n");
         System.out.println("Your journey begins where most great journeys begin: \n a field");
@@ -162,11 +174,11 @@ public class ConsoleDriver {
         Thread.sleep(1500);
         System.out.println("In order to assure she says yes, you decide to embark on an expedition, a journey, one to be told about for eons");
         Thread.sleep(1500);
-        System.out.println("You get up and walk, walk until you feel ready");
-        Thread.sleep(1000);
+        System.out.println("You get up and walk forward. Maybe after a long adventure, you will be ready");
+        Thread.sleep(1500);
         System.out.println("As you walk over a hill, you can see a dense forest off in the distance.");
         Thread.sleep(1500);
-        System.out.println("You travel through the forest as dark figures dart in the shadows");
+        System.out.println("Your feet carry you onward.\nAs the canopy around you closes in, steadily darkening the path in front of you, you get the sense that something nefarious lurks in the darkness.");
     }
 
     public void start(int difficulty, String name) throws InterruptedException {
@@ -220,13 +232,13 @@ public class ConsoleDriver {
         Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 8, beetBattleDialogue, beetFlirtDialogue);
         //
 
-        String ogreSuccess = "Grunts happily";
+        String ogreSuccess = "*Grunts happily*";
         ArrayList<Item> ogreLoot = new ArrayList<>();
         ArrayList<String> ogreBattleDialogue = new ArrayList<>();
-        ogreBattleDialogue.add("Grunts angrily");
+        ogreBattleDialogue.add("*Grunts angrily*");
         ArrayList<String> ogreFlirtDialogue = new ArrayList<>();
-        ogreFlirtDialogue.add("1 - Assert dominance by grunting louder \n" + "2 - Hand him a flower \n" + "3 - Smack the ground to make a loud noise");
-        ogreFlirtDialogue.add("Grunts louder then before and somehow looks angrier and uglier");
+        ogreFlirtDialogue.add("1 - Assert dominance by grunting louder \n" + "2 - Hand him a flower \n" + "3 - Smack the ground sensually");
+        ogreFlirtDialogue.add("Grunts louder than before, somehow looking angrier and uglier");
         ogreFlirtDialogue.add(ogreSuccess);
         ogreFlirtDialogue.add("Laughs at you and then returns to his angry ogre face");
         Enemy ogre = new Enemy(12, "Ogre", overalls, BatWithNails, 7, ogreLoot, ogreSuccess, 7, ogreBattleDialogue, ogreFlirtDialogue);
@@ -245,22 +257,22 @@ public class ConsoleDriver {
         String pSuccess = "*Chimes happily and flies close to you*";
         ArrayList<Item> pLoot = new ArrayList<>();
         ArrayList<String> pBattleDialogue = new ArrayList<>();
-        pBattleDialogue.add("*Threatening orb of light approaches*");
+        pBattleDialogue.add("*Glows threateningly*");
         ArrayList<String> pFlirtDialogue = new ArrayList<>();
         pFlirtDialogue.add("1 -  Joke about burning down the forest \n" + "2 - compliment its radiance \n" + "3 - admire the beauty of nature");
         pFlirtDialogue.add("*flies around looking even angrier*");
-        pFlirtDialogue.add("*continues shining brilliantly*");
+        pFlirtDialogue.add("*shines brighter, burning your retinas*");
         pFlirtDialogue.add(pSuccess);
         Enemy pixie = new Enemy (15, "Pixie", noArmor,magicWand , 8, pLoot,pSuccess,6,pBattleDialogue,pFlirtDialogue);
 
-        String panSuccess = "YES! together we shall vanquish the rising wage gap and distribute the wealth through violent revolution!";
+        String panSuccess = "YES! Together we shall vanquish the rising wage gap and distribute the wealth through violent revolution!";
         ArrayList<Item> panLoot = new ArrayList<>();
         ArrayList<String> panBattleDialogue = new ArrayList<>();
         panBattleDialogue.add("Who dares challenge the protector of the poor");
         ArrayList<String> panFlirtDialogue = new ArrayList<>();
         panFlirtDialogue.add("1 - describe your hate for the wealthy and love for the poor \n" + "2 - Talk about how much money you have \n" + "3 - compliment his bow");
         panFlirtDialogue.add(panSuccess);
-        panFlirtDialogue.add("Then you not only deserve not your life, but neither your money");
+        panFlirtDialogue.add("Then you deserve to be crushed by the common man, bourgeoisie pig.");
         panFlirtDialogue.add("It'll be the last thing you see");
         Enemy robinHood = new Enemy(30, "Robin Hood", noArmor, Bow, 4, panLoot, panSuccess, 5, panBattleDialogue, panFlirtDialogue);
 
@@ -363,24 +375,25 @@ public class ConsoleDriver {
         Queue<MiniBoss> miniBosses= new LinkedList();
         miniBosses.add(reginaGeorge);
         miniBosses.add(karen);
-        miniBosses.add(karen);
+        miniBosses.add(gretchen);
 
         while  (locations.size() > 0) {
             location(player, locations.peek());
             miniBossFight(player,miniBosses.poll(),locations.poll());
             s.shopMenu(player);
         }
-        boolean flirtedSuccessfullywGF = false;
+
         System.out.println("After a long journey you make it to your girlfriends house.");
         Thread.sleep(1000);
-        System.out.println("You knock on her door to see" + gf.getName() + " standing in front of you.");
+        System.out.println("You knock on her door to see " + gf.getName() + " standing in front of you.");
         Thread.sleep(1000);
-        System.out.println("She looks rather angry with you and it seems like she also want to test you to see if you are worthy of dating her");
+        System.out.println("She looks rather angry with you and it seems like she also wants to test you to see if you are worthy of dating her");
         combat(player,gf);
-        if(gf.getFlirtLimit() == 5){flirtedSuccessfullywGF = true;}
-        ending(flirtedSuccessfullywGF);
+
+        ending(gf.getFlirtLimit() == 5);
 
     }
+
     public void miniBossFight(Player p, MiniBoss B, Location L) throws InterruptedException {
         B.introFight(p);
         combat(p,B);
@@ -494,6 +507,7 @@ public class ConsoleDriver {
                 girlFlirtDialogue.add("1 - give her a scooby snack\n" + "2 - talk about how her glasses look nice\n" + "3 - Solve a mystery that she has been troubled over for a long time");
                 girlFlirtDialogue.add("4 - Rant about 5th century war strategies\n" + "5 - Explain how DB Cooper escaped to Uganda where he ran an underground child sweatshop\n" + "6 - say the greatest mystery is what we learned along the way");
                 //The correct options are 3 and 5
+                girlFlirtResponses.add("Jinkies! I...I think I kinda...you could, you know...be part of the gang with me from now on.");
                 girlFlirtResponses.add("Eww those things taste gross. How can Shaggy eat those");
                 girlFlirtResponses.add("Honestly I hate them they always fall off my face");
                 girlFlirtResponses.add("Oh really you have a mystery to solve. Mysteries are my favorite thing on the planet");

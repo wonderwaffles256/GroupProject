@@ -79,12 +79,6 @@ public class Girlfriend extends Character{
         }
     }
 
-    /**
-     * Returns a string of battleDialogue from the battleDialogue list attached to this girlfriend
-     */
-    //TODO: have this return a string from the battle battleDialogue list
-    public void dialogue() {}
-
     //TODO: decide how much battleDialogue needs to go in this method (might make more sense to put the end battleDialogue elsewhere)
     public void giveMedal(Player p) {
         System.out.println("After pouring your blood, sweat, and tears onto " + name + "'s bosom in the heat of battle, she finally starts to settle down.");
@@ -105,7 +99,7 @@ public class Girlfriend extends Character{
         }
         else{
             opponent.setHP(opponent.HP - this.weapon.getDamage());
-            System.out.println("Your girlfriend throws a " + this.weapon.getName() + " at you for " + this.weapon.getDamage() + " Damage.");
+            System.out.println("\u001B[31m" + name + " throws her " + this.weapon.getName() + " at you for " + this.weapon.getDamage() + " Damage.\u001B[0m");
         }
 
     }

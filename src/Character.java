@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -66,7 +67,11 @@ public abstract class Character {
      */
     public abstract void fight(Character opponent);
 
-    public abstract void dialogue();
+    public void dialogue() {
+        Random r = new Random();
+        int i = r.nextInt(this.battleDialogue.size());
+        System.out.println(this.battleDialogue.get(i) + "    - " + name);
+    }
 
     /**
      * equip armor adds the strength value to the hp value to make a player equip a piece of armor.
@@ -75,4 +80,8 @@ public abstract class Character {
      * @param armor - a newly acquired set of armor
      */
     public void equipArmor(Armor armor) {}//implement later
+
+    public String printInfo() {
+        return("\u001B[34m" + name + " ___ HP: " + HP + "   Weapon: " + weapon.getName() + " - " + weapon.getDamage() + " dmg ______ " + weapon.getDescription() + "\u001B[0m");
+    }
 }

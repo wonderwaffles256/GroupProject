@@ -41,21 +41,22 @@ public class MiniBoss extends Character {
         else {
             p.giveCORN();
         }
+        p.setClout(p.getClout() + 0.1);
 
     }
     public void flirt() {
         System.out.println("You try to flirt with " + name + " but he is unmoved by any advances you make upon him");
         System.out.println(flirtDialogue);
     }
+
     public void introFight(Player p) {
-        System.out.println(name + "has appeared!");
+        System.out.println("\u001B[31m" + name + " has appeared!\u001B[0m");
         System.out.println(introDialogue);
         fight(p);
     }
-    public void dialogue() {
 
-    }
     public void deathDialogue() {
         System.out.println(deathDialogue);
     }
-    }
+
+}

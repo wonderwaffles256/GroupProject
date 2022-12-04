@@ -60,14 +60,6 @@ public class Enemy extends Character{
     public void setTired(boolean tired) {this.tired = tired;}
 
     /**
-     * Returns a string of randomly generated battleDialogue
-     */
-    public void dialogue() {
-        int i = r.nextInt(this.battleDialogue.size());
-        System.out.println(this.battleDialogue.get(i));
-    }
-
-    /**
      * checks to see if player has met this enemy's flirt requirement for companionship
      * @param option - integer representing the player's choice o flirting options
      * @return - returns the enemy on a success
@@ -93,7 +85,7 @@ public class Enemy extends Character{
 
     public void giveLoot(Player p) {
         //gives player a random piece of loot from the list
-        if(r.nextInt(100) >= 75) {
+        if(r.nextInt(100) >= 80) {
             int i = r.nextInt(loot.size());
             p.addItemPack(loot.get(i));
             System.out.println("On the corpse of " + name + ", you found a " + loot.get(i).getName());
@@ -101,6 +93,8 @@ public class Enemy extends Character{
         else {
             p.giveCORN(r);
         }
+        p.setClout(p.getClout() + 0.1);
+        System.out.println("Clout increased by " + 0.1);
 
     }
 

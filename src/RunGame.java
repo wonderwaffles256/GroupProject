@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class RunGame {
     //use to test runGame
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
         RunGame game = new RunGame();
         game.start(1);
 //        for(int i=0; i<10; i++) {
@@ -12,7 +12,7 @@ public class RunGame {
 //        }
     }
 
-    public void combat(Player p,Character enemy){
+    public void combat(Player p,Character enemy) throws InterruptedException{
         System.out.println(enemy.getName() + " has appeared!");
         Scanner scnr = new Scanner(System.in);
 
@@ -67,7 +67,7 @@ public class RunGame {
 
     }
 
-    public void start(int difficulty) {
+    public void start(int difficulty) throws InterruptedException {
         //creates each basic object in the game (such as items, weapons, etc.)
         //contains dialogue
         Weapon gun = new Weapon("gun", 100, 10, "It shoots stuff");
