@@ -1,5 +1,9 @@
+import javax.swing.*;
 import java.sql.SQLOutput;
 import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class game {
     public void tutorial(Player p, Enemy e) throws InterruptedException {
@@ -518,6 +522,15 @@ public class game {
         }
         return null;
     }
+    public void Credits() {
+        var frame = new JFrame();
+        var icon = new ImageIcon("Love QUest.png");
+        var label = new JLabel(icon);
+        frame.add(label);
+        frame.setDefaultCloseOperation
+                (JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);    }
 
     public void ending(boolean goodEnd){
         if(goodEnd){
@@ -525,11 +538,13 @@ public class game {
             System.out.println("With your amassed clout and your amazing pick-up lines you manage to convince your Girlfriend to fully date you.");
             System.out.println("She has some pain from how much she got hit but shes still loves you");
             System.out.println("If you want more pay $30 for a better written ending");
+            Credits();
         }
         else{
             System.out.println("Bad End");
             System.out.println("In your attempt to convince your girlfriend to stay with you end up killing your girlfriend");
             System.out.println("The cops are quick to arrive on the scene and after seeing your weapon the cops fire on site and kill you immediately");
+            Credits();
         }
     }
    }
