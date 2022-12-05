@@ -425,7 +425,7 @@ public class game {
 
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad,patman,jBourne,Bond,Jawa,JohnWick,KingArthur,TuskenRaider,snoopy, snoopDog, jarJar));        //contains one of the enemies in order of creation
 
-        Player player = new Player(200, name, overalls, oneshot, 10);
+        Player player = new Player(200, name, overalls, club, 10);
 
         //tutorial
         System.out.println("Would you like to play the tutorial? \n press 1 for yes and 2 for no");
