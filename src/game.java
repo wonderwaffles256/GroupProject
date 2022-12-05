@@ -182,6 +182,7 @@ public class game {
         Weapon paddle = new Weapon("A paddle",10,5,"A child Abuse paddle");
         Weapon chemo = new Weapon("10-rounds of Chemotherapy",100,60,"Jesse how could you be so stupid. I am the one who Chemos.");
         Weapon heel = new Weapon("Heel", 29,35,"Worn by the meaniest of girls and swung by those even meaner" );
+        Weapon axe = new Weapon("Axe",55,30,"An American made axe that seems to be the property of some psycho");
 
 
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
@@ -279,7 +280,16 @@ public class game {
 //        Enemy JohnWick = new Enemy(30, "John Wick", suit, buisness, gun, 2, wickLoot, wickSuccess, 3, wickBattleDialogue, wickFlirtDialogue)
 //        snoopy
 //        snoop dog
-        //patrick bateman
+        String patSuccess = "That's bone. And the lettering is something called Silian Rail";
+        ArrayList<Item> patLoot = new ArrayList<>();
+        ArrayList<String> patBattleDialogue = new ArrayList<>();
+        patBattleDialogue.add("Ever heard of Huey Lewis and the News?");
+        ArrayList<String> patFlirtDialogue = new ArrayList<>();
+        patFlirtDialogue.add("1 - Complement his business card\n" + "2 - Talk about your taste in music\n" + "3 - Talk about yourself");
+        patFlirtDialogue.add(patSuccess);
+        patFlirtDialogue.add("There is no band out there greater than Huey Lewis and the News and I would like to see your head on a pike");
+        patFlirtDialogue.add("If you don't shut your fucking mouth, I will kill you.");
+        Enemy patman = new Enemy(55,"Patrick Bateman",buisness,axe,4,patLoot,patSuccess,4,patBattleDialogue,patFlirtDialogue);
         //jar jar binks
 //
 //        Enemy yurMum =
@@ -305,7 +315,7 @@ public class game {
         WaltFlirtDialogue.add("I am the one who knocks!");
         Enemy BreakBad = new Enemy(10,"Walter White",hat,chemo,5,WaltLoot,WaltSuccess,3,WaltBattleDialogue,WaltFlirtDialogue);
 
-        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad));        //contains one of the enemies in order of creation
+        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad,patman));        //contains one of the enemies in order of creation
 
         Player player = new Player(100, name, overalls, oneshot, 10);
 
@@ -528,8 +538,25 @@ public class game {
             }
             case 3 -> {//create difficulty 3 gf
                 //Rasputin
-                girlFlirtSuccess = "345";
-                return new Girlfriend();
+                Weapon ras = new Weapon("Sleeper Simulant",1000,55,"Now that is a Destiny 2 reference");
+                Armor rarmor = new Armor("Royal Russian Garb",999,150,"The attire of an eccentric Russian Man");
+                girlFlirtSuccess = "159";
+                girlDialogue.add("Try as you might many have made attempts on my life and many have failed");
+                girlFlirtDialogue.add("1 - Complement his taste in woman\n" + "2 - Ask him to dance\n" + "3 - Offer him some wine");
+                girlFlirtDialogue.add("4 - Ask about his role in current Russian politics\n" + "5 - Show him your priceless vodka collection\n" + "6 - Ask him to teach you how to ride a bear");
+                girlFlirtDialogue.add("7 - Talk about current Russian political strategies involving the current Czar\n" + "8 - Turn on Rasputin and attempt to replicate the silly little Russian dance\n" + "9 - Offer him a Russian Queen");
+
+                girlFlirtResponses.add("Your words give me the utmost respect and trust for you so I will now drink this wine i got from a mysterious stranger");
+                girlFlirtResponses.add("My taste in women is any that lay in my bed");
+                girlFlirtResponses.add("I appreciate the offer as I am always in the mood to do a silly little Russian dance");
+                girlFlirtResponses.add("The last time I had some wine that was offered to me I was poisoned");
+                girlFlirtResponses.add("As a true prophet I will never discuss my ideals to a peasant like yourself");
+                girlFlirtResponses.add("Vodka: a Russian's lifeblood");
+                girlFlirtResponses.add("Only an absolute madman would attempt to ride a bear least they wish to be put-in its mouth");
+                girlFlirtResponses.add("All I will tell you is that I cured the Czar's boy you are not qualified to know more than that");
+                girlFlirtResponses.add("Your attempts to replicate my beauty are pitiful. Pathetic");
+                girlFlirtResponses.add("As Russia's Greatest love machine I am pleased with this offering.");
+                return new Girlfriend(550,"Rasputin",rarmor,ras,6,difficulty,girlDialogue,girlFlirtDialogue,girlFlirtResponses,girlFlirtSuccess);
             }
         }
         return null;
