@@ -3,7 +3,6 @@ import java.util.*;
 //TODO delete unused code - everyone
 //TODO balance stuff - everyone
 //TODO make gf for medium difficulty - Daniel
-//TODO make sure the color dialogue works correctly -Owem
 //TODO javadoc methods - everyone
 
 public class ConsoleDriver {

@@ -131,7 +131,7 @@ public class game {
             if(p.getHP() <= 0) {
                 if(!(enemy instanceof Girlfriend)) {
                     Thread.sleep(1500);
-                    System.out.println("\u0001B[31mYour attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
+                    System.out.println("\u0001B[31m" + "Your attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
                     p.death();
                 }
                 else {
@@ -454,8 +454,8 @@ public class game {
         System.out.println("\u001B[35m" + "You come across an old chest");
         if (i instanceof Weapon) {
             System.out.println("Inside the chest is a weapon \n You inspect the weapon: " + "\u001B[0m" );
-            System.out.println(i.getName() + " does " + ((Weapon) i).getDamage() + " damage \n its inscription reads: "  + i.getDescription());
-            System.out.println("your current weapon does " + p.getWeapon().getDamage());
+            System.out.println(i.getName() + " does " + ((Weapon) i).getDamage() + " damage \n its inscription reads: "  + i.getDescription() + "\u001B[0m");
+            System.out.println("\u001B[36m" + "your current weapon does " + p.getWeapon().getDamage() + "\u001B[0m");
             System.out.println("Would you like to equip this item? \n 1 for yes, and 2 for no");
             p.addItemPack(i);
             while (!loop) {
@@ -471,15 +471,15 @@ public class game {
             }
         }
         else if (i instanceof Consumable) {
-            System.out.println("Inside the chest is a drink \n You inspect the drink"+ "\u001B[0m");
-            System.out.println(i.getName() + " heals for " + ((Consumable) i).getHealing() + "\n its inscription reads: " + i.getDescription() + "\n you place the item in your flask" + "\u001B[0m");
+            System.out.println("Inside the chest is a drink \n You inspect the drink");
+            System.out.println(i.getName() + " heals for " + ((Consumable) i).getHealing() + "\n its inscription reads: " + i.getDescription() + "\u001B[0m" +  "\n you place the item in your flask");
             p.addItemPack(i);
 
         }
         else if (i instanceof Armor) {
-            System.out.println("Inside the chest is some clothes \n You inspect the clothes" + "\u001B[0m");
-            System.out.println(i.getName() + " has an armor rating of " + ((Armor) i).getStrength() + "\n its inscription reads: " + i.getDescription());
-            System.out.println("your current armor, " + p.getArmor().getName() + ", has a rating of " + p.getArmor().getStrength());
+            System.out.println("Inside the chest is some clothes \n You inspect the clothes");
+            System.out.println(i.getName() + " has an armor rating of " + ((Armor) i).getStrength() + "\n its inscription reads: " + i.getDescription() + "\u001B[0m");
+            System.out.println("\u001B[36m" + "your current armor, " + p.getArmor().getName() + ", has a rating of " + p.getArmor().getStrength() + "\u001B[0m");
             System.out.println("Would you like to equip this Armor? \n 1 for yes, and 2 for no");
             p.addItemPack(i);
             while (!loop) {
@@ -497,8 +497,8 @@ public class game {
         }
 
         else {
-            System.out.println("Inside the chest is a item \n You inspect the item" + "\u001B[0m");
-            System.out.println(i.getName() + "it is worth" + i.getValue() + "\n its inscription reads: " + i.getDescription() + "\n you place the item in your pack");
+            System.out.println("Inside the chest is a item \n You inspect the item");
+            System.out.println(i.getName() + "it is worth" + i.getValue() + "\n its inscription reads: " + i.getDescription() + "\u001B[0m" + "\n you place the item in your pack");
             p.addItemPack(i);
         }
     }

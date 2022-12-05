@@ -36,7 +36,7 @@ public class MiniBoss extends Character {
         if(chance.nextInt(100) >= 50) {
             int i = chance.nextInt(loot.size());
             p.addItemPack(loot.get(i));
-            System.out.println("On the corpse of " + name + ", you found a " + loot.get(i).getName());
+            System.out.println( "\u001B[33m" + "On the corpse of " + name + ", you found a " + loot.get(i).getName() + "\u001B[0m");
         }
         else {
             p.giveCORN();
@@ -45,18 +45,18 @@ public class MiniBoss extends Character {
 
     }
     public void flirt() {
-        System.out.println("You try to flirt with " + name + " but he is unmoved by any advances you make upon him");
-        System.out.println(flirtDialogue);
+        System.out.println("You try to flirt with " + "\u001B[31m" + name + "\u001B[0m" + " but he is unmoved by any advances you make upon him");
+        System.out.println("\u001B[31m" + flirtDialogue + "\u001B[0m");
     }
 
     public void introFight(Player p) {
-        System.out.println("\u001B[31m" + name + " has appeared!\u001B[0m");
-        System.out.println(introDialogue);
+        System.out.println("\u001B[31m" + name + " has appeared!" + "\u001B[0m");
+        System.out.println("\u001B[31m" + introDialogue + "\u001B[0m");
         fight(p);
     }
 
     public void deathDialogue() {
-        System.out.println(deathDialogue);
+        System.out.println( "\u001B[31m" + deathDialogue + "\u001B[0m");
     }
 
 }

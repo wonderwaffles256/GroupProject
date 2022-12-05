@@ -70,16 +70,15 @@ public class Girlfriend extends Character{
      * @param player - needed in order to change the Players hp value after being attacked
      */
     public void specialAttack(int difficulty, Character player) {//more stuff for different difficulties
-        System.out.println("I don't know. You've been acting pretty sus lately.");
-        System.out.println("I think we have an imposter Among US");
+        System.out.println("It looks like " + this.getName() + " is gearing up for a special attack");
         if(difficulty == 1){
-            System.out.println("You have just Scoobied your last Doo");
+            System.out.println("\u001B[31m" + "You have just Scoobied your last Doo");
             player.setHP(player.HP - this.weapon.getDamage());
-            System.out.println("Your Girlfriend hits you with the Mystery Machine dealing" + this.weapon.getDamage() + " Damage!");
+            System.out.println("Your Girlfriend hits you with the Mystery Machine dealing" + this.weapon.getDamage() + " Damage!" + "\u001B[0m");
         }
         else if(difficulty == 3){
-            System.out.println("Ra ra Rasputin\n" + "Lover of the Russian queen\n" + "There was a cat that really was gone");
-            System.out.println("Rasputin pulls out a sword and dances like a Barynya dancer while the song Rasputin plays in the background");
+            System.out.println("\u001B[31m" + "Ra ra Rasputin\n" + "Lover of the Russian queen\n" + "There was a cat that really was gone");
+            System.out.println("Rasputin pulls out a sword and dances like a Barynya dancer while the song Rasputin plays in the background" + "\u001B[0m");
             player.setHP(player.getHP()*2/3);
         }
     }
@@ -104,7 +103,7 @@ public class Girlfriend extends Character{
         }
         else{
             opponent.setHP(opponent.HP - this.weapon.getDamage());
-            System.out.println("\u001B[31m" + name + " throws her " + this.weapon.getName() + " at you for " + this.weapon.getDamage() + " Damage.\u001B[0m");
+            System.out.println("\u001B[31m" + name + " throws her " + this.weapon.getName() + " at you for " + this.weapon.getDamage() + " Damage." + "\u001B[0m");
         }
 
     }

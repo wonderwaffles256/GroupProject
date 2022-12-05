@@ -88,13 +88,13 @@ public class Enemy extends Character{
         if(r.nextInt(100) >= 80) {
             int i = r.nextInt(loot.size());
             p.addItemPack(loot.get(i));
-            System.out.println("On the corpse of " + name + ", you found a " + loot.get(i).getName());
+            System.out.println( "\u001B[33m" + "On the corpse of " + name + ", you found a " + loot.get(i).getName() + "\u001B[0m");
         }
         else {
             p.giveCORN(r);
         }
         p.setClout(p.getClout() + 0.1);
-        System.out.println("Clout increased by " + 0.1);
+        System.out.println("\u001B[33m" + "Clout increased by " + 0.1 + "\u001B[0m");
 
     }
 
