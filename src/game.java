@@ -451,7 +451,7 @@ public class game {
         String reginaFlirt = "And right now, your getting on my last nerve! Switch";
         String reginaDeath = "Im going to forgive you because im a very Zen person.  And im on a lot of pain medication right now";
         String reginaIntro = "Get in loser.  We`re going shopping";
-        MiniBoss reginaGeorge = new MiniBoss(75,"Regina George", pinkJumpsuiit,heel,4,reginaLoot,reginaFlirt,reginaIntro,reginaBattle,reginaDeath);
+        MiniBoss reginaGeorge = new MiniBoss(40,"Regina George", pinkJumpsuiit,heel,4,reginaLoot,reginaFlirt,reginaIntro,reginaBattle,reginaDeath);
 
         ArrayList<Item> karenLoot = new ArrayList<>();
         karenLoot.add(peachDress);
@@ -461,7 +461,7 @@ public class game {
         String karenFlirt = "Why are you dressed so scary?";
         String karenDeath = "So that's against the rules, and you cant sit with us";
         String karenIntro = "On Wednesdays we wear pink";
-        MiniBoss karen = new MiniBoss(90,"Karen Smith", pinkJumpsuiit,heel,6,karenLoot,karenFlirt,karenIntro,karenBattle,karenDeath);
+        MiniBoss karen = new MiniBoss(50,"Karen Smith", pinkJumpsuiit,heel,6,karenLoot,karenFlirt,karenIntro,karenBattle,karenDeath);
 
         ArrayList<Item> gretchenLoot = new ArrayList<>();
         gretchenLoot.add(peachDress);
@@ -471,7 +471,7 @@ public class game {
         String gretchenFlirt = "Im sorry that people are so jealous of me.  But i can`t help it that im popular";
         String gretchenDeath = "Oh no, I cant say anything else until i have a parent or lawyer present";
         String gretchenIntro = "you can only wear your hair in a ponytail once a week, so i guess you chose today";
-        MiniBoss gretchen = new MiniBoss(100,"Gretchen Weiners", pinkJumpsuiit,heel,8,gretchenLoot,gretchenFlirt,gretchenIntro,gretchenBattle,gretchenDeath);
+        MiniBoss gretchen = new MiniBoss(60,"Gretchen Weiners", pinkJumpsuiit,heel,8,gretchenLoot,gretchenFlirt,gretchenIntro,gretchenBattle,gretchenDeath);
 
         Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg);
         Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg);
