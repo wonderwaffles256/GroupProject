@@ -1,10 +1,10 @@
 import java.util.*;
-//TODO make girlfriend mainly needs dialogue
-//TODO port console driver over to runGame
-//TODO make more enemies-
-//TODO delete unused code
-//TODO balance stuff
-//TODO make gfs for difficulties
+//TODO make more enemies - everyon
+//TODO delete unused code - everyone
+//TODO balance stuff - everyone
+//TODO make gf for medium difficulty - Daniel
+//TODO make sure the color dialogue works correctly -Owem
+//TODO javadoc methods - everyone
 
 public class ConsoleDriver {
     public static void main(String[] args) throws InterruptedException {
