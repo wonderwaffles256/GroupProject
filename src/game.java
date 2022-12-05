@@ -105,7 +105,7 @@ public class game {
                     }
                     case "4" -> {
                         p.flee();
-                        if(enemy instanceof Girlfriend g) {
+                        if(enemy instanceof Girlfriend) {
                             ending(2, 1);
                         }
                         goodinput = true;
@@ -135,7 +135,9 @@ public class game {
                 if(!(enemy instanceof Girlfriend)) {
                     Thread.sleep(1500);
                     System.out.println("\u0001B[31m" + "Your attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
-                    p.death();
+                    if(p.death()) {
+                        ending(2,1);
+                    }
                 }
                 else {
                     ending(2, 1);
