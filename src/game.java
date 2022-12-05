@@ -279,25 +279,25 @@ public class game {
 
         ArrayList<Item> bondLoot = new ArrayList<>();
         bondLoot.add(buisness);
-        String bondSuccess = "Now that's a good reason to join";
+        String bondSuccess = "I'll have 'em shaken, not stirred";
         ArrayList<String> bondBattleDialogue = new ArrayList<>();
         bondBattleDialogue.add("Its bond.... James Bond");
         ArrayList<String> bondFlirtDialogue = new ArrayList<>();
-        bondFlirtDialogue.add("1 - Flash your lisence to kill\n2 - Compliment his dapper atire\n3 - Ask him what his favorite kill was");
+        bondFlirtDialogue.add("1 - Inform him of the attractive single women on your team\n2 - Compliment his dapper attire\n3 - Ask him what his favorite kill was");
         bondFlirtDialogue.add(bondSuccess);
-        bondFlirtDialogue.add("*Stares back intensly and silently");
+        bondFlirtDialogue.add("*Stares back intensely and silently");
         bondFlirtDialogue.add("Its about to be you");
         Enemy Bond = new Enemy(30, "007", buisness, gun, 2, bondLoot, bondSuccess, 4, bondBattleDialogue, bondFlirtDialogue);
 
         ArrayList<Item> trLoot = new ArrayList<>();
         trLoot.add(laserRifle);
-        String trSuccess = "*happy* HONKKSAAAADSIISSSSSA";
+        String trSuccess = "*happily* aurgh";
         ArrayList<String> trBattleDialogue = new ArrayList<>();
-        trBattleDialogue.add("*waves gun above head* AHDIUAHSAKLDJ");
+        trBattleDialogue.add("*waves gun above head* AURGHH AURGHH AURGHHH");
         ArrayList<String> trFlirtDialogue = new ArrayList<>();
-        trFlirtDialogue.add("1 - offer to pay money\n2 - throw sand\n3 - IUAHFIUPHAKJDFNJKPDSFSDFSDFSUEHWF");
-        trFlirtDialogue.add("threatens you with laser rifle");
-        trFlirtDialogue.add("*angrily* RNFOIJFSKDPOKPAOSPDOAKS");
+        trFlirtDialogue.add("1 - offer Jar Jar as a sacrifice \n2 - throw sand\n3 - AURGHH AURGHH AURGHHH");
+        trFlirtDialogue.add("threatens you with its Cycler Rifle");
+        trFlirtDialogue.add("HEEAUGHHH HEEIAURGHH");
         trFlirtDialogue.add(trSuccess);
         Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDialogue);
 
@@ -305,10 +305,10 @@ public class game {
         jawaLoot.add(cloak);
         String jawaSuccess = "*happy* HONKKSAAAADSIISSSSSA";
         ArrayList<String> jawaBattleDialogue = new ArrayList<>();
-        jawaBattleDialogue.add("*waves gun above head* AHDIUAHSAKLDJ");
+        jawaBattleDialogue.add("*mumbles threateningly* AHDIUAHSAKLDJ");
         ArrayList<String> jawaFlirtDialogue = new ArrayList<>();
         jawaFlirtDialogue.add("1 - offer to pay money\n2 - throw sand\n3 - IUAHFIUPHAKJDFNJKPDSFSDFSDFSUEHWF");
-        jawaFlirtDialogue.add("threatens you with laser rifle");
+        jawaFlirtDialogue.add("threatens you with its CA-87");
         jawaFlirtDialogue.add("*angrily* RNFOIJFSKDPOKPAOSPDOAKS");
         jawaFlirtDialogue.add(jawaSuccess);
         Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDialogue);
@@ -327,14 +327,14 @@ public class game {
 
         ArrayList<Item> wickLoot = new ArrayList<>();
         wickLoot.add(cloak);
-        String wickSuccess = "A beautiful new dog.  He will serve me almost as well as i will you.";
+        String wickSuccess = "A beautiful new dog.  He will serve me almost as well as I will you.";
         ArrayList<String> wickBattleDialogue = new ArrayList<>();
         wickBattleDialogue.add("Im out of retirement");
         ArrayList<String> wickFlirtDialogue = new ArrayList<>();
-        wickFlirtDialogue.add("1 - kill his dog\n2 - give him a new dog\n3 - ask him about how being in fortnite is");
-        wickFlirtDialogue.add("you killed my ******* dog");
+        wickFlirtDialogue.add("1 - kill his dog\n2 - give him a new dog\n3 - tell him he was your favorite fortnite character");
+        wickFlirtDialogue.add("You killed my ******* dog...            (Haven't you seen the movie?)");
         wickFlirtDialogue.add(wickSuccess);
-        wickFlirtDialogue.add("He stares at you blankly");
+        wickFlirtDialogue.add("*He stares at you blankly*");
         Enemy JohnWick = new Enemy(30, "John Wick", buisness, gun, 2, wickLoot, wickSuccess, 4, wickBattleDialogue, wickFlirtDialogue);
 
         ArrayList<Item> snoopyLoot = new ArrayList<>();
@@ -355,21 +355,21 @@ public class game {
         ArrayList<String> snoopBattleDialogue = new ArrayList<>();
         snoopyBattleDialogue.add("maaaaaaaaaaaaan i aint wanna do this but i gotta");
         ArrayList<String> snoopFlirtDialogue = new ArrayList<>();
-        snoopFlirtDialogue.add("1 - offer him some of the suspicious plants located nearby\n2 - compliment his rap career\n3 - start freestyling");
+        snoopFlirtDialogue.add("1 - offer him some suspicious plants located nearby\n2 - compliment his rap career\n3 - start freestyling");
         snoopFlirtDialogue.add(snoopSuccess);
-        snoopFlirtDialogue.add("nah man that was just fo fun, this fo real");
+        snoopFlirtDialogue.add("nah man that was jus fo fun, dis fuh real");
         snoopFlirtDialogue.add("that was some serious trash");
         Enemy snoopDog = new Enemy(35, "Snoop Dog", buisness, gun, 2, snoopLoot, snoopSuccess, 4, snoopBattleDialogue, snoopFlirtDialogue);
 
         ArrayList<Item> jarLoot = new ArrayList<>();
-        String jarSuccess = "mesa is very happy with the statementsa madea by yousa.  mesa would like to thanka very muchsa";
+        String jarSuccess = "Yousa really tink so? Mesa forever your servant now.";
         ArrayList<String> jarBattleDialogue = new ArrayList<>();
-        jarBattleDialogue.add("maaaaaaaaaaaaan i aint wanna do this but i gotta");
+        jarBattleDialogue.add("Yousa goin to be bombad poodoo now!");
         ArrayList<String> jarFlirtDialogue = new ArrayList<>();
-        jarFlirtDialogue.add("1 - tell him you were his favorite character in the Phantom Menace (we all know this isnt true and it better not be, but sometimes lying is acceptable)\n2 - say all hail darth jar jar\n3 - hand him a lightsaber");
+        jarFlirtDialogue.add("1 - tell him he was your favorite character in the Phantom Menace (sometimes lying is acceptable)\n2 - 'all hail darth jar jar'\n3 - hand him a lightsaber");
         jarFlirtDialogue.add(jarSuccess);
-        jarFlirtDialogue.add("shhhhh mesa will haveta silence yousa for thosa commentsa.  Now is notsa the time");
-        jarFlirtDialogue.add("yousa should nota havea thatsa, I willsa haveta take that backa");
+        jarFlirtDialogue.add("shhhhh mesa will haveta silence yousa now. Bombad lord of the Sith I will be!");
+        jarFlirtDialogue.add("*Fumbles with it, accidentally igniting the blade*   Oh, ho, Ohhh!    *His tongue is conveniently long enough to catch it before any limbs get cut off*");
         Enemy jarJar = new Enemy(40, "Jar Jar Binks", cloak, laserRifle, 2, jarLoot, jarSuccess, 5, jarBattleDialogue, jarFlirtDialogue);
 
         String patSuccess = "That's bone. And the lettering is something called Silian Rail";
@@ -379,10 +379,10 @@ public class game {
         ArrayList<String> patBattleDialogue = new ArrayList<>();
         patBattleDialogue.add("Ever heard of Huey Lewis and the News?");
         ArrayList<String> patFlirtDialogue = new ArrayList<>();
-        patFlirtDialogue.add("1 - Complement his business card\n" + "2 - Talk about your taste in music\n" + "3 - Talk about yourself");
+        patFlirtDialogue.add("1 - Complement his business card\n" + "2 - Talk about your taste in music\n" + "3 - Talk about your day");
         patFlirtDialogue.add(patSuccess);
         patFlirtDialogue.add("There is no band out there greater than Huey Lewis and the News and I would like to see your head on a pike");
-        patFlirtDialogue.add("If you don't shut your fucking mouth, I will kill you.");
+        patFlirtDialogue.add("If you don't shut your ******* mouth, I will kill you.");
         Enemy patman = new Enemy(55,"Patrick Bateman",buisness,axe,4,patLoot,patSuccess,4,patBattleDialogue,patFlirtDialogue);
 
         String NyeSuccess = "With our combined power we shall end global warming and make the whole world lukewarm!";
@@ -625,22 +625,50 @@ public class game {
                 girlFlirtResponses.add("Those types of endings always suck");
                 return new Girlfriend(500,"Velma",glasses,IQ,5.5,difficulty,girlDialogue,girlFlirtDialogue,girlFlirtResponses,girlFlirtSuccess);
             }
-            case 2 ->{//create difficulty 2 gf
+            case 2 ->{
                 //Padme Amidala
-                girlFlirtSuccess = "123";
-                return new Girlfriend();
+                Weapon blaster = new Weapon("ELG-3A", 750, 50, "A sleek, simple design. Easily concealable. Perfectly fit for a careful politician.");
+                Armor battleDress = new Armor("Battle Dress", 500, 15, "A senator's protective attire. Fit for versatility in dire situations.");
+                girlFlirtSuccess = "2671213";
+
+                girlDialogue.add("Where's Anakin? I've heard terrible things.");
+                girlFlirtDialogue.add("1 - Convince her that you are actually Anakin\n2 - Stare at her longingly\n3 - Offer to help her find Anakin");
+                girlFlirtDialogue.add("4 - Say that you would never tease a senator\n5 - Show her the scene where Anakin tells Padme he's going to Mustafar\n6 - Run your fingers down her shoulder while ranting about sand");
+                girlFlirtDialogue.add("7 - Give her a big smooch\n8 - Put on a wig and jedi robes while she's not looking\n9 - Refrain from telling her that Obi-Wan sneaks onto her starship in the next scene");
+                girlFlirtDialogue.add("10 - 'Obi-Wan is trying to turn you against me!'\n11 - Warn her that Anakin is beyond saving\n12 - Tell her you could keep your love a secret");
+                girlFlirtResponses.add("13 - Tell her that being rational is something you cannot do\n14 - *force choke her*\n15 - Accept her fate");
+
+                girlFlirtResponses.add("I truly... deeply... love you, and before we die I want you to know.");
+                girlFlirtResponses.add("You're making fun of me!");
+                girlFlirtResponses.add("Please don't look at me like that...it makes me uncomfortable.");
+                girlFlirtResponses.add("Thank you, but I think I can manage just fine on my own");
+                girlFlirtResponses.add("Oh, I know. Politicians like me must be frightening to your kind. *winks*");
+                girlFlirtResponses.add("Ohhh, that's right. I must've fallen asleep during that part. I hope Obi-Wan hasn't seen this.");
+                girlFlirtResponses.add("Please, we shouldn't");
+                girlFlirtResponses.add("*she stares back into your eyes, conflicted but passionate*");
+                girlFlirtResponses.add("Oh, Anakin! I didn't know you were here! Obi-Wan said such terrible things.");
+                girlFlirtResponses.add("I need to get to Mustafar. You can come along if you'd like. *Once on the ship, you can hear Obi-Wan reciting his monologue in the closet*");
+                girlFlirtResponses.add("I don't know you anymore! Anakin... you're breaking my heart! You're going down a path I can't follow!");
+                girlFlirtResponses.add("The Anakin I knew would never be so cruel");
+                girlFlirtResponses.add("We'd be living a lie. One we couldn't keep, even if we wanted to. I couldn't do that. Could you? Could you live like that?");
+                girlFlirtResponses.add("I know *she seems flattered, charmed, and concerned all at once*.");
+                girlFlirtResponses.add("*she falls to the ground, unresponsive. Obi-Wan appears from the ship as Duel of the Fates begins to play. etc.*");
+                girlFlirtResponses.add("*Nothing can change what will happen next*");
+
+
+                return new Girlfriend(525,"Padme Amidala", battleDress, blaster, 5.5, difficulty, girlDialogue, girlFlirtDialogue, girlFlirtResponses, girlFlirtSuccess);
             }
             case 3 -> {//create difficulty 3 gf
                 //Rasputin
                 Weapon ras = new Weapon("Sleeper Simulant",1000,55,"Now that is a Destiny 2 reference");
                 Armor rarmor = new Armor("Royal Russian Garb",999,150,"The attire of an eccentric Russian Man");
                 girlFlirtSuccess = "159";
-                girlDialogue.add("Try as you might many have made attempts on my life and many have failed");
-                girlFlirtDialogue.add("1 - Complement his taste in woman\n" + "2 - Ask him to dance\n" + "3 - Offer him some wine");
+                girlDialogue.add("Many have made attempt on my life. You will not be first.");
+                girlFlirtDialogue.add("1 - Complement his taste in woman\n" + "2 - Ask him to dance\n" + "3 - Offer him aged wine");
                 girlFlirtDialogue.add("4 - Ask about his role in current Russian politics\n" + "5 - Show him your priceless vodka collection\n" + "6 - Ask him to teach you how to ride a bear");
-                girlFlirtDialogue.add("7 - Talk about current Russian political strategies involving the current Czar\n" + "8 - Turn on Rasputin and attempt to replicate the silly little Russian dance\n" + "9 - Offer him a Russian Queen");
+                girlFlirtDialogue.add("7 - Talk about current Russian political strategies involving the current Czar\n" + "8 - Turn on Rasputin by attempting to replicate the silly little Russian dance\n" + "9 - Offer him a Russian Queen");
 
-                girlFlirtResponses.add("Your words give me the utmost respect and trust for you so I will now drink this wine i got from a mysterious stranger");
+                girlFlirtResponses.add("Your words give me the utmost respect and trust for you so I will now drink this vodka i got from a mysterious stranger");
                 girlFlirtResponses.add("My taste in women is any that lay in my bed");
                 girlFlirtResponses.add("I appreciate the offer as I am always in the mood to do a silly little Russian dance");
                 girlFlirtResponses.add("The last time I had some wine that was offered to me I was poisoned");

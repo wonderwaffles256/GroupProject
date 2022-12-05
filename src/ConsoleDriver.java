@@ -1,8 +1,7 @@
 import java.util.*;
-//TODO make more enemies - everyon
+//TODO make more enemies - everyone
 //TODO delete unused code - everyone
 //TODO balance stuff - everyone
-//TODO make gf for medium difficulty - Daniel
 //TODO javadoc methods - everyone
 
 public class ConsoleDriver {
