@@ -7,7 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class game {
-    public void tutorial(Player p, Enemy e) throws InterruptedException {
+    public void tutorial(Enemy e, Armor armor, Weapon weapon) throws InterruptedException {
+        Player p = new Player(100,"tutorial",armor,weapon,10);
         Scanner scnr = new Scanner(System.in);
         System.out.println("Combat here is quite simple, lets practice on this enemy!");
         Thread.sleep(1000);
@@ -169,16 +170,16 @@ public class game {
 
     public void start(int difficulty, String name) throws InterruptedException {
         //creates each basic object in the game (such as items, weapons, etc.)
-        Weapon gun = new Weapon("gun", 100, 10, "It shoots stuff");
-        Weapon club = new Weapon("wooden club", 10, 3, "Made of 100% tree");
-        Weapon sword = new Weapon("sword", 50, 7, "A true mans weapon");
+        Weapon gun = new Weapon("gun", 100, 15, "It shoots stuff");
+        Weapon club = new Weapon("wooden club", 10, 5, "Made of 100% tree");
+        Weapon sword = new Weapon("sword", 50, 10, "A true mans weapon");
         Weapon BatWithNails = new Weapon("baseball bat with nails", 12, 4, "Perfect for surviving the zombie apocalypse");
-        Weapon umbrella = new Weapon("Umbrella", 15, 6, "Im Mary Poppins y`all");
+        Weapon umbrella = new Weapon("Umbrella", 15, 8, "Im Mary Poppins y`all");
         Weapon magicWand = new Weapon("Magic Wand", 15, 6,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
         Weapon laserRifle = new Weapon("Laser Rifle", 30, 8, "can shoot enemies all the way from a galaxy far far away");
         Weapon oneshot = new Weapon("Death Star", 300, 500, "Fire when ready");
-        Weapon Bow = new Weapon("Bow", 15, 7, "good ol trusty");
-        Weapon stick = new Weapon("A Cool Stick",150,50,"A cool stick that looks like a sword.");
+        Weapon Bow = new Weapon("Bow", 15, 12, "good ol trusty");
+        Weapon stick = new Weapon("A Cool Stick",150,10,"A cool stick that looks like a sword.");
         Weapon paddle = new Weapon("A paddle",10,5,"A child Abuse paddle");
         Weapon chemo = new Weapon("10-rounds of Chemotherapy",100,60,"Jesse how could you be so stupid. I am the one who Chemos.");
         Weapon heel = new Weapon("Heel", 29,35,"Worn by the meaniest of girls and swung by those even meaner" );
@@ -190,6 +191,7 @@ public class game {
         Armor buisness = new Armor("suit", 100, 30, "Always the best dressed in the room");
         Armor suitOfArmor = new Armor("suit of armor", 70, 20, "looks cool, but its the 20th century");
         Armor peachDress = new Armor("princess peaches dress", 50, 25, "A pretty pink dress");
+        Armor pinkJumpsuiit = new Armor("Pink Jumpsuit", 50, 25, "worn by the meanest of girls");
         Armor cloak = new Armor("cloak", 20, 10, "a dark cloak");
         Armor hat = new Armor("Pork Pie Hat",25,7,"A familiar hat that smells like a meth lab");
 
@@ -200,7 +202,7 @@ public class game {
         Consumable large = new Consumable("Vodka",50,110,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
 
-        ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock,overalls,buisness,suitOfArmor,peachDress,cloak,gun,club,sword,BatWithNails,umbrella,magicWand,laserRifle,oneshot,Bow,stick,paddle));
+        ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock,overalls,buisness,suitOfArmor,peachDress,cloak,gun,club,sword,BatWithNails,umbrella,magicWand,laserRifle,oneshot,Bow,stick,paddle,axe,hat,pinkJumpsuiit));
         Chest c = new Chest(allItems);
         ArrayList<Item> beetLoot = new ArrayList<>();
         ArrayList<String> beetBattleDialogue = new ArrayList<>();
@@ -217,7 +219,6 @@ public class game {
         beetFlirtDialogue.add("Oh... uhhh, I can be intense too.\n*Baljbeet stares through your soul*");    //string for an incorrect option
         beetFlirtDialogue.add("that's not very nice of you");                                         //string for an incorrect option
         Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 8, beetBattleDialogue, beetFlirtDialogue);
-        //
 
         String ogreSuccess = "*Grunts happily*";
         ArrayList<Item> ogreLoot = new ArrayList<>();
@@ -244,6 +245,7 @@ public class game {
         String pSuccess = "*Chimes happily and flies close to you*";
         ArrayList<Item> pLoot = new ArrayList<>();
         ArrayList<String> pBattleDialogue = new ArrayList<>();
+        pLoot.add(magicWand);
         pBattleDialogue.add("*Glows threateningly*");
         ArrayList<String> pFlirtDialogue = new ArrayList<>();
         pFlirtDialogue.add("1 -  Joke about burning down the forest \n" + "2 - compliment its radiance \n" + "3 - admire the beauty of nature");
@@ -254,6 +256,7 @@ public class game {
 
         String panSuccess = "YES! Together we shall vanquish the rising wage gap and distribute the wealth through violent revolution!";
         ArrayList<Item> panLoot = new ArrayList<>();
+        panLoot.add(Bow);
         ArrayList<String> panBattleDialogue = new ArrayList<>();
         panBattleDialogue.add("Who dares challenge the protector of the poor");
         ArrayList<String> panFlirtDialogue = new ArrayList<>();
@@ -273,15 +276,106 @@ public class game {
         bournFlirtDialogue.add("I don't need sympathy, I need answers!");
         bournFlirtDialogue.add(bourneSuccess);
         Enemy jBourne = new Enemy(35, "Jason Bourne", noArmor, gun, 7, bourneLoot, bourneSuccess, 5, bourneBattleDialogue, bournFlirtDialogue);
-//        Enemy Bond = new Enemy(30, "007", buisness, gun, 2, bondLoot, bondSuccess, 4, bondBattleDialogue, bondFlirtDialogue);
-//        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDesign);
-//        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDesign);
-//        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,5, arthurBattleDialogue, arthurFlirtDialogue);
-//        Enemy JohnWick = new Enemy(30, "John Wick", suit, buisness, gun, 2, wickLoot, wickSuccess, 3, wickBattleDialogue, wickFlirtDialogue)
-//        snoopy
-//        snoop dog
+
+        ArrayList<Item> bondLoot = new ArrayList<>();
+        bondLoot.add(buisness);
+        String bondSuccess = "Now that's a good reason to join";
+        ArrayList<String> bondBattleDialogue = new ArrayList<>();
+        bondBattleDialogue.add("Its bond.... James Bond");
+        ArrayList<String> bondFlirtDialogue = new ArrayList<>();
+        bondFlirtDialogue.add("1 - Flash your lisence to kill\n2 - Compliment his dapper atire\n3 - Ask him what his favorite kill was");
+        bondFlirtDialogue.add(bondSuccess);
+        bondFlirtDialogue.add("*Stares back intensly and silently");
+        bondFlirtDialogue.add("Its about to be you");
+        Enemy Bond = new Enemy(30, "007", buisness, gun, 2, bondLoot, bondSuccess, 4, bondBattleDialogue, bondFlirtDialogue);
+
+        ArrayList<Item> trLoot = new ArrayList<>();
+        trLoot.add(laserRifle);
+        String trSuccess = "*happy* HONKKSAAAADSIISSSSSA";
+        ArrayList<String> trBattleDialogue = new ArrayList<>();
+        trBattleDialogue.add("*waves gun above head* AHDIUAHSAKLDJ");
+        ArrayList<String> trFlirtDialogue = new ArrayList<>();
+        trFlirtDialogue.add("1 - offer to pay money\n2 - throw sand\n3 - IUAHFIUPHAKJDFNJKPDSFSDFSDFSUEHWF");
+        trFlirtDialogue.add("threatens you with laser rifle");
+        trFlirtDialogue.add("*angrily* RNFOIJFSKDPOKPAOSPDOAKS");
+        trFlirtDialogue.add(trSuccess);
+        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDialogue);
+
+        ArrayList<Item> jawaLoot = new ArrayList<>();
+        jawaLoot.add(cloak);
+        String jawaSuccess = "*happy* HONKKSAAAADSIISSSSSA";
+        ArrayList<String> jawaBattleDialogue = new ArrayList<>();
+        jawaBattleDialogue.add("*waves gun above head* AHDIUAHSAKLDJ");
+        ArrayList<String> jawaFlirtDialogue = new ArrayList<>();
+        jawaFlirtDialogue.add("1 - offer to pay money\n2 - throw sand\n3 - IUAHFIUPHAKJDFNJKPDSFSDFSDFSUEHWF");
+        jawaFlirtDialogue.add("threatens you with laser rifle");
+        jawaFlirtDialogue.add("*angrily* RNFOIJFSKDPOKPAOSPDOAKS");
+        jawaFlirtDialogue.add(jawaSuccess);
+        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDialogue);
+
+        ArrayList<Item> arthurLoot = new ArrayList<>();
+        arthurLoot.add(sword);
+        String arthurSuccess = "thou hast conquered my heart.  You earn my sword.";
+        ArrayList<String> arthurBattleDialogue = new ArrayList<>();
+        arthurBattleDialogue.add("Ah, a challenger.  You shall be slain");
+        ArrayList<String> arthurFlirtDialogue = new ArrayList<>();
+        arthurFlirtDialogue.add("1 - compliment his sword\n2 - insult the queen\n3 - recite the entire tangled movie script");
+        arthurFlirtDialogue.add("She is a beauty isn't she.  Pulled her from a stone myself");
+        arthurFlirtDialogue.add("how dare you.  I was considering mercy, but now you shall die");
+        arthurFlirtDialogue.add(arthurSuccess);
+        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,5, arthurBattleDialogue, arthurFlirtDialogue);
+
+        ArrayList<Item> wickLoot = new ArrayList<>();
+        wickLoot.add(cloak);
+        String wickSuccess = "A beautiful new dog.  He will serve me almost as well as i will you.";
+        ArrayList<String> wickBattleDialogue = new ArrayList<>();
+        wickBattleDialogue.add("Im out of retirement");
+        ArrayList<String> wickFlirtDialogue = new ArrayList<>();
+        wickFlirtDialogue.add("1 - kill his dog\n2 - give him a new dog\n3 - ask him about how being in fortnite is");
+        wickFlirtDialogue.add("you killed my ******* dog");
+        wickFlirtDialogue.add(wickSuccess);
+        wickFlirtDialogue.add("He stares at you blankly");
+        Enemy JohnWick = new Enemy(30, "John Wick", buisness, gun, 2, wickLoot, wickSuccess, 4, wickBattleDialogue, wickFlirtDialogue);
+
+        ArrayList<Item> snoopyLoot = new ArrayList<>();
+        snoopyLoot.add(stick);
+        snoopyLoot.add(rock);
+        String snoopySuccess = "ruff";
+        ArrayList<String> snoopyBattleDialogue = new ArrayList<>();
+        snoopyBattleDialogue.add("bark bark");
+        ArrayList<String> snoopyFlirtDialogue = new ArrayList<>();
+        snoopyFlirtDialogue.add("1 - offer him a stick\n2 - offer him a treat\n3 - offer him a new plane");
+        snoopyFlirtDialogue.add("bark");
+        snoopyFlirtDialogue.add(snoopySuccess);
+        snoopyFlirtDialogue.add("bark");
+        Enemy snoopy = new Enemy(50, "Snoopy", noArmor, stick, 2, snoopyLoot, snoopySuccess, 3, snoopyBattleDialogue, snoopyFlirtDialogue);
+
+        ArrayList<Item> snoopLoot = new ArrayList<>();
+        String snoopSuccess = "fo shizzle dizzle ill join yo crewy ina bittie all jiffy";
+        ArrayList<String> snoopBattleDialogue = new ArrayList<>();
+        snoopyBattleDialogue.add("maaaaaaaaaaaaan i aint wanna do this but i gotta");
+        ArrayList<String> snoopFlirtDialogue = new ArrayList<>();
+        snoopFlirtDialogue.add("1 - offer him some of the suspicious plants located nearby\n2 - compliment his rap career\n3 - start freestyling");
+        snoopFlirtDialogue.add(snoopSuccess);
+        snoopFlirtDialogue.add("nah man that was just fo fun, this fo real");
+        snoopFlirtDialogue.add("that was some serious trash");
+        Enemy snoopDog = new Enemy(35, "Snoop Dog", buisness, gun, 2, snoopLoot, snoopSuccess, 4, snoopBattleDialogue, snoopFlirtDialogue);
+
+        ArrayList<Item> jarLoot = new ArrayList<>();
+        String jarSuccess = "mesa is very happy with the statementsa madea by yousa.  mesa would like to thanka very muchsa";
+        ArrayList<String> jarBattleDialogue = new ArrayList<>();
+        jarBattleDialogue.add("maaaaaaaaaaaaan i aint wanna do this but i gotta");
+        ArrayList<String> jarFlirtDialogue = new ArrayList<>();
+        jarFlirtDialogue.add("1 - tell him you were his favorite character in the Phantom Menace (we all know this isnt true and it better not be, but sometimes lying is acceptable)\n2 - say all hail darth jar jar\n3 - hand him a lightsaber");
+        jarFlirtDialogue.add(jarSuccess);
+        jarFlirtDialogue.add("shhhhh mesa will haveta silence yousa for thosa commentsa.  Now is notsa the time");
+        jarFlirtDialogue.add("yousa should nota havea thatsa, I willsa haveta take that backa");
+        Enemy jarJar = new Enemy(40, "Jar Jar Binks", cloak, laserRifle, 2, jarLoot, jarSuccess, 5, jarBattleDialogue, jarFlirtDialogue);
+
         String patSuccess = "That's bone. And the lettering is something called Silian Rail";
         ArrayList<Item> patLoot = new ArrayList<>();
+        patLoot.add(axe);
+        patLoot.add(buisness);
         ArrayList<String> patBattleDialogue = new ArrayList<>();
         patBattleDialogue.add("Ever heard of Huey Lewis and the News?");
         ArrayList<String> patFlirtDialogue = new ArrayList<>();
@@ -290,11 +384,10 @@ public class game {
         patFlirtDialogue.add("There is no band out there greater than Huey Lewis and the News and I would like to see your head on a pike");
         patFlirtDialogue.add("If you don't shut your fucking mouth, I will kill you.");
         Enemy patman = new Enemy(55,"Patrick Bateman",buisness,axe,4,patLoot,patSuccess,4,patBattleDialogue,patFlirtDialogue);
-        //jar jar binks
-//
-//        Enemy yurMum =
+
         String NyeSuccess = "With our combined power we shall end global warming and make the whole world lukewarm!";
         ArrayList<Item> NyeLoot = new ArrayList<>();
+        NyeLoot.add(laserRifle);
         ArrayList<String> NyeBattleDialogue = new ArrayList<>();
         NyeBattleDialogue.add("It just doesn't make any sense as to why you would challenge me, an academic unit.");
         ArrayList<String> NyeFlirtDialogue = new ArrayList<>();
@@ -302,10 +395,11 @@ public class game {
         NyeFlirtDialogue.add(NyeSuccess);
         NyeFlirtDialogue.add("That song really annoyed me and so do you");
         NyeFlirtDialogue.add("Obviously you never paid enough attention during that class so I'll teach you what it's like to lose");
-        Enemy BillNye = new Enemy(20,"Bill Nye",buisness,laserRifle,6,NyeLoot,NyeSuccess,5,NyeBattleDialogue,NyeFlirtDialogue);
+        Enemy BillNye = new Enemy(20,"Bill Nye",buisness,laserRifle,6,NyeLoot,NyeSuccess,4,NyeBattleDialogue,NyeFlirtDialogue);
 
         String WaltSuccess = "Maybe now I can go make Jr. some breakfast";
         ArrayList<Item> WaltLoot = new ArrayList<>();
+        WaltLoot.add(hat);
         ArrayList<String> WaltBattleDialogue = new ArrayList<>();
         WaltBattleDialogue.add("Say my name.");
         ArrayList<String> WaltFlirtDialogue = new ArrayList<>();
@@ -315,7 +409,7 @@ public class game {
         WaltFlirtDialogue.add("I am the one who knocks!");
         Enemy BreakBad = new Enemy(10,"Walter White",hat,chemo,5,WaltLoot,WaltSuccess,3,WaltBattleDialogue,WaltFlirtDialogue);
 
-        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad,patman));        //contains one of the enemies in order of creation
+        ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad,patman,jBourne,Bond,Jawa,JohnWick,KingArthur,TuskenRaider,snoopy, snoopDog, jarJar));        //contains one of the enemies in order of creation
 
         Player player = new Player(200, name, overalls, oneshot, 10);
 
@@ -323,7 +417,7 @@ public class game {
         System.out.println("Would you like to play the tutorial and read the intro dialogue? \n press 1 for yes and 2 for no");
         Scanner scnr = new Scanner(System.in);
         if (scnr.nextInt() == 1) {
-            tutorial(player, beet);
+            tutorial(beet,noArmor,club);
             introDialogue();
         }
         else {
@@ -343,7 +437,7 @@ public class game {
         String reginaFlirt = "And right now, your getting on my last nerve! Switch";
         String reginaDeath = "Im going to forgive you because im a very Zen person.  And im on a lot of pain medication right now";
         String reginaIntro = "Get in loser.  We`re going shopping";
-        MiniBoss reginaGeorge = new MiniBoss(75,"Regina George", peachDress,heel,4,reginaLoot,reginaFlirt,reginaIntro,reginaBattle,reginaDeath);
+        MiniBoss reginaGeorge = new MiniBoss(75,"Regina George", pinkJumpsuiit,heel,4,reginaLoot,reginaFlirt,reginaIntro,reginaBattle,reginaDeath);
 
         ArrayList<Item> karenLoot = new ArrayList<>();
         karenLoot.add(peachDress);
@@ -353,7 +447,7 @@ public class game {
         String karenFlirt = "Why are you dressed so scary?";
         String karenDeath = "So that's against the rules, and you cant sit with us";
         String karenIntro = "On Wednesdays we wear pink";
-        MiniBoss karen = new MiniBoss(90,"Karen Smith", peachDress,heel,6,karenLoot,karenFlirt,karenIntro,karenBattle,karenDeath);
+        MiniBoss karen = new MiniBoss(90,"Karen Smith", pinkJumpsuiit,heel,6,karenLoot,karenFlirt,karenIntro,karenBattle,karenDeath);
 
         ArrayList<Item> gretchenLoot = new ArrayList<>();
         gretchenLoot.add(peachDress);
@@ -363,7 +457,7 @@ public class game {
         String gretchenFlirt = "Im sorry that people are so jealous of me.  But i can`t help it that im popular";
         String gretchenDeath = "Oh no, I cant say anything else until i have a parent or lawyer present";
         String gretchenIntro = "you can only wear your hair in a ponytail once a week, so i guess you chose today";
-        MiniBoss gretchen = new MiniBoss(100,"Gretchen Weiners", peachDress,heel,8,gretchenLoot,gretchenFlirt,gretchenIntro,gretchenBattle,gretchenDeath);
+        MiniBoss gretchen = new MiniBoss(100,"Gretchen Weiners", pinkJumpsuiit,heel,8,gretchenLoot,gretchenFlirt,gretchenIntro,gretchenBattle,gretchenDeath);
 
         Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg,reginaGeorge);
         Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg,karen);
@@ -605,6 +699,7 @@ public class game {
             System.out.println("as you lay back down to think some more, you fall asleep");
             Thread.sleep(5000);
             introDialogue();
+
             start(1,"a failed hero");
         }
         else if(goodEnd == 3) {
