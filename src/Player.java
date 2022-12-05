@@ -7,8 +7,6 @@ public class Player extends Character{
     private int CORN;                       //CORN will start at 0
     private ArrayList<Item> itemPack;
     private ArrayList<Enemy> companions;
-    private String currentLocation;
-    boolean locComplete;
 
     /**
      * default constructor
@@ -20,7 +18,6 @@ public class Player extends Character{
         CORN = 0;
         itemPack = new ArrayList<>();
         companions = new ArrayList<>();
-        locComplete = false;
     }
 
     /**
@@ -38,7 +35,6 @@ public class Player extends Character{
         clout = 1;
         CORN = 0;
 
-        locComplete = false;
         this.itemPack = new ArrayList<>();
         this.companions = new ArrayList<>();
 
@@ -53,23 +49,13 @@ public class Player extends Character{
     //getters
     public double getClout() {return this.clout;}
     public int getCORN() {return this.CORN;}
-    public String getCurrentLocation() {return this.currentLocation;}
-    public boolean getLocComplete() {return this.locComplete;}
     public ArrayList<Item> getItemPack() {return this.itemPack;}
     public ArrayList<Enemy> getCompanions() {return this.companions;}
 
     //setters
     public void setCORN(int CORN) {this.CORN = CORN;}
     public void setClout(double clout) {this.clout = clout;}
-    public void setCurrentLocation(String currLoc) {this.currentLocation = currLoc;}
-    public void setLocComplete(boolean complete) {this.locComplete = complete;}
     public void addItemPack(Item i) {itemPack.add(i);}
-
-    /**
-     * when user obtains corn it sums the newly obtained bits with the existing amount
-     * @param corn adds new corn onto existing
-     */
-    public void acquireCorn(int corn){CORN = corn + CORN;}
 
     /**
      * Player's version of the fight method. Multiplies damage by their current clout modifier.

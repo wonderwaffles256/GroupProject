@@ -36,7 +36,5 @@ public class Item {
 
     //setters
     public void setName(String name) {this.name = name;}
-    public void setValue(int value) {this.value = value;}
-    public void setDescription(String description) {this.description = description;}
 
 }

@@ -1,6 +1,3 @@
-import javax.swing.*;
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
@@ -101,7 +98,7 @@ public class game {
                     case "4" -> {
                         p.flee();
                         if(enemy instanceof Girlfriend g) {
-                            ending(2);
+                            ending(2, 1);
                         }
                         goodinput = true;
                         done = true;
@@ -115,9 +112,6 @@ public class game {
             if(enemy.getHP() <= 0) {
                 if(enemy instanceof Enemy e) {
                     e.giveLoot(p);
-                }
-                if(enemy instanceof Girlfriend g) {
-                    g.giveMedal(p);
                 }
                 if (enemy instanceof MiniBoss m) {
                     m.deathDialogue();
@@ -136,7 +130,7 @@ public class game {
                     p.death();
                 }
                 else {
-                    ending(2);
+                    ending(2, 1);
                     gameOver = true;
                 }
 
@@ -188,12 +182,12 @@ public class game {
 
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
         Armor noArmor = new Armor("Birthday Suit", 0, 0, "Nothing cheaper than a birthday suit");
-        Armor buisness = new Armor("suit", 100, 30, "Always the best dressed in the room");
-        Armor suitOfArmor = new Armor("suit of armor", 70, 20, "looks cool, but its the 20th century");
-        Armor peachDress = new Armor("princess peaches dress", 50, 25, "A pretty pink dress");
-        Armor pinkJumpsuiit = new Armor("Pink Jumpsuit", 50, 25, "worn by the meanest of girls");
-        Armor cloak = new Armor("cloak", 20, 10, "a dark cloak");
-        Armor hat = new Armor("Pork Pie Hat",25,7,"A familiar hat that smells like a meth lab");
+        Armor buisness = new Armor("suit", 120, 35, "Always the best dressed in the room");
+        Armor suitOfArmor = new Armor("suit of armor", 75, 20, "looks cool, but its the 20th century");
+        Armor peachDress = new Armor("princess Peach's dress", 90, 25, "A pretty pink dress");
+        Armor pinkJumpsuiit = new Armor("Pink Jumpsuit", 95, 28, "worn by the meanest of girls");
+        Armor cloak = new Armor("cloak", 25, 13, "a dark cloak");
+        Armor hat = new Armor("Pork Pie Hat",15,7,"A familiar hat that smells like a meth lab");
 
         Consumable water = new Consumable("Nestle Spring Water", 2, 5, "Capitalism's finest");
         Consumable tiny = new Consumable("Bud Lite", 5,10,"Choice beer for the middle class diabetic. Restores a small bit of health");
@@ -459,18 +453,17 @@ public class game {
         String gretchenIntro = "you can only wear your hair in a ponytail once a week, so i guess you chose today";
         MiniBoss gretchen = new MiniBoss(100,"Gretchen Weiners", pinkJumpsuiit,heel,8,gretchenLoot,gretchenFlirt,gretchenIntro,gretchenBattle,gretchenDeath);
 
-        Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg,reginaGeorge);
-        Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg,karen);
-        Location loc3 = new Location("Desert", difficulty, randomizeEnemies(Enemies), loc3Msg,gretchen);
-
+        Location loc1 = new Location("Forest", difficulty, randomizeEnemies(Enemies), loc1Msg);
+        Location loc2 = new Location("Castle", difficulty, randomizeEnemies(Enemies), loc2Msg);
+        Location loc3 = new Location("Desert", difficulty, randomizeEnemies(Enemies), loc3Msg);
 
         Girlfriend gf = makeGirlFriend(difficulty);
-
 
         locations.add(loc1);
         locations.add(loc2);
         locations.add(loc3);
         Shop s = new Shop(allItems);
+
         Queue<MiniBoss> miniBosses= new LinkedList();
         miniBosses.add(reginaGeorge);
         miniBosses.add(karen);
@@ -490,10 +483,10 @@ public class game {
         combat(player,gf);
 
         if (gf.getFlirtLimit() == 5) {
-            ending(0);
+            ending(0, difficulty);
         }
         else {
-            ending(1);
+            ending(1, difficulty);
         }
 
     }
@@ -553,14 +546,19 @@ public class game {
             System.out.println("Would you like to equip this item? \n 1 for yes, and 2 for no");
             p.addItemPack(i);
             while (!loop) {
-                if (scnr.nextInt() == 1) {
-                    p.equipItem(i);
-                    loop = true;
-                    System.out.println("You continue on your path");
+                try {
+                    if (scnr.nextInt() == 1) {
+                        p.equipItem(i);
+                        loop = true;
+                        System.out.println("You continue on your path");
+                    }
+                    else {
+                        loop = true;
+                        System.out.println("You continue on your path");
+                    }
                 }
-                else if (scnr.nextInt() == 2) {
-                    loop = true;
-                    System.out.println("You continue on your path");
+                catch (Exception e) {
+                    System.out.println("Are you really that incompetent? Enter again");
                 }
             }
         }
@@ -579,7 +577,7 @@ public class game {
             while (!loop) {
                 int ans = scnr.nextInt();
                 if (ans == 1) {
-                    p.equipArmor((Armor) i);
+                    p.equipItem(i);
                     loop = true;
                     System.out.println("You continue on your path");
                 }
@@ -683,6 +681,7 @@ public class game {
         }
         return null;
     }
+
     public void Credits() {
         var frame = new JFrame();
         var icon = new ImageIcon("Love QUest.png");
@@ -693,16 +692,20 @@ public class game {
         frame.pack();
         frame.setVisible(true);    }
 
-    public void ending(int goodEnd) throws InterruptedException {
+    public void ending(int goodEnd, int difficulty) throws InterruptedException {
         if(goodEnd == 0){
             System.out.println("Congratulations, you achieved the Good Ending");
             Thread.sleep(1000);
-            System.out.println("With your amassed clout and your amazing pick-up lines you manage to convince your Girlfriend to fully date you.");
+            System.out.println("After pouring your literal blood, sweat, and tears into fighting your girlfriend for incomprehensible amount of time, she finally begins to settle down.");
             Thread.sleep(2000);
-            System.out.println("She has some pain from how much she got hit but shes still loves you");
+            System.out.println("It seems your unmatched clout and amazing pick-up lines managed to win the heart of your Girlfriend at last.");
             Thread.sleep(2000);
-            System.out.println("If you want more pay $30 for a better written ending");
-            Thread.sleep(1000);
+            System.out.println("Though wounded from battle, her love for you burns stronger than ever");
+            Thread.sleep(2000);
+            System.out.println("She hands you a medal as a token of her dedication");
+            Thread.sleep(1750);
+            System.out.println(makeMedal(difficulty));
+            Thread.sleep(4000);
             Credits();
         }
         else if (goodEnd == 1){
@@ -741,5 +744,14 @@ public class game {
             Thread.sleep(3000);
             Credits();
         }
+    }
+
+    public String makeMedal(int difficulty) {
+        switch (difficulty) {
+            case 1 -> {return "Bronze Medal ________ You participated";}
+            case 2 -> {return "Silver Medal ________ A shiny silver medallion. The back says 'made in Taiwan'";}
+            case 3 -> {return "Gold Medal ________ As shiny as a freshly buffed bald man's forehead. The ultimate flex.";}
+        }
+        return null;
     }
    }

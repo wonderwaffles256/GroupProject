@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Character is a superclass that gives methods to player, enemy, and girlfriend. It controls the stats of all
@@ -44,24 +43,17 @@ public abstract class Character {
 
     //getters
     public int getHP() {return HP;}
-    public int getMaxHP() {return maxHP;}
     public String getName() {return name;}
     public Weapon getWeapon() {return weapon;}
     public Armor getArmor() {return armor;}
     public double getCritChance() {return critChance;}
 
     //setters
-    public void setCritChance(double critChance) {this.critChance = critChance;}
-    public void setWeapon(Weapon weapon) {this.weapon = weapon;}
-    public void setArmor(Armor armor) {this.armor = armor;}
     public void setHP(int HP) {this.HP = HP;}
-    public void setMaxHP(int maxHP) {this.maxHP = maxHP;}
     public void setName(String name) {this.name = name;}
 
-    //uses current weapon to fight an enemy, girlfriend, or player
-
     /**
-     * The fight method lets a character fight another character to the death.
+     * The fight method lets a character fight another character to the death using their equipped weapons.
      * The player has the option to fight, flirt, flee, or flask in combat until one of the parties finishes the fight
      * @param opponent - the Character being fought
      */
@@ -73,15 +65,7 @@ public abstract class Character {
         System.out.println("\u001B[31m" + this.battleDialogue.get(i) + "\u001B[0m");
     }
 
-    /**
-     * equip armor adds the strength value to the hp value to make a player equip a piece of armor.
-     * Also, if armor is already equipped it will shift the equipped armor to inventory and the new set
-     * will be put on. If the new armor has less strength than the old armor it won't be equipped.
-     * @param armor - a newly acquired set of armor
-     */
-    public void equipArmor(Armor armor) {}//implement later
-
     public String printInfo() {
-        return("\u001B[34m" + name + " ___ HP: " + HP + "   Weapon: " + weapon.getName() + " - " + weapon.getDamage() + " dmg ______ " + weapon.getDescription() + "\u001B[0m");
+        return("\u001B[34m" + name + " ___ HP: " + HP + " / " + maxHP + "   Weapon: " + weapon.getName() + " - " + weapon.getDamage() + " dmg ______ " + weapon.getDescription() + "\u001B[0m");
     }
 }

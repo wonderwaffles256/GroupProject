@@ -47,16 +47,13 @@ public class Enemy extends Character{
     }
 
     //getters
-    public ArrayList<Item> getLoot() {return loot;}
-    public double getType() {return spawnChance;}
-    public String getFlirtRequirement() {return flirtRequirement;}
     public ArrayList<String> getFlirtDialogue() {return flirtDialogue;}
-    public ArrayList<String> getBattleDialogue() {return battleDialogue;}
     public boolean getTired() {return tired;}
+    public int getSpawnRate() {
+        return spawnChance;
+    }
 
-    //setters
-    public void setType(int spawnChance) {this.spawnChance = spawnChance;}
-    public void setFlirtRequirement(String flirtRequirement) {this.flirtRequirement = flirtRequirement;}
+    //setter
     public void setTired(boolean tired) {this.tired = tired;}
 
     /**
@@ -106,9 +103,5 @@ public class Enemy extends Character{
         else if(opponent instanceof Enemy || opponent instanceof Girlfriend) {
             System.out.println(this.name + " valiantly displayed its affection with violence, dealing " + this.weapon.getDamage() + " damage");
         }
-    }
-
-    public int getSpawnRate() {
-        return spawnChance;
     }
 }

@@ -10,17 +10,12 @@ public class Room {
     private Enemy e;
     private Chest c;
     private boolean treasureRoom;
-    private MiniBoss b;
-    private boolean isMiniBossRoom = false;
     /**
      * default constructor for rooms
      */
     public Room() {
         name = null;
         completed = false;
-
-        Random r = new Random();
-        int num = 0;
     }
 
     /**
@@ -46,36 +41,12 @@ public class Room {
         treasureRoom = true;
     }
 
-    public Room(String name) {
-        this.name = name;
-    }
-
-    public boolean hasEnemy() {
-        return e != null;
-    }
-
     /**
      * getter for the name of room
      * @return name of room
      */
-    //setter + getter
+    //getters
     public String getName() {return name;}
-
-    /**
-     * getter for completion status of room
-     * @return if room is completed or not
-     */
-
-    public boolean getCompleted() {return completed;}
-
-    /**
-     * sets the room as completed or not
-     * @param completed boolean value that tracks to see if the room is completed
-     */
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
     public Enemy getEnemy() {
         return e;
     }

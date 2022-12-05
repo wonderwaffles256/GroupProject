@@ -29,8 +29,6 @@ public class Armor extends Item{
         this.strength = a.getStrength();
     }
 
-    //get/set armor strength
+    //get armor strength
     public int getStrength() {return strength;}
-    public void setStrength(int strength) {this.strength = strength;}
-
 }

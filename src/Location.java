@@ -8,12 +8,10 @@ public class Location {
     private String name;
     private int difficulty;
     private int numRooms;
-    private char currentLoc;         //keeps track of which location the player is currently in (A,B,C,...etc.)
     private int progress;            //keeps track of how many rooms the player has completed within each location
     private Stack<Room> rooms;       //holds a set of rooms generated for this location
     private ArrayList<Enemy> locationEnemies;
     private String entranceMessage; // message printed on instantiation of this room
-    private MiniBoss b;
 
     /**
      * default constructor
@@ -22,17 +20,10 @@ public class Location {
         this.name = null;
         this.difficulty = 0;
         this.numRooms = 0;
-        this.currentLoc = ' ';
         this.progress = 0;
         this.rooms = new Stack<>();
         locationEnemies = new ArrayList<>();
         entranceMessage = "You enter a strange new location";
-    }
-    public boolean isCompleted() {
-        return progress == numRooms;
-    }
-    public ArrayList<Enemy> getLocationEnemies() {
-        return locationEnemies;
     }
 
     /**
@@ -40,7 +31,7 @@ public class Location {
      * @param name - name of the location
      * @param difficulty - difficulty set by the endgame girlfriend
      */
-    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies, String entranceMessage, MiniBoss b) {
+    public Location(String name, int difficulty, ArrayList<Enemy> locationEnemies, String entranceMessage) {
         this.name = name;
         switch(difficulty) {
             case 1 -> this.numRooms = 3;
@@ -53,15 +44,19 @@ public class Location {
         this.rooms = new Stack<>();
         generateRooms();
         this.entranceMessage = entranceMessage;
-        this.b = b;
     }
 
-    /**
-     * checks whether player has completed a location or not
-     * @param progress - keeps track of how many rooms the player has completed within each location
-     * @return boolean - true if location is complete
-     */
-    public boolean checkProgress(int progress) {
+    //getters
+    public String getName() {return name;}
+    public ArrayList<Enemy> getLocationEnemies() {
+        return locationEnemies;
+    }
+
+    //setters
+    public void setName(String name) {this.name = name;}
+    public void setProgress(int progress) {this.progress = progress;}
+
+    public boolean isCompleted() {
         return progress == numRooms;
     }
 
@@ -78,7 +73,7 @@ public class Location {
                 Chest c = new Chest();
                 Room r = new Room(c,name);
                 rooms.push(r);
-            } else { // TODO: fix if not enough enemies
+            } else {
                 Enemy e = locationEnemies.get(i);
                 Room r = new Room(e,name);
                 rooms.push(r);
@@ -96,18 +91,4 @@ public class Location {
     public String toString() {
         return entranceMessage;
     }
-
-    //getters
-    public String getName() {return name;}
-    public int getDifficulty() {return difficulty;}
-    public int getNumRooms() {return numRooms;}
-    public char getCurrentLoc() {return currentLoc;}
-    public int getProgress() {return progress;}
-
-    //setters
-    public void setName(String name) {this.name = name;}
-    public void setDifficulty(int difficulty) {this.difficulty = difficulty;}
-    public void setNumRooms(int numRooms) {this.numRooms = numRooms;}
-    public void setCurrentLoc(char currentLoc) {this.currentLoc = currentLoc;}
-    public void setProgress(int progress) {this.progress = progress;}
 }

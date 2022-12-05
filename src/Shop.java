@@ -10,7 +10,6 @@ public class Shop {
     private ArrayList<Item> consumables;
     Scanner scnr = new Scanner(System.in);
 
-
     public Shop(ArrayList<Item> items) {
         weapons = new ArrayList<>();
         armors = new ArrayList<>();
@@ -33,10 +32,10 @@ public class Shop {
         int count = 0;
         for(Item item : items) {
             if(item instanceof Weapon w) {
-                System.out.println("\u001B[32mItem " + count + ": " + w.getName() + " ____________ " + w.getDamage() + " dmg. " + w.getDescription() + " _______ cost - " + w.getValue() + "\u001B[0m");
+                System.out.println("\u001B[32mItem " + count + ": " + w.getName() + " ____________ " + w.getDamage() + " dmg. ___" + w.getDescription() + " _______ cost - " + w.getValue() + "\u001B[0m");
             }
             if(item instanceof Armor a) {
-                System.out.println("\u001B[32mItem " + count + ": " + a.getName() + " ____________ " + a.getStrength() + " strength " + a.getDescription() + " _______ cost - " + a.getValue() + "\u001B[0m");
+                System.out.println("\u001B[32mItem " + count + ": " + a.getName() + " ____________ " + a.getStrength() + " strength ___" + a.getDescription() + " _______ cost - " + a.getValue() + "\u001B[0m");
             }
             if(item instanceof Consumable c) {
                 System.out.println("\u001B[32mItem " + count + ": " + c.getName() + " ____________ recovers" + c.getHealing() + " HP ___ " + c.getDescription() + " _______ cost - " + c.getValue() + "\u001B[0m");
@@ -216,7 +215,7 @@ public class Shop {
         else{
             System.out.println("That item goes for... Oh, let's see now. ");
             Thread.sleep(1000);
-            System.out.println(item.getValue() + " CORN");
+            System.out.println(item.getValue()*5/6 + " CORN");
             System.out.println("Still wanna sell? (y for yes, anything else for no)");
             if(scnr.nextLine().equals("y")) {
                 System.out.println("Pleasure doing business wit ya bud. Have a good one.");
