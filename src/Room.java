@@ -33,6 +33,12 @@ public class Room {
         treasureRoom = false;
     }
 
+    /**
+     * the constructor for a room that contains a chest instead of an enemy
+     * @param c chest in the room
+     * @param name  name of room
+     */
+
     public Room(Chest c, String name) {
         this.name = name;
         this.c = c;

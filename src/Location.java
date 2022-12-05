@@ -3,7 +3,9 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Stack;
 
-
+/**
+ * a location contains a set amount of rooms that the player will work through and once that has been completed, they will enter the next location
+ */
 public class Location {
     private String name;
     private int difficulty;
@@ -62,6 +64,7 @@ public class Location {
 
     /**
      * generates a random assortment of rooms up to the numRooms attached to this location
+     * each room has a 1/10 chance of being a chest room
      * @return Stack<Room> - stack holds each generated room
      */
     public void generateRooms() {

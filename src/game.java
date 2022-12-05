@@ -4,6 +4,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class game {
+    /**
+     * introduces the player to the basic mechanics of the game
+     * @param e enemy the player will fight for practice
+     * @param armor armor the player`s tutorial character has
+     * @param weapon the weapon that the player will use in the tutorial
+     * @throws InterruptedException neccessary so that delays can be put in to allow the user time to read text
+     */
     public void tutorial(Enemy e, Armor armor, Weapon weapon) throws InterruptedException {
         Player p = new Player(100,"tutorial",armor,weapon,10);
         Scanner scnr = new Scanner(System.in);
@@ -56,7 +63,8 @@ public class game {
     }
 
     /**
-     * Prints a menu to inform user and gather input
+     * Prints a menu to inform user and gather input for combat situations
+     * depending on if the character is a mini boss or enemy or girlfriend different things will occur before, during and after combat
      */
     public void combat(Player p,Character enemy) throws InterruptedException{
         boolean gameOver = false;
@@ -143,6 +151,11 @@ public class game {
         Thread.sleep(1750);
     }
 
+    /**
+     * prints the intro dialogue of the story of the game
+     * @throws InterruptedException needed for timing delays in code so the user can read text easier
+     */
+
     public void introDialogue() throws InterruptedException {
         System.out.println("\n \n \n \n \n \n \n \n");
         System.out.println("Your eyelids slowly open. A new day dawns.");
@@ -161,6 +174,13 @@ public class game {
         Thread.sleep(1500);
         System.out.println("Your feet carry you onward.\nAs the canopy around you closes in, steadily darkening the path in front of you, you get the sense that something nefarious lurks in the darkness.");
     }
+
+    /**
+     * creates everything in the game:  all items, characters and initializes the rooms as well as containing the loop that cycles through the locations and shops
+     * @param difficulty 1-3-changes how hard the game is
+     * @param name player name
+     * @throws InterruptedException timing delays so the user can better read the text
+     */
 
     public void start(int difficulty, String name) throws InterruptedException {
         //creates each basic object in the game (such as items, weapons, etc.)
@@ -491,13 +511,26 @@ public class game {
 
     }
 
+    /**
+     * combat for mini bosses
+     * @param p player (user)
+     * @param B mini boss the player is encountering
+     * @param L location the player is in
+     * @throws InterruptedException timing delays so the user can read text better
+     */
+
     public void miniBossFight(Player p, MiniBoss B, Location L) throws InterruptedException {
         B.introFight(p);
         combat(p,B);
         System.out.println("Congrats! you have completed the " + L.getName() + " location");
     }
 
-    //might be able to use this method for all 3 locations
+    /**
+     * this plays through one singular location.  This includes all the enemies in the location as well as chest rooms
+     * @param p
+     * @param L
+     * @throws InterruptedException
+     */
     public void location (Player p, Location L) throws InterruptedException{
         System.out.println("New location: " + L);
         Stack<Room> rooms = L.getRooms();
@@ -519,6 +552,11 @@ public class game {
         }
     }
 
+    /**
+     * randomly assigns enemies to different rooms every time this method is called
+     * @param Enemies a list of every enemy in the game
+     * @return randomized list of enemies
+     */
     public ArrayList<Enemy> randomizeEnemies(ArrayList<Enemy> Enemies) {
         ArrayList<Enemy> EnemiesWithWeights = new ArrayList<>();  //contains all the enemies, but has many duplicates depending on the spawn rate
         for(int i =0; i < Enemies.size(); i++) {     //for every additional spawn rate chance is another enemy added into arraylist
@@ -535,6 +573,11 @@ public class game {
         return Enemies;
     }
 
+    /**
+     * contains all the player interactions if a chest room is found
+     * @param i item in the chest room
+     * @param p player
+     */
     public void chestRoom(Item i, Player p) {
         Scanner scnr = new Scanner(System.in);
         boolean loop = false;
@@ -595,6 +638,11 @@ public class game {
         }
     }
 
+    /**
+     * creates the girlfriend final boss
+     * @param difficulty boss changes based on difficulty
+     * @return returns the boss
+     */
     public Girlfriend makeGirlFriend(int difficulty){
         //IMPORTANT NOTE: flirtResponse's first string (index 0) must be a response for succeeding in the flirt. Each string after that (index 1 on) corresponds to an option in flirtOptions
         //For example, this means that if there are 6 total options in flirtOptions (numbered 1-6), the size of flirtResponses must be 7.
@@ -682,6 +730,9 @@ public class game {
         return null;
     }
 
+    /**
+     * prints out an image of the game logo and game creators at the end of the game
+     */
     public void Credits() {
         var frame = new JFrame();
         var icon = new ImageIcon("Love QUest.png");
@@ -691,6 +742,13 @@ public class game {
                 (JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);    }
+
+    /**
+     * different ending depending on how the user interacts with the final boss
+     * @param goodEnd 0-2 depending on if the user fights flirts or runs from the final boss
+     * @param difficulty awards the user a medal for their achievements depending on if they beat the game on harder difficulties
+     * @throws InterruptedException so that the user can read text easier
+     */
 
     public void ending(int goodEnd, int difficulty) throws InterruptedException {
         if(goodEnd == 0){
@@ -746,6 +804,11 @@ public class game {
         }
     }
 
+    /**
+     * awards the user a medal depending on how what difficulty they beat
+     * @param difficulty 1-3, 3 is the hardest
+     * @return string that is the medal for the player awarded at the end of the game
+     */
     public String makeMedal(int difficulty) {
         switch (difficulty) {
             case 1 -> {return "Bronze Medal ________ You participated";}

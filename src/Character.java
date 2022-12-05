@@ -59,12 +59,19 @@ public abstract class Character {
      */
     public abstract void fight(Character opponent);
 
+    /**
+     * prints out the battle dialogue that a character has during battle
+     */
     public void dialogue() {
         Random r = new Random();
         int i = r.nextInt(this.battleDialogue.size());
         System.out.println("\u001B[31m" + this.battleDialogue.get(i) + "\u001B[0m");
     }
 
+    /**
+     * prints the info out of the character.  This includes health and damage
+     * @return string with all the info
+     */
     public String printInfo() {
         return("\u001B[34m" + name + " ___ HP: " + HP + " / " + maxHP + "   Weapon: " + weapon.getName() + " - " + weapon.getDamage() + " dmg ______ " + weapon.getDescription() + "\u001B[0m");
     }

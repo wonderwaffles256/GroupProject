@@ -64,7 +64,12 @@ public class Enemy extends Character{
     public boolean flirtCheck(int option) {
         return flirtDialogue.get(option).equals(flirtRequirement);
 
-    }//implement later
+    }
+
+    /**
+     * copy constructor for an enemy
+     * @param e enemy that needs to be copied
+     */
     public Enemy(Enemy e) {
         name = e.name;
         HP = e.HP;
@@ -80,6 +85,10 @@ public class Enemy extends Character{
         loot.add(weapon);
     }
 
+    /**
+     * 20% chance for an enemy to drop a player an item
+     * @param p player (user)
+     */
     public void giveLoot(Player p) {
         //gives player a random piece of loot from the list
         if(r.nextInt(100) >= 80) {
@@ -95,6 +104,10 @@ public class Enemy extends Character{
 
     }
 
+    /**
+     * deals damage to player or deals damage to an enemy if enemy is a companion
+     * @param opponent - the Character being fought
+     */
     public void fight(Character opponent){
         opponent.setHP(opponent.HP - this.weapon.getDamage());
         if(opponent instanceof Player) {
