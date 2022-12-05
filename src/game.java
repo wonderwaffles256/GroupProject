@@ -186,19 +186,19 @@ public class game {
 
     public void start(int difficulty, String name) throws InterruptedException {
         //creates each basic object in the game (such as items, weapons, etc.)
-        Weapon gun = new Weapon("gun", 100, 15, "It shoots stuff");
-        Weapon club = new Weapon("wooden club", 10, 5, "Made of 100% tree");
-        Weapon sword = new Weapon("sword", 50, 10, "A true mans weapon");
+        Weapon gun = new Weapon("gun", 100, 20, "It shoots stuff");
+        Weapon club = new Weapon("wooden club", 10, 10, "Made of 100% tree");
+        Weapon sword = new Weapon("sword", 50, 15, "A true mans weapon");
         Weapon BatWithNails = new Weapon("baseball bat with nails", 12, 4, "Perfect for surviving the zombie apocalypse");
-        Weapon umbrella = new Weapon("Umbrella", 15, 8, "Im Mary Poppins y`all");
-        Weapon magicWand = new Weapon("Magic Wand", 15, 6,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
-        Weapon laserRifle = new Weapon("Laser Rifle", 30, 8, "can shoot enemies all the way from a galaxy far far away");
+        Weapon umbrella = new Weapon("Umbrella", 15, 12, "Im Mary Poppins y`all");
+        Weapon magicWand = new Weapon("Magic Wand", 15, 14,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
+        Weapon laserRifle = new Weapon("Laser Rifle", 30, 12, "can shoot enemies all the way from a galaxy far far away");
         Weapon oneshot = new Weapon("Death Star", 300, 500, "Fire when ready");
-        Weapon Bow = new Weapon("Bow", 15, 12, "good ol trusty");
+        Weapon Bow = new Weapon("Bow", 15, 18, "good ol trusty");
         Weapon stick = new Weapon("A Cool Stick",150,10,"A cool stick that looks like a sword.");
-        Weapon paddle = new Weapon("A paddle",10,5,"A child Abuse paddle");
+        Weapon paddle = new Weapon("A paddle",10,12,"A child Abuse paddle");
         Weapon chemo = new Weapon("10-rounds of Chemotherapy",100,60,"Jesse how could you be so stupid. I am the one who Chemos.");
-        Weapon heel = new Weapon("Heel", 29,35,"Worn by the meaniest of girls and swung by those even meaner" );
+        Weapon heel = new Weapon("Heel", 29,25,"Worn by the meaniest of girls and swung by those even meaner" );
         Weapon axe = new Weapon("Axe",55,30,"An American made axe that seems to be the property of some psycho");
 
 
@@ -211,11 +211,11 @@ public class game {
         Armor cloak = new Armor("cloak", 25, 13, "a dark cloak");
         Armor hat = new Armor("Pork Pie Hat",15,7,"A familiar hat that smells like a meth lab");
 
-        Consumable water = new Consumable("Nestle Spring Water", 2, 5, "Capitalism's finest");
-        Consumable tiny = new Consumable("Bud Lite", 5,10,"Choice beer for the middle class diabetic. Restores a small bit of health");
-        Consumable small = new Consumable("Bud Heavy", 10, 25, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
-        Consumable medium = new Consumable("Moonshine",20,50,"Strong liquor, straight from the Prohibition");
-        Consumable large = new Consumable("Vodka",50,110,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
+        Consumable water = new Consumable("Nestle Spring Water", 2, 20, "Capitalism's finest");
+        Consumable tiny = new Consumable("Bud Lite", 5,40,"Choice beer for the middle class diabetic. Restores a small bit of health");
+        Consumable small = new Consumable("Bud Heavy", 10, 60, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
+        Consumable medium = new Consumable("Moonshine",20,90,"Strong liquor, straight from the Prohibition");
+        Consumable large = new Consumable("Vodka",50,150,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
 
         ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock,overalls,buisness,suitOfArmor,peachDress,cloak,gun,club,sword,BatWithNails,umbrella,magicWand,laserRifle,oneshot,Bow,stick,paddle,axe,hat,pinkJumpsuiit));
