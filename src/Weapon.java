@@ -19,13 +19,15 @@ public class Weapon extends Item{
      * @param value value of the object
      * @param damage damage object does
      */
-
-    //constructor given input
     public Weapon(String name, int value, int damage, String description) {
         super(name, value, description);
         this.damage = damage;
     }
 
+    /**
+     * This is just a simple copy constructor for a weapon
+     * @param w - a weapon that is being copied
+     */
     public Weapon(Weapon w) {
         super(w.getName(), w.getValue(), w.getDescription());
         this.damage = w.getDamage();

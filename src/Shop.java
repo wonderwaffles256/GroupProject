@@ -10,6 +10,11 @@ public class Shop {
     private ArrayList<Item> consumables;
     Scanner scnr = new Scanner(System.in);
 
+    /**
+     * This is the constructor for the shop that takes an input of an arraylist of items that are to be sold in the shop
+     * The items are then sorted into separate arraylists depending on if they are a weapon, a consumable, or a piece of armor
+     * @param items - an arraylist of several items to be sold in the shop
+     */
     public Shop(ArrayList<Item> items) {
         weapons = new ArrayList<>();
         armors = new ArrayList<>();
@@ -28,6 +33,10 @@ public class Shop {
         }
     }
 
+    /**
+     * This method displays several items of a particular type and also displays the item's information
+     * @param items - arraylist of items that are to be displayed to the user
+     */
     public void display(ArrayList<Item> items) {
         int count = 0;
         for(Item item : items) {
@@ -45,7 +54,7 @@ public class Shop {
     }
 
     /**
-     * a menu for navigating the shop that lets the player buy and sell
+     * a menu for navigating the shop that lets the player buy and sell or leave the shop
      */
     public void shopMenu(Player p) {
         char BSL = 'B';
@@ -119,7 +128,7 @@ public class Shop {
 
     /**
      * This method allows a player to buy a weapon from the shop
-     *
+     *The weapons do not replenish after bought
      * @param p - the player who is buying the weapon from the shop
      */
     public void buyW(Player p) {
@@ -158,7 +167,7 @@ public class Shop {
 
     /**
      * This method allows a player to buy armor from the shop
-     *
+     *The armor does not replenish after being bought
      * @param p - the player who is buying the armor from the shop
      */
     public void buyA(Player p) {
@@ -198,6 +207,7 @@ public class Shop {
 
     /**
      * This method allows a player to sell an item to the shop keep for 5/6 of the item's value
+     * Weapons and armor that are sold can be bought back in the buy methods
      * @param p - player who wants to sell his own items and needs to get CORN from the sold items
      */
     public void sell(Player p) throws InterruptedException{

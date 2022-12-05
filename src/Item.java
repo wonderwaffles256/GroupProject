@@ -7,7 +7,6 @@ public class Item {
     private String name;
     private int value;
     private String description;
-    //TODO: may need to add rarity for random loot in chests
 
     /**
      * default constructor
