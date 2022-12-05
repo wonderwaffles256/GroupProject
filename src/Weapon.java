@@ -38,10 +38,4 @@ public class Weapon extends Item{
     //getter / setter
     public int getDamage() {return damage;}
 
-    /**
-     * setter for the damage of a weapon
-     * @param damage new value for damage of weapon object
-     */
-    public void setDamage(int damage) {this.damage = damage;}
-
 }

@@ -218,7 +218,7 @@ public class game {
         beetFlirtDialogue.add(beetSuccess);     //correct option
         beetFlirtDialogue.add("Oh... uhhh, I can be intense too.\n*Baljbeet stares through your soul*");    //string for an incorrect option
         beetFlirtDialogue.add("that's not very nice of you");                                         //string for an incorrect option
-        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 8, beetBattleDialogue, beetFlirtDialogue);
+        Enemy beet = new Enemy(12, "Baljbeet", noArmor, club, 5, beetLoot, beetSuccess, 3, beetBattleDialogue, beetFlirtDialogue);
 
         String ogreSuccess = "*Grunts happily*";
         ArrayList<Item> ogreLoot = new ArrayList<>();
@@ -229,7 +229,7 @@ public class game {
         ogreFlirtDialogue.add("Grunts louder than before, somehow looking angrier and uglier");
         ogreFlirtDialogue.add(ogreSuccess);
         ogreFlirtDialogue.add("Laughs at you and then returns to his angry ogre face");
-        Enemy ogre = new Enemy(12, "Ogre", overalls, BatWithNails, 7, ogreLoot, ogreSuccess, 7, ogreBattleDialogue, ogreFlirtDialogue);
+        Enemy ogre = new Enemy(12, "Ogre", overalls, BatWithNails, 7, ogreLoot, ogreSuccess, 4, ogreBattleDialogue, ogreFlirtDialogue);
 
         String peachSuccess = "Mario's never around anymore, I guess this could be fun";
         ArrayList<Item> peachLoot = new ArrayList<>();
@@ -240,7 +240,7 @@ public class game {
         peachFlirtDialogue.add("You'll be hearing from the Nintendo lawyers");
         peachFlirtDialogue.add(peachSuccess);
         peachFlirtDialogue.add("broke...");
-        Enemy princessPeach = new Enemy(25, "Princess Peach", peachDress, umbrella, 10, peachLoot, peachSuccess, 2, peachBattleDialogue, peachFlirtDialogue);
+        Enemy princessPeach = new Enemy(25, "Princess Peach", peachDress, umbrella, 10, peachLoot, peachSuccess, 4, peachBattleDialogue, peachFlirtDialogue);
 
         String pSuccess = "*Chimes happily and flies close to you*";
         ArrayList<Item> pLoot = new ArrayList<>();
@@ -252,7 +252,7 @@ public class game {
         pFlirtDialogue.add("*flies around looking even angrier*");
         pFlirtDialogue.add("*shines brighter, burning your retinas*");
         pFlirtDialogue.add(pSuccess);
-        Enemy pixie = new Enemy (15, "Pixie", noArmor,magicWand , 8, pLoot,pSuccess,6,pBattleDialogue,pFlirtDialogue);
+        Enemy pixie = new Enemy (15, "Pixie", noArmor,magicWand , 8, pLoot,pSuccess,5,pBattleDialogue,pFlirtDialogue);
 
         String panSuccess = "YES! Together we shall vanquish the rising wage gap and distribute the wealth through violent revolution!";
         ArrayList<Item> panLoot = new ArrayList<>();
@@ -414,7 +414,7 @@ public class game {
         Player player = new Player(200, name, overalls, oneshot, 10);
 
         //tutorial
-        System.out.println("Would you like to play the tutorial and read the intro dialogue? \n press 1 for yes and 2 for no");
+        System.out.println("Would you like to play the tutorial? \n press 1 for yes and 2 for no");
         Scanner scnr = new Scanner(System.in);
         if (scnr.nextInt() == 1) {
             tutorial(beet,noArmor,club);
