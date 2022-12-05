@@ -70,7 +70,7 @@ public abstract class Character {
     public void dialogue() {
         Random r = new Random();
         int i = r.nextInt(this.battleDialogue.size());
-        System.out.println(this.battleDialogue.get(i) + "    - " + name);
+        System.out.println("\u001B[31m" + this.battleDialogue.get(i) + "\u001B[0m");
     }
 
     /**

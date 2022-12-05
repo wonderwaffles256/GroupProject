@@ -163,7 +163,7 @@ public class Player extends Character{
                                                                 
                                 Do you:
                                 """);
-                        System.out.println("\u0001B[33m" + options + "\u001B[0m");
+                        System.out.println("\u001B[33m" + options + "\u001B[0m");
                         int choice = sc.nextInt();
                         sc.nextLine();
 
@@ -345,17 +345,17 @@ public class Player extends Character{
         Thread.sleep(1500);
         System.out.println("Game Over");
         Thread.sleep(1500);
-        System.out.println("---------------------Farmer's Only Quest------------------------");
+        System.out.println("------------------------Lover's Quest----------------------------");
         Thread.sleep(1500);
         System.out.println("Programmers, Writers, Designers, and Masters of the Universe:\n");
         Thread.sleep(1500);
-        System.out.println("                      Daniel Newcomb");
+        System.out.println("                      Daniel Newcomb\n");
         Thread.sleep(1500);
-        System.out.println("                      Sean Malencia");
+        System.out.println("                      Sean Malencia\n");
         Thread.sleep(1500);
-        System.out.println("                      Owen Schulze");
+        System.out.println("                      Owen Schulze\n");
         Thread.sleep(1500);
-        System.out.println("                      Noah Adams");
+        System.out.println("                      Noah Adams\n");
         Thread.sleep(1500);
         System.out.println("                   Thanks for playing!");
         System.exit(0);

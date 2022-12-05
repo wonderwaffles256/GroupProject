@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.sql.Array;
 import java.sql.SQLOutput;
 import java.util.*;
 import javax.swing.JFrame;
@@ -98,6 +99,9 @@ public class game {
                     }
                     case "4" -> {
                         p.flee();
+                        if(enemy instanceof Girlfriend g) {
+                            ending(2);
+                        }
                         goodinput = true;
                         done = true;
                     }
@@ -125,21 +129,13 @@ public class game {
                 enemy.fight(p);
             }
             if(p.getHP() <= 0) {
-                if(!(enemy instanceof Girlfriend g)) {
+                if(!(enemy instanceof Girlfriend)) {
                     Thread.sleep(1500);
                     System.out.println("\u0001B[31mYour attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
                     p.death();
                 }
                 else {
-                    System.out.println("What a pathetic display of ineptitude.");
-                    Thread.sleep(2500);
-                    System.out.println("You really thought you could defeat " + g.getName() + " with so little clout?.");
-                    Thread.sleep(3000);
-                    System.out.println("You lack ambition, and so did your friends.");
-                    Thread.sleep(3500);
-                    System.out.println("Goodbye, incel.");
-                    Thread.sleep(3000);
-                    p.credits();
+                    ending(2);
                     gameOver = true;
                 }
 
@@ -154,7 +150,9 @@ public class game {
 
     public void introDialogue() throws InterruptedException {
         System.out.println("\n \n \n \n \n \n \n \n");
-        System.out.println("Your journey begins where most great journeys begin: \n a field");
+        System.out.println("Your eyelids slowly open. A new day dawns.");
+        Thread.sleep(1500);
+        System.out.println("You awaken in a place where most great journeys begin: \n a field");
         Thread.sleep(1500);
         System.out.println("You sit in silent contemplation \n after a few moments of deep thought about your life you decide that your girlfriend is the one you want to be with forever");
         Thread.sleep(1500);
@@ -264,13 +262,21 @@ public class game {
         panFlirtDialogue.add("It'll be the last thing you see");
         Enemy robinHood = new Enemy(30, "Robin Hood", noArmor, Bow, 4, panLoot, panSuccess, 5, panBattleDialogue, panFlirtDialogue);
 
-
-//        Enemy jBourne = new Enemy(35, "Jason Bourne", noArmor, gun, 7, bourneLoot, bourneSuccess, 5, bourneBattleDialogue, bournFlirtDialogue);
+        ArrayList<Item> bourneLoot = new ArrayList<>();
+        String bourneSuccess = "Wow, that answered so many questions. How can I learn more?\n*You lure him onto your team with the promise of answers*";
+        ArrayList<String> bourneBattleDialogue = new ArrayList<>();
+        bourneBattleDialogue.add("You're bourne to die");
+        ArrayList<String> bournFlirtDialogue = new ArrayList<>();
+        bournFlirtDialogue.add("1 - Give him a fake ID\n2 - Tell him that you too have an identity crisis\n3 - Make him watch the Bourne Identity");
+        bournFlirtDialogue.add("What am I, 15?");
+        bournFlirtDialogue.add("I don't need sympathy, I need answers!");
+        bournFlirtDialogue.add(bourneSuccess);
+        Enemy jBourne = new Enemy(35, "Jason Bourne", noArmor, gun, 7, bourneLoot, bourneSuccess, 5, bourneBattleDialogue, bournFlirtDialogue);
 //        Enemy Bond = new Enemy(30, "007", buisness, gun, 2, bondLoot, bondSuccess, 4, bondBattleDialogue, bondFlirtDialogue);
 //        Enemy TuskenRaider = new Enemy(13, "Tusken Raider", overalls, laserRifle, 8, trLoot, trSuccess, 4, trBattleDialogue, trFlirtDesign);
 //        Enemy Jawa = new Enemy(20, "Jawa", cloak, laserRifle, 3, jawaLoot, jawaSuccess, 4, jawaBattleDialogue, jawaFlirtDesign);
 //        Enemy KingArthur = new Enemy(40, "King Arthur", suitOfArmor, sword, 7, arthurLoot, arthurSuccess,5, arthurBattleDialogue, arthurFlirtDialogue);
-//        john wick
+//        Enemy JohnWick = new Enemy(30, "John Wick", suit, buisness, gun, 2, wickLoot, wickSuccess, 3, wickBattleDialogue, wickFlirtDialogue)
 //        snoopy
 //        snoop dog
         //patrick bateman
@@ -312,6 +318,7 @@ public class game {
         }
         else {
             System.out.println("Very well, good luck on your adventures traveler");
+            introDialogue();
         }
         String loc1Msg = "You enter what seems to be a forest. Huge, weeping trees tower above.";
         String loc2Msg = "You come across a magnificent castle. It must've stood here for centuries. You enter warily.";
@@ -547,7 +554,6 @@ public class game {
             Thread.sleep(2000);
             System.out.println("If you want more pay $30 for a better written ending");
             Thread.sleep(1000);
-
             Credits();
         }
         else if (goodEnd == 1){
@@ -562,6 +568,7 @@ public class game {
             System.out.println("you now spend every day and night locked in a small prison room with no one to see and no one to talk to");
             Thread.sleep(3000);
             System.out.println("you continue to serve out your life sentence in hopes of escaping one day, but for now you wait...");
+            Thread.sleep(3500);
             Credits();
         }
         else if (goodEnd == 2) {
@@ -569,8 +576,20 @@ public class game {
             System.out.println("your journey has come to and end, and as you look around you see your companions who gave their lives for a cause you couldn't bring yourself to complete");
             System.out.println("you return to that field where you sat before all of this began");
             System.out.println("as you lay back down to think some more, you fall asleep");
+            Thread.sleep(5000);
             introDialogue();
             start(1,"a failed hero");
+        }
+        else if(goodEnd == 3) {
+            System.out.println("What a pathetic display of ineptitude.");
+            Thread.sleep(2500);
+            System.out.println("You really thought you could defeat your girlfriend with so little clout?.");
+            Thread.sleep(3000);
+            System.out.println("You lack ambition, and so did your friends.");
+            Thread.sleep(3500);
+            System.out.println("Goodbye, incel.");
+            Thread.sleep(3000);
+            Credits();
         }
     }
    }
