@@ -28,8 +28,6 @@ public class Player extends Character{
      * @param weapon weapon held by player
      * @param critChance chance of landing critical hit
      */
-
-    //constructor given input
     public Player(int HP, String name, Armor armor, Weapon weapon, double critChance) {
         super(HP, name, armor, weapon, critChance, new ArrayList<>());
         clout = 1;
@@ -42,10 +40,6 @@ public class Player extends Character{
         for(int i=0; i<3; i++) {this.itemPack.add(new Consumable("Bottled Water", 2, 15, "Capitalism's finest"));}
     }
 
-    /**
-     * getter
-     * @return clout
-     */
     //getters
     public double getClout() {return this.clout;}
     public int getCORN() {return this.CORN;}
@@ -58,10 +52,10 @@ public class Player extends Character{
     public void addItemPack(Item i) {itemPack.add(i);}
 
     /**
-     * Player's version of the fight method. Multiplies damage by their current clout modifier.
+     * Player's version of the fight method. Multiplies damage by their current clout modifier. Allows for use of companions instead of a regular hit
+     * with a small chance of jumping in regardless.
      * @param opponent - the Character being fought
      */
-
     public void fight(Character opponent){
         boolean usedCompanion = false;
         if(companions.size() > 0) {
@@ -79,6 +73,11 @@ public class Player extends Character{
         }
     }
 
+    /**
+     * Allows companions to randomly jump in for an extra hit during a fight. Randomly decides whether they jump in based on
+     * the companion's critChance.
+     * @param opponent - Character being fought in combat
+     */
    public void critChance(Character opponent) {
         Random rand = new Random();
         for ( Enemy c : companions) {;
@@ -95,7 +94,7 @@ public class Player extends Character{
     }
 
     /**
-     * player flees combat
+     * Player flees combat
      * this act of cowardice decreases their clout
      */
     public void flee() {
@@ -105,8 +104,9 @@ public class Player extends Character{
     }
 
     /**
-     * player flirts with enemy
-     * if successful then enemy becomes a companion
+     * Player flirts with an Enemy or Girlfriend.
+     * If successful with an enemy, they become a companion and can fight for you.
+     * If successful with a Girlfriend, your clout increases substantially, giving you the upper hand.
      */
     public boolean flirt(Character c, Player p) {
         Scanner sc = new Scanner(System.in);
@@ -252,6 +252,11 @@ public class Player extends Character{
         }//end else
     }
 
+    /**
+     * Accounts for when an item recovers more HP than the player can heal.
+     * @param healedAmt - maximum HP recoverable from using a consumable
+     * @return - remainder of a consumable's healing amount based on player's current HP
+     */
     public int healRemainder(int healedAmt) {
         if(HP + healedAmt > maxHP) {
             int overflow  = (HP + healedAmt) - maxHP;
@@ -260,6 +265,9 @@ public class Player extends Character{
         else {return healedAmt;}
     }
 
+    /**
+     * Displays each item in the player's itemPack and their currently equipped items.
+     */
     public void displayItems() {
         System.out.println("Equipped Weapon: " + this.weapon.getName() + " ______________ " + this.weapon.getDescription());
         System.out.println("Equipped Armor: " + this.armor.getName() + " ______________ " + this.armor.getDescription());
@@ -268,14 +276,20 @@ public class Player extends Character{
         }
     }
 
+    /**
+     * Displays each companion in the player's list of companions
+     */
     public void displayCompanions() {
         for(int i = 0; i < this.companions.size(); i++) {
             Character companion = this.companions.get(i);
             System.out.println("\u001B[34m      Companion " + i + ": " + companion.printInfo());
-
         }
     }
-    //change to equipItem
+
+    /**
+     * Equips an item (Weapon or Armor) and returns the formerly equipped item to the player's itemPack
+     * @param i - an Item to be equipped
+     */
     public void equipItem(Item i) {
         if(i instanceof Weapon w) {
             if(!itemPack.contains(w)) {
@@ -299,6 +313,11 @@ public class Player extends Character{
         }
     }
 
+    /**
+     * Uses the healing consumable given by the player's input. Removes the consumable from itemPack.
+     * @param c - Consumable item
+     * @param index - index in itemPack given by player input
+     */
     public void useConsumable(Consumable c, int index) {
         int remainder = healRemainder(c.getHealing());
         HP += remainder;
@@ -306,7 +325,13 @@ public class Player extends Character{
         System.out.println("You used " + c.getName() + ", recovering " + remainder + " HP");
     }
 
-    public void death() throws InterruptedException {
+    /**
+     * Prompts the player to continue their adventure after dying. If they continue, their HP, clout, CORN,  and companions are reset.
+     * If they choose to end the game, the player is given one of the ending sequences
+     * @throws InterruptedException - accounts for thread interrupted errors
+     * @return - boolean false if player decides to continue; true if they decide to end
+     */
+    public boolean death() throws InterruptedException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Continue Adventuring? (y for yes, anything else for no)");
         String ch = sc.next();
@@ -321,32 +346,15 @@ public class Player extends Character{
             System.out.println("You awaken at the foot of a tree. Your wounds seem to have healed, but at the cost of your friends.");
             Thread.sleep(1500);
             System.out.println("You reach into your pockets. Whatever money you had has vanished.");
+            return false;
         }
-        else {
-            credits();
-        }
+        return true;
     }
 
-    public void credits() throws InterruptedException{
-        Thread.sleep(1500);
-        System.out.println("Game Over");
-        Thread.sleep(1500);
-        System.out.println("------------------------Lover's Quest----------------------------");
-        Thread.sleep(1500);
-        System.out.println("Programmers, Writers, Designers, and Masters of the Universe:\n");
-        Thread.sleep(1500);
-        System.out.println("                      Daniel Newcomb\n");
-        Thread.sleep(1500);
-        System.out.println("                      Sean Malencia\n");
-        Thread.sleep(1500);
-        System.out.println("                      Owen Schulze\n");
-        Thread.sleep(1500);
-        System.out.println("                      Noah Adams\n");
-        Thread.sleep(1500);
-        System.out.println("                   Thanks for playing!");
-        System.exit(0);
-    }
-
+    /**
+     * Both giveCORN methods increase the player's CORN by some random amount
+     * @param chance - a random number generator
+     */
     public void giveCORN(Random chance) {
         //gives random corn
         int newCORN = chance.nextInt(10,25);
@@ -359,7 +367,8 @@ public class Player extends Character{
     }
 
     /**
-     * allows player to choose one of a companions to fight for them once during a battle
+     * Allows player to choose one of their companions to fight for them once during a battle. Companions become tired after they are used
+     * and cannot be used again until the next combat.
      */
     public boolean useCompanions(Character opponent){
         Scanner sc = new Scanner(System.in);
@@ -404,6 +413,9 @@ public class Player extends Character{
         return false;
     }
 
+    /**
+     * Rests any tired companions after combat
+     */
     public void restCompanions() {
         for(Enemy c : companions) {
              c.setTired(false);

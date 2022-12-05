@@ -1,6 +1,7 @@
 import java.util.*;
 //TODO balance stuff - everyone
 //TODO javadoc methods - everyone
+//TODO switch Padme to level 3
 
 /**
  * This method runs the entirety of the game mainly by calling the game method. The method only really asks for a difficulty and then plays the game
