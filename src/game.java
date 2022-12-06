@@ -134,7 +134,7 @@ public class game {
             if(p.getHP() <= 0) {
                 if(!(enemy instanceof Girlfriend)) {
                     Thread.sleep(1500);
-                    System.out.println("\u0001B[31m" + "Your attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
+                    System.out.println("\u001B[31m" + "Your attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
                     if(p.death()) {
                         ending(2,1);
                     }
@@ -495,6 +495,8 @@ public class game {
             location(player, locations.peek());
             miniBossFight(player,miniBosses.poll(),locations.poll());
             s.shopMenu(player);
+            System.out.println("thanks for stopping by SHEETZ.  You look a little low on health. here, let me help ya out");
+            player.setHP(player.maxHP);
         }
 
         System.out.println("After a long journey you make it to your girlfriends house.");
@@ -522,6 +524,18 @@ public class game {
      */
 
     public void miniBossFight(Player p, MiniBoss B, Location L) throws InterruptedException {
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("it feels like something big is coming, would you like to take this opportunity to heal up? \n enter y for yes, and anything for no");
+        boolean heal = true;
+        while(heal) {
+            if (scnr.next().equals("y")) {
+                p.flask();
+                System.out.println("enter y if you would like to heal more or just enter anything else to exit");
+            }
+            else {
+                heal = false;
+            }
+        }
         B.introFight(p);
         combat(p,B);
         System.out.println("Congrats! you have completed the " + L.getName() + " location");
@@ -785,10 +799,13 @@ public class game {
         }
         else if (goodEnd == 2) {
             System.out.println("in fear of your girlfriends wrath you flee from the scene");
+            Thread.sleep(2000);
             System.out.println("your journey has come to and end, and as you look around you see your companions who gave their lives for a cause you couldn't bring yourself to complete");
+            Thread.sleep(2000);
             System.out.println("you return to that field where you sat before all of this began");
+            Thread.sleep(2000);
             System.out.println("as you lay back down to think some more, you fall asleep");
-            Thread.sleep(5000);
+            Thread.sleep(7000);
             introDialogue();
 
             start(1,"a failed hero");
