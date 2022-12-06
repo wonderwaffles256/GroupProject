@@ -159,7 +159,7 @@ public class Player extends Character{
                             break;
                         }
                         else if(choices.toString().charAt(choice-1) == g.getFlirtSuccess().charAt(choice-1)) {
-                            System.out.println(g.getName() + " seemed to like that.");
+                            System.out.println("\u001B[33m" + g.getName() + " seemed to like that.\u001B[0m");
                             Thread.sleep(1500);
                         }
 
