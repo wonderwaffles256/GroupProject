@@ -47,7 +47,7 @@ public class Shop {
                 System.out.println("\u001B[32mItem " + count + ": " + a.getName() + " ____________ " + a.getStrength() + " strength ___" + a.getDescription() + " _______ cost - " + a.getValue() + "\u001B[0m");
             }
             if(item instanceof Consumable c) {
-                System.out.println("\u001B[32mItem " + count + ": " + c.getName() + " ____________ recovers" + c.getHealing() + " HP ___ " + c.getDescription() + " _______ cost - " + c.getValue() + "\u001B[0m");
+                System.out.println("\u001B[32mItem " + count + ": " + c.getName() + " ____________ recovers " + c.getHealing() + " HP ___ " + c.getDescription() + " _______ cost - " + c.getValue() + "\u001B[0m");
             }
             count++;
         }
@@ -57,19 +57,21 @@ public class Shop {
      * a menu for navigating the shop that lets the player buy and sell or leave the shop
      */
     public void shopMenu(Player p) {
-        char BSL = 'B';
+        boolean done = false;
+        char BSL;
         System.out.println("Welcome to the SHOP also known as SHEETZ.");
-        while (BSL != 'L') {
+        while (!done) {
             System.out.println("Would you like to buy[B], sell[S], or");
             System.out.println("would you like to leave[L]");
             try {
                 BSL = scnr.nextLine().charAt(0);
-                if (BSL == 'B') {
+                if (BSL == 'B' || BSL == 'b') {
                     buyMenu(p);
-                } else if (BSL == 'S') {
+                } else if (BSL == 'S' || BSL == 's') {
                     sell(p);
-                } else if (BSL == 'L') {
+                } else if (BSL == 'L' || BSL == 'l') {
                     System.out.println("Thanks for coming. Hope you can reach ya girl, whippersnapper");
+                    done = true;
                 } else {
                     System.out.println("I don't understand what you just said. Try my suggested answers... *mutters* Some people's kids");
                 }
@@ -87,11 +89,11 @@ public class Shop {
     public void buyMenu(Player p) {
         System.out.println("So, ya wanna buy do ya. Wanna buy a healing consumable[C], weapon[W], or some Armor[A]");
         char choice = scnr.nextLine().charAt(0);
-            if (choice == 'C') {
+            if (choice == 'C' || choice == 'c') {
                 buyC(p);
-            } else if (choice == 'W') {
+            } else if (choice == 'W' || choice == 'w') {
                 buyW(p);
-            } else if (choice == 'A') {
+            } else if (choice == 'A' || choice == 'a') {
                 buyA(p);
             } else {
                 System.out.println("Guessing that means you changed ur mind then huh.");
@@ -153,7 +155,7 @@ public class Shop {
                     weapons.remove(choice);
                     System.out.println("Wanna equip ya new damage dealer, boy. Yes[Y] or no[N].");
                     char equip = scnr.nextLine().charAt(0);
-                    if (equip == 'Y') {
+                    if (equip == 'Y' || equip == 'y') {
                         System.out.println("Ight yur weapon is equipped and ya old one is in yur bag.");
                         p.equipItem(w);
                     } else {
@@ -193,7 +195,7 @@ public class Shop {
                     armors.remove(choice);
                     System.out.println("Wanna equip ye new drip, lad. Yes[Y] or no[N].");
                     char equip = scnr.nextLine().charAt(0);
-                    if (equip == 'Y') {
+                    if (equip == 'Y' || equip == 'y') {
                         System.out.println("Just go redress yur scurvy butt.");
                         p.equipItem(a);
                     } else {

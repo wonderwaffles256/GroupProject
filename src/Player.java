@@ -158,6 +158,10 @@ public class Player extends Character{
                             System.out.println("Coward");
                             break;
                         }
+                        else if(choices.toString().charAt(choice-1) == g.getFlirtSuccess().charAt(choice-1)) {
+                            System.out.println(g.getName() + " seemed to like that.");
+                            Thread.sleep(1500);
+                        }
 
                         System.out.println(g.getFlirtResponses().get(choice) + "\n");     //prints a response based on the player's choice from the flirtResponse list
                     }
@@ -269,10 +273,23 @@ public class Player extends Character{
      * Displays each item in the player's itemPack and their currently equipped items.
      */
     public void displayItems() {
-        System.out.println("Equipped Weapon: " + this.weapon.getName() + " ______________ " + this.weapon.getDescription());
-        System.out.println("Equipped Armor: " + this.armor.getName() + " ______________ " + this.armor.getDescription());
+        System.out.println("Equipped Weapon: " + this.weapon.getName() + " ___ " + this.weapon.getDamage() + " dmg. ______________ " + this.weapon.getDescription());
+        System.out.println("Equipped Armor: " + this.armor.getName() + " ___ " + this.armor.getStrength() + " strength. ______________ " + this.armor.getDescription());
         for(int i = 0; i < this.itemPack.size(); i++) {
-            System.out.println("\u001B[32mItem " + i + ": " + this.itemPack.get(i).getName() + " _____________  " + this.itemPack.get(i).getDescription() +"\u001B[0m");
+            StringBuilder str = new StringBuilder();
+            Item I = this.itemPack.get(i);
+            str.append("\u001B[32mItem " + i + ": " + I.getName());
+            if(I instanceof Weapon w) {
+                str.append(" ___ " + w.getDamage() + " dmg. ___ " + w.getValue() + " CORN");
+            }
+            if(I instanceof Armor a) {
+                str.append(" ___ " + a.getStrength() + " strength. ___ " + a.getValue() + " CORN");
+            }
+            if(I instanceof Consumable c) {
+                str.append(" ___ recovers " + c.getHealing() + " HP ___ " + c.getValue() + " CORN");
+            }
+            str.append(" _____________ " + I.getDescription() +"\u001B[0m");
+            System.out.println(str);
         }
     }
 

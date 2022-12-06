@@ -19,6 +19,7 @@ public class ConsoleDriver {
             }
             catch (Exception e) {
                 System.out.println("Enter something normal, you troglodyte.");
+                System.out.println("[Restarting Game]");
             }
         }
     }

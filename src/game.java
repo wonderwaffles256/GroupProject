@@ -4,8 +4,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class game {
+    Scanner scnr = new Scanner(System.in);
     /**
-     * introduces the player to the basic mechanics of the game
+     * introduces the player to the basic mechanics of the gam
      * @param e enemy the player will fight for practice
      * @param armor armor the player`s tutorial character has
      * @param weapon the weapon that the player will use in the tutorial
@@ -73,7 +74,6 @@ public class game {
             System.out.println("\u001B[31m" + enemy.getName() + " has appeared!" + "\u001B[0m");
             Thread.sleep(1500);
         }
-        Scanner scnr = new Scanner(System.in);
 
         boolean done = false;
         while (!done) {
@@ -136,11 +136,11 @@ public class game {
                     Thread.sleep(1500);
                     System.out.println("\u001B[31m" + "Your attempt to fight for the love of your life ended because of " + enemy.getName() + "\u001B[0m");
                     if(p.death()) {
-                        ending(2,1);
+                        ending(3,1);
                     }
                 }
                 else {
-                    ending(2, 1);
+                    ending(3, 1);
                     gameOver = true;
                 }
 
@@ -186,39 +186,41 @@ public class game {
 
     public void start(int difficulty, String name) throws InterruptedException {
         //creates each basic object in the game (such as items, weapons, etc.)
-        Weapon gun = new Weapon("gun", 100, 20, "It shoots stuff");
-        Weapon club = new Weapon("wooden club", 10, 10, "Made of 100% tree");
-        Weapon sword = new Weapon("sword", 50, 15, "A true mans weapon");
-        Weapon BatWithNails = new Weapon("baseball bat with nails", 12, 4, "Perfect for surviving the zombie apocalypse");
-        Weapon umbrella = new Weapon("Umbrella", 15, 12, "Im Mary Poppins y`all");
-        Weapon magicWand = new Weapon("Magic Wand", 15, 14,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
-        Weapon laserRifle = new Weapon("Laser Rifle", 30, 12, "can shoot enemies all the way from a galaxy far far away");
+        Weapon gun = new Weapon("gun", 50, 25, "It shoots stuff");
+        Weapon club = new Weapon("wooden club", 10, 8, "Made of 100% tree");
+        Weapon sword = new Weapon("sword", 20, 15, "A true mans weapon");
+        Weapon BatWithNails = new Weapon("baseball bat with nails", 15, 12, "Perfect for surviving the zombie apocalypse");
+        Weapon umbrella = new Weapon("Umbrella", 12, 10, "Im Mary Poppins y`all");
+        Weapon magicWand = new Weapon("Magic Wand", 20, 15,"look this doesn't mean magic is real, i just ran out of ideas for weapons");
+        Weapon laserRifle = new Weapon("Laser Rifle", 22, 16, "can shoot enemies all the way from a galaxy far far away");
         Weapon oneshot = new Weapon("Death Star", 300, 500, "Fire when ready");
-        Weapon Bow = new Weapon("Bow", 15, 18, "good ol trusty");
-        Weapon stick = new Weapon("A Cool Stick",150,10,"A cool stick that looks like a sword.");
-        Weapon paddle = new Weapon("A paddle",10,12,"A child Abuse paddle");
+        Weapon Bow = new Weapon("Bow", 30, 18, "good ol trusty");
+        Weapon stick = new Weapon("A Cool Stick",6,10,"A cool stick that looks like a sword.");
+        Weapon paddle = new Weapon("Paddle",13,11,"Suited for domestic abuse");
         Weapon chemo = new Weapon("10-rounds of Chemotherapy",100,60,"Jesse how could you be so stupid. I am the one who Chemos.");
         Weapon heel = new Weapon("Heel", 29,25,"Worn by the meaniest of girls and swung by those even meaner" );
-        Weapon axe = new Weapon("Axe",55,30,"An American made axe that seems to be the property of some psycho");
+        Weapon axe = new Weapon("Axe",60,30,"An American made axe that seems to be the property of some psycho");
 
 
         Armor overalls = new Armor("overalls", 20, 10, "Ain't much, but it's honest work");
         Armor noArmor = new Armor("Birthday Suit", 0, 0, "Nothing cheaper than a birthday suit");
-        Armor buisness = new Armor("suit", 120, 35, "Always the best dressed in the room");
-        Armor suitOfArmor = new Armor("suit of armor", 75, 20, "looks cool, but its the 20th century");
-        Armor peachDress = new Armor("princess Peach's dress", 90, 25, "A pretty pink dress");
-        Armor pinkJumpsuiit = new Armor("Pink Jumpsuit", 95, 28, "worn by the meanest of girls");
-        Armor cloak = new Armor("cloak", 25, 13, "a dark cloak");
+        Armor buisness = new Armor("suit", 100, 40, "Always the best dressed in the room");
+        Armor suitOfArmor = new Armor("suit of armor", 65, 20, "looks cool, but its the 20th century");
+        Armor peachDress = new Armor("princess Peach's dress", 75, 25, "A pretty pink dress");
+        Armor pinkJumpsuiit = new Armor("Pink Jumpsuit", 85, 28, "worn by the meanest of girls");
+        Armor cloak = new Armor("cloak", 30, 15, "a dark cloak");
         Armor hat = new Armor("Pork Pie Hat",15,7,"A familiar hat that smells like a meth lab");
+        Armor vipers = new Armor("Pit Vipers",45,18,"Redneck energy");
+        Armor netherite = new Armor("Netherite Armor", 120, 50, "Fit for a minor");
 
         Consumable water = new Consumable("Nestle Spring Water", 2, 20, "Capitalism's finest");
-        Consumable tiny = new Consumable("Bud Lite", 5,50,"Choice beer for the middle class diabetic. Restores a small bit of health");
-        Consumable small = new Consumable("Bud Heavy", 10, 70, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
-        Consumable medium = new Consumable("Moonshine",20,110,"Strong liquor, straight from the Prohibition");
+        Consumable tiny = new Consumable("Bud Lite", 10,50,"Choice beer for the middle class diabetic. Restores a small bit of health");
+        Consumable small = new Consumable("Bud Heavy", 15, 70, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
+        Consumable medium = new Consumable("Moonshine",25,110,"Strong liquor, straight from the Prohibition");
         Consumable large = new Consumable("Vodka",50,170,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
 
-        ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock,overalls,buisness,suitOfArmor,peachDress,cloak,gun,club,sword,BatWithNails,umbrella,magicWand,laserRifle,oneshot,Bow,stick,paddle,axe,hat,pinkJumpsuiit));
+        ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock,overalls,buisness,suitOfArmor,peachDress,cloak,gun,club,sword,BatWithNails,umbrella,magicWand,laserRifle,oneshot,Bow,stick,paddle,axe,hat,pinkJumpsuiit,vipers,netherite));
         Chest c = new Chest(allItems);
         ArrayList<Item> beetLoot = new ArrayList<>();
         ArrayList<String> beetBattleDialogue = new ArrayList<>();
@@ -435,7 +437,7 @@ public class game {
 
         ArrayList<Enemy> Enemies = new ArrayList<>(Arrays.asList(beet, ogre,princessPeach,pixie, robinHood,BillNye,BreakBad,patman,jBourne,Bond,Jawa,JohnWick,KingArthur,TuskenRaider,snoopy, snoopDog, jarJar));        //contains one of the enemies in order of creation
 
-        Player player = new Player(200, name, overalls, club, 10);
+        Player player = new Player(200, name, noArmor, club, 10);
 
         //tutorial
         System.out.println("Would you like to play the tutorial? \n press 1 for yes and 2 for no");
@@ -730,7 +732,7 @@ public class game {
             }
             case 2 -> {//create difficulty 3 gf
                 //Rasputin
-                Weapon ras = new Weapon("Sleeper Simulant",1000,40,"Now that is a Destiny 2 reference");
+                Weapon ras = new Weapon("Sleeper Stimulant",1000,40,"Now that is a Destiny 2 reference");
                 Armor rarmor = new Armor("Royal Russian Garb",999,150,"The attire of an eccentric Russian Man");
                 girlFlirtSuccess = "159";
                 girlDialogue.add("Many have made attempt on my life. You will not be first.");

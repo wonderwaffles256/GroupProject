@@ -73,6 +73,7 @@ public class Enemy extends Character{
     public Enemy(Enemy e) {
         name = e.name;
         HP = e.HP;
+        maxHP = e.maxHP;
         armor = e.armor;
         weapon = e.weapon;
         critChance = e.critChance;
