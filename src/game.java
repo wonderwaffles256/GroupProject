@@ -212,10 +212,10 @@ public class game {
         Armor hat = new Armor("Pork Pie Hat",15,7,"A familiar hat that smells like a meth lab");
 
         Consumable water = new Consumable("Nestle Spring Water", 2, 20, "Capitalism's finest");
-        Consumable tiny = new Consumable("Bud Lite", 5,40,"Choice beer for the middle class diabetic. Restores a small bit of health");
-        Consumable small = new Consumable("Bud Heavy", 10, 60, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
-        Consumable medium = new Consumable("Moonshine",20,90,"Strong liquor, straight from the Prohibition");
-        Consumable large = new Consumable("Vodka",50,150,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
+        Consumable tiny = new Consumable("Bud Lite", 5,50,"Choice beer for the middle class diabetic. Restores a small bit of health");
+        Consumable small = new Consumable("Bud Heavy", 10, 70, "Originally recalled due to health concerns, the Bud Heavy's claim to fame is it's use of condensed leaded gasoline, offering over twice the potency of a standard Bud Lite");
+        Consumable medium = new Consumable("Moonshine",20,110,"Strong liquor, straight from the Prohibition");
+        Consumable large = new Consumable("Vodka",50,170,"The label is in indecipherable Russian, but a warning symbol on the back depicts a drunken bear");
         Item rock = new Item("Charlie", 1, "A rock named Charlie");
 
         ArrayList<Item> allItems = new ArrayList<>(Arrays.asList(water,tiny,small,medium,large,rock,overalls,buisness,suitOfArmor,peachDress,cloak,gun,club,sword,BatWithNails,umbrella,magicWand,laserRifle,oneshot,Bow,stick,paddle,axe,hat,pinkJumpsuiit));
@@ -238,6 +238,7 @@ public class game {
 
         String ogreSuccess = "*Grunts happily*";
         ArrayList<Item> ogreLoot = new ArrayList<>();
+        ogreLoot.add(small);
         ArrayList<String> ogreBattleDialogue = new ArrayList<>();
         ogreBattleDialogue.add("*Grunts angrily*");
         ArrayList<String> ogreFlirtDialogue = new ArrayList<>();
@@ -249,6 +250,7 @@ public class game {
 
         String peachSuccess = "Mario's never around anymore, I guess this could be fun";
         ArrayList<Item> peachLoot = new ArrayList<>();
+        peachLoot.add(medium);
         ArrayList<String> peachBattleDialogue = new ArrayList<>();
         peachBattleDialogue.add("You're nothing compared to what ive gone up against");
         ArrayList<String> peachFlirtDialogue = new ArrayList<>();
@@ -260,6 +262,7 @@ public class game {
 
         String pSuccess = "*Chimes happily and flies close to you*";
         ArrayList<Item> pLoot = new ArrayList<>();
+        pLoot.add(tiny);
         ArrayList<String> pBattleDialogue = new ArrayList<>();
         pLoot.add(magicWand);
         pBattleDialogue.add("*Glows threateningly*");
@@ -270,8 +273,10 @@ public class game {
         pFlirtDialogue.add(pSuccess);
         Enemy pixie = new Enemy (15, "Pixie", noArmor,magicWand , 8, pLoot,pSuccess,5,pBattleDialogue,pFlirtDialogue);
 
+
         String panSuccess = "YES! Together we shall vanquish the rising wage gap and distribute the wealth through violent revolution!";
         ArrayList<Item> panLoot = new ArrayList<>();
+        panLoot.add(medium);
         panLoot.add(Bow);
         ArrayList<String> panBattleDialogue = new ArrayList<>();
         panBattleDialogue.add("Who dares challenge the protector of the poor");
@@ -307,6 +312,7 @@ public class game {
 
         ArrayList<Item> trLoot = new ArrayList<>();
         trLoot.add(laserRifle);
+        trLoot.add(water);
         String trSuccess = "*happily* aurgh";
         ArrayList<String> trBattleDialogue = new ArrayList<>();
         trBattleDialogue.add("*waves gun above head* AURGHH AURGHH AURGHHH");
@@ -331,6 +337,7 @@ public class game {
 
         ArrayList<Item> arthurLoot = new ArrayList<>();
         arthurLoot.add(sword);
+        arthurLoot.add(large);
         String arthurSuccess = "thou hast conquered my heart.  You earn my sword.";
         ArrayList<String> arthurBattleDialogue = new ArrayList<>();
         arthurBattleDialogue.add("Ah, a challenger.  You shall be slain");
@@ -343,6 +350,7 @@ public class game {
 
         ArrayList<Item> wickLoot = new ArrayList<>();
         wickLoot.add(cloak);
+        wickLoot.add(large);
         String wickSuccess = "A beautiful new dog.  He will serve me almost as well as I will you.";
         ArrayList<String> wickBattleDialogue = new ArrayList<>();
         wickBattleDialogue.add("Im out of retirement");
@@ -390,8 +398,7 @@ public class game {
 
         String patSuccess = "That's bone. And the lettering is something called Silian Rail";
         ArrayList<Item> patLoot = new ArrayList<>();
-        patLoot.add(axe);
-        patLoot.add(buisness);
+        patLoot.add(large);
         ArrayList<String> patBattleDialogue = new ArrayList<>();
         patBattleDialogue.add("Ever heard of Huey Lewis and the News?");
         ArrayList<String> patFlirtDialogue = new ArrayList<>();
@@ -403,6 +410,7 @@ public class game {
 
         String NyeSuccess = "With our combined power we shall end global warming and make the whole world lukewarm!";
         ArrayList<Item> NyeLoot = new ArrayList<>();
+        NyeLoot.add(medium);
         NyeLoot.add(laserRifle);
         ArrayList<String> NyeBattleDialogue = new ArrayList<>();
         NyeBattleDialogue.add("It just doesn't make any sense as to why you would challenge me, an academic unit.");
@@ -415,7 +423,7 @@ public class game {
 
         String WaltSuccess = "Maybe now I can go make Jr. some breakfast";
         ArrayList<Item> WaltLoot = new ArrayList<>();
-        WaltLoot.add(hat);
+        WaltLoot.add(large);
         ArrayList<String> WaltBattleDialogue = new ArrayList<>();
         WaltBattleDialogue.add("Say my name.");
         ArrayList<String> WaltFlirtDialogue = new ArrayList<>();
