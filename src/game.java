@@ -656,7 +656,7 @@ public class game {
         String girlFlirtSuccess;
         switch (difficulty) {
             case 1 -> {
-                Weapon IQ = new Weapon("Massive IQ",300,45,"IQ that is great enough to catch even the creepiest of costumed freaks");
+                Weapon IQ = new Weapon("Massive IQ",300,25,"IQ that is great enough to catch even the creepiest of costumed freaks");
                 Armor glasses = new Armor("Glasses",200,11,"A pair of glasses that always seem to fall off at inopportune times");
                 //The correct options are 3 and 5
                 girlFlirtSuccess = "35";
@@ -673,7 +673,7 @@ public class game {
                 girlFlirtResponses.add("Those types of endings always suck");
                 return new Girlfriend(500,"Velma",glasses,IQ,5.5,difficulty,girlDialogue,girlFlirtDialogue,girlFlirtResponses,girlFlirtSuccess);
             }
-            case 2 ->{
+            case 3 ->{
                 //Padme Amidala
                 Weapon blaster = new Weapon("ELG-3A", 750, 50, "A sleek, simple design. Easily concealable. Perfectly fit for a careful politician.");
                 Armor battleDress = new Armor("Battle Dress", 500, 15, "A senator's protective attire. Fit for versatility in dire situations.");
@@ -706,9 +706,9 @@ public class game {
 
                 return new Girlfriend(525,"Padme Amidala", battleDress, blaster, 5.5, difficulty, girlDialogue, girlFlirtDialogue, girlFlirtResponses, girlFlirtSuccess);
             }
-            case 3 -> {//create difficulty 3 gf
+            case 2 -> {//create difficulty 3 gf
                 //Rasputin
-                Weapon ras = new Weapon("Sleeper Simulant",1000,55,"Now that is a Destiny 2 reference");
+                Weapon ras = new Weapon("Sleeper Simulant",1000,40,"Now that is a Destiny 2 reference");
                 Armor rarmor = new Armor("Royal Russian Garb",999,150,"The attire of an eccentric Russian Man");
                 girlFlirtSuccess = "159";
                 girlDialogue.add("Many have made attempt on my life. You will not be first.");
