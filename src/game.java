@@ -728,12 +728,12 @@ public class game {
                 girlFlirtResponses.add("*Nothing can change what will happen next*");
 
 
-                return new Girlfriend(525,"Padme Amidala", battleDress, blaster, 5.5, difficulty, girlDialogue, girlFlirtDialogue, girlFlirtResponses, girlFlirtSuccess);
+                return new Girlfriend(535,"Padme Amidala", battleDress, blaster, 5.5, difficulty, girlDialogue, girlFlirtDialogue, girlFlirtResponses, girlFlirtSuccess);
             }
             case 2 -> {//create difficulty 3 gf
                 //Rasputin
-                Weapon ras = new Weapon("Sleeper Stimulant",1000,40,"Now that is a Destiny 2 reference");
-                Armor rarmor = new Armor("Royal Russian Garb",999,150,"The attire of an eccentric Russian Man");
+                Weapon ras = new Weapon("Sleeper Stimulant",180,40,"Now that is a Destiny 2 reference");
+                Armor rarmor = new Armor("Royal Russian Garb",999,100,"The attire of an eccentric Russian Man");
                 girlFlirtSuccess = "159";
                 girlDialogue.add("Many have made attempt on my life. You will not be first.");
                 girlFlirtDialogue.add("1 - Complement his taste in woman\n" + "2 - Ask him to dance\n" + "3 - Offer him aged wine");
