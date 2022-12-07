@@ -141,7 +141,7 @@ public class Player extends Character{
                     if(g.getFlirtLimit() < 3) {
                     System.out.println("You attempt to flirt with your girlfriend.");
                     StringBuilder choices = new StringBuilder();                        //holds each choice made by the player in sequence
-
+                        int count = 0;
                     for (String options : g.getFlirtOptions()) {         //iterates through each set of options (numbered 1->n)
                         System.out.println("""
                                 Please enter the number of your desired option.
@@ -158,12 +158,13 @@ public class Player extends Character{
                             System.out.println("Coward");
                             break;
                         }
-                        else if(choices.toString().charAt(choice-1) == g.getFlirtSuccess().charAt(choice-1)) {
+                        else if(choices.toString().charAt(count) == g.getFlirtSuccess().charAt(count)) {
                             System.out.println("\u001B[33m" + g.getName() + " seemed to like that.\u001B[0m");
                             Thread.sleep(1500);
                         }
 
                         System.out.println(g.getFlirtResponses().get(choice) + "\n");     //prints a response based on the player's choice from the flirtResponse list
+                        count ++;
                     }
                     if (choices.toString().equals(g.getFlirtSuccess())) {      //checks if the player has chosen the correct sequence options using the string builder (choices)
                         System.out.println(g.getFlirtResponses().get(0));      //index 0 of flirtResponses holds dialogue for a successful flirt
@@ -400,7 +401,7 @@ public class Player extends Character{
                     int choice = sc.nextInt();
                     if(choice >= 0) {
                         done = true;
-                        Enemy companion = (Enemy) this.companions.get(choice);
+                        Enemy companion = this.companions.get(choice);
                         if(!companion.getTired()) {
                             companion.fight(opponent);
                             companion.setTired(true);

@@ -80,7 +80,7 @@ public class Girlfriend extends Character{
         Random rand = new Random();
         int chc = rand.nextInt(4) + 1;
         if(chc == 1 && !spAtkUsed){
-            this.specialAttack(1, opponent);// change this method for separate difficulties
+            this.specialAttack(difficulty, opponent);// change this method for separate difficulties
             spAtkUsed = true;
         }
         else{
